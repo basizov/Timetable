@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import logo from './svg/timetableLogo.svg';
 import down from './svg/down.svg';
 import userIcon from './svg/defaultUser.svg';
+import profileIcon from './svg/profile.svg';
+import logout from './svg/logout.svg';
 
 interface Hamburger {
   btnActiveClass: string;
@@ -17,6 +19,7 @@ const Navgation: React.FC = () => {
     isActive: false
   };
   const [active, setActive] = useState<Hamburger>(initialState);
+  const [showMenu, setShowMenu] = useState<boolean>(false);
 
   return (
     <nav className="navigation">
@@ -53,7 +56,9 @@ const Navgation: React.FC = () => {
               <div className="navigation__text">Ошибки</div>
             </div>
           </div>
-          <div className="navigation__user">
+          <div
+            className="navigation__user"
+            onClick={() => setShowMenu(!showMenu)}>
             <img
               src={userIcon}
               alt="profile"
@@ -63,6 +68,26 @@ const Navgation: React.FC = () => {
               alt="down"
               className="navigation__down" />
           </div>
+          {showMenu && <div className="navigation__abilities">
+            <div
+              className="navigation__ability"
+              onClick={() => setShowMenu(!showMenu)}>
+              <img
+                src={profileIcon}
+                alt="profile"
+                className="navigation__ability-logo" />
+              <div className="navigation__ability-text">Профиль</div>
+            </div>
+            <div
+              className="navigation__ability"
+              onClick={() => setShowMenu(!showMenu)}>
+              <img
+                src={logout}
+                alt="logout"
+                className="navigation__ability-logo" />
+              <div className="navigation__ability-text">Выход</div>
+            </div>
+          </div>}
         </div>
       </div>
     </nav>

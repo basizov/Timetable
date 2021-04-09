@@ -1,15 +1,3 @@
-@media (max-width: 1199px) {
-  .navigation {
-    
-  }
-}
-
-@media (max-width: 991px) {
-  .navigation {
-    
-  }
-}
-
 @media (max-width: 767px) {
   .navigation {
     &__links {
@@ -78,6 +66,9 @@
           }
         }
       }
+    }
+    &__abilities {
+      right: -.1rem;
     }
   }
 }
