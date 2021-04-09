@@ -1,0 +1,91 @@
+@media (max-width: 1199px) {
+  .navigation {
+    
+  }
+}
+
+@media (max-width: 991px) {
+  .navigation {
+    
+  }
+}
+
+@media (max-width: 767px) {
+  .navigation {
+    &__links {
+      z-index: 1;
+      background-color: rgba(15, 37, 83, .8);
+      position: fixed;
+      justify-content: center;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100vh;
+      flex-direction: column;
+      transition: all .6s;
+      &_active {
+        left: 0;
+      }
+    }
+    &__link {
+      padding: 1rem;
+      width: 100%;
+      height: auto;
+      &:hover {
+        background-color: rgba(36, 60, 126, .4);
+      }
+    }
+    &__user {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+      width: 75px;
+    }
+    &__down {
+      width: 12%;
+    }
+    &__more {
+      z-index: 2;
+      display: block;
+      margin-left: 1rem;
+      cursor: pointer;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 26px;
+      height: 12px;
+      span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: #fff;
+        margin-bottom: 2px;
+        transition: all .3s;
+      }
+      &_active {
+        span {
+          margin-bottom: -2px;
+          &:nth-child(1) {
+            transform: translateY(3px) rotate(-45deg);
+          }
+          &:nth-child(2) {
+            display: none
+          }
+          &:nth-child(3) {
+            transform: translateY(3px) rotate(45deg);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .navigation {
+    &__links {
+      width: 100%;
+    }
+  }
+}

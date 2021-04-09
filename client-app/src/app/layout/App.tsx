@@ -2,6 +2,7 @@ import React from "react";
 import { Route } from "react-router";
 import HomePage from "../../components/HomePage/HomePage";
 import SchedulerPage from "../../components/SchedulerPage/SchedulerPage";
+import Navgation from "./Navigation/Navigation";
 
 const App: React.FC = () => {
   return (
@@ -11,9 +12,10 @@ const App: React.FC = () => {
         path={'/(.+)'}
         render={() => (
           <>
-          <div className="container">
-            <Route exact path='/scheduler' component={SchedulerPage} />
-          </div>
+            <Navgation />
+            <div className="container">
+              <Route exact path='/scheduler' component={SchedulerPage} />
+            </div>
           </>
         )} />
     </>
