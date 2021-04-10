@@ -1,0 +1,49 @@
+@media (max-width: 1500px) {
+  .details {
+    &__wrapper {
+      padding: 0 3rem;
+    }
+    &__item {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 1199px) {
+  .details {
+    &__wrapper {
+      padding: 0 1rem;
+    }
+    &__item {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .details {
+    &__wrapper {
+      padding: 0 1rem;
+    }
+    &__item {
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: 870px) {
+  .details {
+    &__wrapper {
+      padding: 0;
+    }
+    &__item {
+      font-size: 11px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .details {
+    display: none;
+  }
+}

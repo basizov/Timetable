@@ -4,13 +4,13 @@ import right from './svg/right.svg';
 
 const SchedulerPaging: React.FC = () => {
   return (
-    <div className="scheduler__paging">
+    <div className="sidebar__paging">
       <div
         className="btn__sidebar btn__sidebar_withimg btn__sidebar_withimg_left"
         onClick={() => console.log('left')}>
         <img src={left} alt="left"/>
       </div>
-      <div className="scheduler__pages">
+      <div className="sidebar__pages">
         <div className="btn__sidebar">1</div>
         <div className="btn__sidebar">2</div>
         <div className="btn__sidebar">3</div>

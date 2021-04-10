@@ -1,0 +1,25 @@
+.details {
+  @extend %boxView;
+  &__info {
+    padding: 3rem 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  &__img {
+    width: 70px;
+    height: 70px;
+  }
+  &__item {
+    margin-top: 10px;
+    text-align: center;
+    list-style-type: decimal;
+    font-weight: 500;
+    font-size: 16px;
+  }
+}
+
+@import './media';
