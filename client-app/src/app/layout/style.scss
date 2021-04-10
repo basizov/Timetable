@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;900&display=swap');
 
+html {
+  background-color: rgb(221, 242, 255);
+  overflow: overlay;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -9,12 +14,15 @@
 
 .container {
   margin: 0 auto;
-  width: 1140px;
+  width: 1440px;
 }
 
+@import '../styles/btns';
+@import '../styles/scrollbar';
 @import '../styles/root';
 @import '../styles/extends';
 @import '../styles/link';
+@import '../styles/media';
 @import './Navigation/navigation';
 @import '../../components/HomePage/home';
 @import '../../components/SchedulerPage/scheduler';

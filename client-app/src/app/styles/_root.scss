@@ -10,6 +10,12 @@ $help-color: rgb(70, 114, 144);
   color: rgb(246, 166, 166);
 }
 
+@media (max-width: 1500px) {
+  .container {
+    width: 1140px;
+  }
+}
+
 @media (max-width: 1199px) {
   .container {
     width: 991px;
@@ -18,12 +24,13 @@ $help-color: rgb(70, 114, 144);
 
 @media (max-width: 991px) {
   .container {
-    width: 725px;
+    width: 100%;
+    padding: 0 1rem;
   }
 }
 
 @media (max-width: 767px) {
   .container {
-    width: 100%;
+    padding: 0;
   }
 }
