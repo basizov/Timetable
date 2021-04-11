@@ -1,7 +1,7 @@
 @media (max-width: 1500px) {
   .details {
     &-full {
-      margin-top: 5rem;
+      margin: 5rem 0 1rem 0;
     }
     &__item {
       font-size: 14px;
@@ -63,8 +63,31 @@
 
 @media (max-width: 600px) {
   .details {
-    &-full {
+    &-fullbig {
       display: none;
+    }
+    &-fullsmall{
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .details {
+    &__subject, &__time {
+      &-day {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .details {
+    &__subject, &__time {
+      &-day {
+        font-size: 14px;
+      }
     }
   }
 }

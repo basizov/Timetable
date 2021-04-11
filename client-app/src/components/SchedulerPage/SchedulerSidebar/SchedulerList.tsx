@@ -6,10 +6,16 @@ const SchedulerList: React.FC = () => {
   return (
     <div className="sidebar__list">
       <div className="sidebar__group">
-        <div className="sidebar__group_name">4331</div>
-        <Link to={`/scheduler/4331`} className="sidebar__fullscrin">
-          <img src={resize} alt="resize"/>
-        </Link>
+          <div className="sidebar__group_name">
+            <Link to={`/scheduler/4331`} className="sidebar__link">
+              4331
+            </Link>
+            <div className="sidebar__group_text">4331</div>
+          </div>
+          <Link to={`/scheduler/4331`} className="sidebar__fullscrin">
+            <img src={resize} alt="resize"/>
+          </Link>
+        
       </div>
       <div className="sidebar__group">
         <div className="sidebar__group_name">4332</div>

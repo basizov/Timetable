@@ -63,6 +63,13 @@
       @extend %hoverActiveEffect;
     }
   }
+  &__link {
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #000;
+    display: none;
+  }
   &__fullscrin {
     top: 0;
     right: 0;

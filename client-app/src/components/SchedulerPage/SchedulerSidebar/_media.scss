@@ -55,6 +55,16 @@
     padding: 0 5rem;
     grid-column-start: 1;
     grid-column-end: 3;
+    &__fullscrin {
+      display: none;
+    }
+    &__group_text {
+      display: none;
+    }
+    &__link {
+      display: flex;
+      align-items: center;
+    }
   }
 }
 
