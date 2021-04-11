@@ -23,10 +23,12 @@ const SchedulerChoose: React.FC = () => {
       </div>
       {toggle && <>
         {days.map((day, i) => (
-          select === day || <div
-          className="details__select"
-          onClick={() => changeDay(i)}>
-          {day}</div>
+          select === day ||
+          <div
+            key={i}
+            className="details__select"
+            onClick={() => changeDay(i)}>
+            {day}</div>
         ))}
       </>}
       <div className="details__scheduler-day">
