@@ -24,10 +24,10 @@ namespace Domain.Entities
 		/// <summary>
 		/// Номер здания
 		/// </summary>
-    public SubjectType SubjectType { get; set; }
+    public string SubjectType { get; set; }
 		/// <summary>
-		/// Номер пары (первая, вторая и т.д.)
+		/// Время пары (первая, вторая и т.д.)
 		/// </summary>
-    public SubjectNumber SubjectNumber { get; set; }
+    public string SubjectTime { get; set; }
   }
 }

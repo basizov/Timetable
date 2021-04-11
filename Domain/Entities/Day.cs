@@ -25,6 +25,6 @@ namespace Domain.Entities
 		/// <summary>
 		/// Рассписания дня по предметам
 		/// </summary>
-    public List<Subject> Subject { get; set; }
+    public List<Subject> Subjects { get; set; }
   }
 }
