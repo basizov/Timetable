@@ -43,13 +43,19 @@ const Navgation: React.FC = () => {
         </div>
         <div className="navigation__wrapper">
           <div className={"navigation__links " + active.sidebarActiveClass}>
-            <Link to='/' className="navigation__link">
+            <Link
+             to='/'
+             className="navigation__link"
+             onClick={() => setActive(initialState)}>
               <div className="navigation__logo">
                 <img src={logo} alt="navigationIcon"/>
               </div>
               <div className="navigation__text">Главная</div>
             </Link>
-            <Link to='/scheduler' className="navigation__link">
+            <Link
+              to='/scheduler'
+              className="navigation__link"
+              onClick={() => setActive(initialState)}>
               <div className="navigation__text">Расписание групп</div>
             </Link>
             <div className="navigation__link">

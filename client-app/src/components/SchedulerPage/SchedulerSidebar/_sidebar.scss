@@ -15,13 +15,11 @@
     @extend %boxView;
   }
   &__pages {
-    width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     margin-left: 50px;
     transition: transform .3s;
-    overflow: hidden;
     &:first-child {
       transition: none !important; 
     }
@@ -38,6 +36,7 @@
     border: none;
     outline: none;
     height: 100%;
+    font-weight: 300;
     color: rgb(0, 20, 105);
     font-size: 18px;
   }

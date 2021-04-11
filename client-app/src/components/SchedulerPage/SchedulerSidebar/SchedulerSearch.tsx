@@ -6,6 +6,7 @@ const SchedulerSearch: React.FC = () => {
     <div className="sidebar__search">
       <input
         type="text"
+        onFocus={(e) => e.target.select()}
         placeholder='Введите нужную группу:'
         className="sidebar__input" />
       <div

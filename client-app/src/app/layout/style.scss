@@ -17,10 +17,10 @@ html {
   width: 1440px;
 }
 
+@import '../styles/extends';
 @import '../styles/btns';
 @import '../styles/scrollbar';
 @import '../styles/root';
-@import '../styles/extends';
 @import '../styles/link';
 @import '../styles/media';
 @import './Navigation/navigation';
