@@ -1,7 +1,7 @@
 .scheduler {
   margin-top: 7rem;
   display: grid;
-  grid-template-columns: 35% calc(65% - 1rem);
+  grid-template-columns: 30% calc(70% - 1rem);
   grid-gap: 1rem;
   table-layout: fixed;
   &__list {

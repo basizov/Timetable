@@ -109,7 +109,10 @@
       }
     }
     &:hover {
-      background-color: rgb(235, 235, 235);
+      background-color: rgb(240, 240, 240);
+    }
+    &:active {
+      background-color: rgb(233, 233, 233);
     }
   }
 }

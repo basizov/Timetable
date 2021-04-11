@@ -17,6 +17,12 @@
     &__item {
       font-size: 14px;
     }
+    &__day {
+      font-size: 16px;
+    }
+    &__subject, &__time {
+      font-size: 14px;
+    }
   }
 }
 
@@ -28,10 +34,16 @@
     &__item {
       font-size: 12px;
     }
+    &__day {
+      font-size: 14px;
+    }
+    &__subject, &__time {
+      font-size: 12px;
+    }
   }
 }
 
-@media (max-width: 870px) {
+@media (max-width: 890px) {
   .details {
     &__wrapper {
       padding: 0;
@@ -39,10 +51,13 @@
     &__item {
       font-size: 11px;
     }
+    &__time {
+      font-size: 11px;
+    }
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 845px) {
   .details {
     display: none;
   }

@@ -73,6 +73,14 @@
   }
 }
 
+@media (max-width: 575px) {
+  .navigation {
+    &__links {
+      width: 70%;
+    }
+  }
+}
+
 @media (max-width: 450px) {
   .navigation {
     &__links {

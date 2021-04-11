@@ -32,11 +32,17 @@
   }
 }
 
+@media (max-width: 845px) {
+  .sidebar {
+    padding: 0 5rem;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+}
+
 @media (max-width: 767px) {
   .sidebar {
     padding: 0 3rem;
-    grid-column-start: 1;
-    grid-column-end: 3;
   }
 }
 
