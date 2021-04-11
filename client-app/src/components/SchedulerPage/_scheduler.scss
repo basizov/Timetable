@@ -1,11 +1,9 @@
 .scheduler {
-  margin-top: 7rem;
+  margin: 7rem 0 3rem 0;
   display: grid;
   grid-template-columns: 30% calc(70% - 1rem);
   grid-gap: 1rem;
   table-layout: fixed;
-  &__list {
-    margin-top: 1rem;
-    @extend %boxView;
-  }
 }
+
+@import './media';

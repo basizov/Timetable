@@ -1,7 +1,7 @@
 @media (max-width: 1500px) {
   .details {
-    &__wrapper {
-      padding: 0 3rem;
+    &-full {
+      margin-top: 5rem;
     }
     &__item {
       font-size: 14px;
@@ -11,9 +11,6 @@
 
 @media (max-width: 1199px) {
   .details {
-    &__wrapper {
-      padding: 0 1rem;
-    }
     &__item {
       font-size: 14px;
     }
@@ -25,15 +22,8 @@
     }
   }
 }
-
-@media (max-width: 991px) {
+@media (max-width: 1050px) {
   .details {
-    &__wrapper {
-      padding: 0 1rem;
-    }
-    &__item {
-      font-size: 12px;
-    }
     &__day {
       font-size: 14px;
     }
@@ -43,11 +33,16 @@
   }
 }
 
-@media (max-width: 890px) {
+@media (max-width: 991px) {
   .details {
-    &__wrapper {
-      padding: 0;
+    &__item {
+      font-size: 12px;
     }
+  }
+}
+
+@media (max-width: 910px) {
+  .details {
     &__item {
       font-size: 11px;
     }
@@ -57,8 +52,19 @@
   }
 }
 
-@media (max-width: 845px) {
+@media (max-width: 855px) {
   .details {
     display: none;
+    &-full {
+      padding: 0 1rem;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .details {
+    &-full {
+      display: none;
+    }
   }
 }

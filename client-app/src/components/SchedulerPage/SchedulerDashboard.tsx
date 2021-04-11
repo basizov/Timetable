@@ -1,6 +1,6 @@
 import React from 'react';
 import SchedulerDetails from './SchedulerDetails/SchedulerDetails';
-import SchedulerList from './SchedulerList';
+import SchedulerList from './SchedulerSidebar/SchedulerList';
 import SchedulerPaging from './SchedulerSidebar/SchedulerPaging';
 import SchedulerSearch from './SchedulerSidebar/SchedulerSearch';
 
@@ -12,7 +12,9 @@ const SchedulerDashboard: React.FC = () => {
         <SchedulerSearch />
         <SchedulerList />
       </div>
-      <SchedulerDetails />
+      <div className="details">
+        <SchedulerDetails />
+      </div>
     </section>
   );
 };

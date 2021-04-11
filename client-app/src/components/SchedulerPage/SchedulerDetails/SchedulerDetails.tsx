@@ -3,7 +3,7 @@ import info from './svg/info.svg';
 
 const SchedulerDetails: React.FC = () => {
   return (
-    <div className="details">
+    <div className="details__wrapper">
       {true ?
       <div className="details__scheduler">
         <div className="details__day">Предмет</div>
@@ -16,38 +16,48 @@ const SchedulerDetails: React.FC = () => {
         <div className="details__subject">ТРПО</div>
         <div className="details__time">
           <div>
-            <span>Лаб. работа</span>
+            <span className='details__time_type'>Лаб. работа</span>
             9:40-11:10
+            <span>7 здание</span>
+            <span>215 кабинет</span>
           </div>
         </div>
         <div className="details__time"></div>
         <div className="details__time">
           <div>
-            <span>Лекция</span>
+            <span className='details__time_type'>Лекция</span>
             3:30-15:00
+            <span>7 здание</span>
+            <span>215 кабинет</span>
           </div>
         </div>
         <div className="details__time"></div>
         <div className="details__time"></div>
         <div className="details__time details__lastr">
           <div>
-            <span>Практика</span>
+            <span className='details__time_type'>Практика</span>
             8:00-9:30
+            <span>7 здание</span>
+            <span>215 кабинет</span>
           </div>
         </div>
         <div className="details__subject">БЖД</div>
         <div className="details__time">
           <div>
-            <span>Практика</span>
+            <span className='details__time_type'>Практика</span>
             8:00-9:30
+            <span>7 здание</span>
+            <span>215 кабинет</span>
           </div>
         </div>
         <div className="details__time"></div>
         <div className="details__time"></div>
         <div className="details__time">
           <div>
-            <span>Практика</span>
+            <span className='details__time_type'>Практика</span>
             8:00-9:30
+            <span>7 здание</span>
+            <span>215 кабинет</span>
           </div>
         </div>
         <div className="details__time"></div>
@@ -57,8 +67,10 @@ const SchedulerDetails: React.FC = () => {
         <div className="details__time"></div>
         <div className="details__time">
           <div>
-            <span>Лаб. работа</span>
+            <span className='details__time_type'>Лаб. работа</span>
             8:00-9:30
+            <span>7 здание</span>
+            <span>215 кабинет</span>
           </div>
         </div>
         <div className="details__time"></div>
@@ -68,8 +80,10 @@ const SchedulerDetails: React.FC = () => {
         <div className="details__time details__lastb"></div>
         <div className="details__time details__lastb">
           <div>
-            <span>Лаб. работа</span>
+            <span className='details__time_type'>Лаб. работа</span>
             15:00-18:10
+            <span>7 здание</span>
+            <span>215 кабинет</span>
           </div>
         </div>
         <div className="details__time details__lastb"></div>

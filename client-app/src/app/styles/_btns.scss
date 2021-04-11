@@ -9,9 +9,6 @@
     align-items: center;
     font-size: 20px;
     font-weight: 300;
-    &_active {
-      background-color: rgb(240, 240, 240);
-    }
     &_withimg {
       width: 50px;
       height: 100%;
@@ -37,11 +34,6 @@
         }
       }
     }
-    &:hover {
-      background-color: rgb(240, 240, 240);
-    }
-    &:active {
-      background-color: rgb(233, 233, 233);
-    }
+    @extend %hoverActiveEffect;
   }
 }

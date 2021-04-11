@@ -50,7 +50,7 @@ const Navgation: React.FC = () => {
               <div className="navigation__text">Главная</div>
             </Link>
             <Link to='/scheduler' className="navigation__link">
-              <div className="navigation__text">Рассписание групп</div>
+              <div className="navigation__text">Расписание групп</div>
             </Link>
             <div className="navigation__link">
               <div className="navigation__text">Ошибки</div>
@@ -69,15 +69,16 @@ const Navgation: React.FC = () => {
               className="navigation__down" />
           </div>
           {showMenu && <div className="navigation__abilities">
-            <div
+            <Link
+              to={`/scheduler/4331`}
               className="navigation__ability"
               onClick={() => setShowMenu(!showMenu)}>
               <img
                 src={profileIcon}
                 alt="profile"
                 className="navigation__ability-logo" />
-              <div className="navigation__ability-text">Профиль</div>
-            </div>
+              <div className="navigation__ability-text">Моё расписание</div>
+            </Link>
             <div
               className="navigation__ability"
               onClick={() => setShowMenu(!showMenu)}>

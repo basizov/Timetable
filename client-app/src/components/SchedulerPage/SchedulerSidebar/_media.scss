@@ -12,6 +12,15 @@
     &__search {
       height: 35px;
     }
+    &__fullscrin {
+      width: 35px;
+    }
+    &__group {
+      height: 35px;
+      &_name {
+        font-size: 16px;
+      }
+    }
   }
 }
 
@@ -29,10 +38,19 @@
     &__search {
       height: 30px;
     }
+    &__fullscrin {
+      width: 30px;
+    }
+    &__group {
+      height: 30px;
+      &_name {
+        font-size: 14px;
+      }
+    }
   }
 }
 
-@media (max-width: 845px) {
+@media (max-width: 855px) {
   .sidebar {
     padding: 0 5rem;
     grid-column-start: 1;

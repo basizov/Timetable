@@ -94,8 +94,7 @@
     align-items: center;
     padding: 5px;
     &-text {
-      min-width: 70%;
-      text-align: center;
+      min-width: 85%;
       color:rgb(0, 0, 0);
       font-weight: 500;
       font-size: 16px;
@@ -108,12 +107,7 @@
         height: 100%;
       }
     }
-    &:hover {
-      background-color: rgb(240, 240, 240);
-    }
-    &:active {
-      background-color: rgb(233, 233, 233);
-    }
+    @extend %hoverActiveEffect;
   }
 }
 
