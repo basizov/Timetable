@@ -22,9 +22,5 @@ namespace Application.DTOs
 		/// Неделя (четная, нечетная)
 		/// </summary>
     public string Week { get; set; }
-		/// <summary>
-		/// Рассписания дня по предметам
-		/// </summary>
-    public List<SubjectDTO> Subjects { get; set; }
   }
 }

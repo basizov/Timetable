@@ -20,27 +20,6 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Day",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Date = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    Week = table.Column<int>(type: "INTEGER", nullable: false),
-                    GroupId = table.Column<Guid>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Day", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Day_Groups_GroupId",
-                        column: x => x.GroupId,
-                        principalTable: "Groups",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Subject",
                 columns: table => new
                 {
@@ -50,37 +29,58 @@ namespace Persistence.Migrations
                     Building = table.Column<int>(type: "INTEGER", nullable: false),
                     SubjectType = table.Column<int>(type: "INTEGER", nullable: false),
                     SubjectTime = table.Column<int>(type: "INTEGER", nullable: false),
-                    DayId = table.Column<Guid>(type: "TEXT", nullable: true)
+                    GroupId = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Subject", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Subject_Day_DayId",
-                        column: x => x.DayId,
-                        principalTable: "Day",
+                        name: "FK_Subject_Groups_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "Groups",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Day",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    Week = table.Column<int>(type: "INTEGER", nullable: false),
+                    SubjectId = table.Column<Guid>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Day", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Day_Subject_SubjectId",
+                        column: x => x.SubjectId,
+                        principalTable: "Subject",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Day_GroupId",
+                name: "IX_Day_SubjectId",
                 table: "Day",
-                column: "GroupId");
+                column: "SubjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Subject_DayId",
+                name: "IX_Subject_GroupId",
                 table: "Subject",
-                column: "DayId");
+                column: "GroupId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Subject");
+                name: "Day");
 
             migrationBuilder.DropTable(
-                name: "Day");
+                name: "Subject");
 
             migrationBuilder.DropTable(
                 name: "Groups");

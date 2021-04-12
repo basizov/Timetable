@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Domain.Enums;
 
 namespace Domain.Entities
@@ -22,9 +21,5 @@ namespace Domain.Entities
 		/// Неделя (четная, нечетная)
 		/// </summary>
     public Week Week { get; set; }
-		/// <summary>
-		/// Рассписания дня по предметам
-		/// </summary>
-    public List<Subject> Subjects { get; set; }
   }
 }

@@ -22,109 +22,59 @@ namespace Persistence
           new Group
           {
             Number = $"{i}",
-            Days = new List<Day>
+            Subjects = new List<Subject>
             {
-              new Day
+              new Subject
               {
-                Name = "Понедельник",
-                Week = Week.Even,
-                Subjects = new List<Subject>
+                Discipline = "ТРПО",
+                Cabinet = "216a",
+                Building = 7,
+                SubjectType = SubjectType.LaboratoryWork,
+                SubjectTime = SubjectNumber.Second,
+                Days = new List<Day>
                 {
-                  new Subject
+                  new Day { Name = "Понедельник", Week = Week.Even },
+                  new Day { Name = "Суббота", Week = Week.Even }
+                }
+                },
+                new Subject
+                {
+                  Discipline = "БЖД",
+                  Cabinet = "510",
+                  Building = 7,
+                  SubjectType = SubjectType.Practice,
+                  SubjectTime = SubjectNumber.First,
+                  Days = new List<Day>
+                  { 
+                    new Day { Name = "Понедельник", Week = Week.Even },
+                    new Day { Name = "Вторник", Week = Week.Even },
+                    new Day { Name = "Среда", Week = Week.Even }
+                  }
+                },
+                new Subject
+                {
+                  Discipline = "Информационные технологии",
+                  Cabinet = "216a",
+                  Building = 7,
+                  SubjectType = SubjectType.LaboratoryWork,
+                  SubjectTime = SubjectNumber.Fourth,
+                  Days = new List<Day>
                   {
-                    Discipline = "ТРПО",
-                    Cabinet = "216a",
-                    Building = 7,
-                    SubjectType = SubjectType.LaboratoryWork,
-                    SubjectTime = SubjectNumber.Second
-                  },
-                  new Subject
+                    new Day { Name = "Четверг", Week = Week.Even }
+                  }
+                },
+                new Subject
+                {
+                  Discipline = "Системное программирование",
+                  Cabinet = "425",
+                  Building = 7,
+                  SubjectType = SubjectType.LaboratoryWork,
+                  SubjectTime = SubjectNumber.First,
+                  Days = new List<Day>
                   {
-                    Discipline = "БЖД",
-                    Cabinet = "510",
-                    Building = 7,
-                    SubjectType = SubjectType.Practice,
-                    SubjectTime = SubjectNumber.First
+                    new Day { Name = "Пятница", Week = Week.Even },
                   }
                 }
-              },
-              new Day
-              {
-                Name = "Вторник",
-                Week = Week.Even,
-                Subjects = new List<Subject>
-                {
-                  new Subject
-                  {
-                    Discipline = "Информационные технологии",
-                    Cabinet = "216a",
-                    Building = 7,
-                    SubjectType = SubjectType.LaboratoryWork,
-                    SubjectTime = SubjectNumber.Fourth
-                  }
-                }
-              },
-              new Day
-              {
-                Name = "Среда",
-                Week = Week.Even,
-                Subjects = new List<Subject>
-                {
-                  new Subject
-                  {
-                    Discipline = "ТРПО",
-                    Cabinet = "416",
-                    Building = 7,
-                    SubjectType = SubjectType.Lecture,
-                    SubjectTime = SubjectNumber.Fourth
-                  },
-                  new Subject
-                  {
-                    Discipline = "Системное программирование",
-                    Cabinet = "425",
-                    Building = 7,
-                    SubjectType = SubjectType.LaboratoryWork,
-                    SubjectTime = SubjectNumber.First
-                  },
-                }
-              },
-              new Day
-              {
-                Name = "Четверг",
-                Week = Week.Even,
-                Subjects = new List<Subject>
-                {
-                  new Subject
-                  {
-                    Discipline = "БЖД",
-                    Cabinet = "410",
-                    Building = 7,
-                    SubjectType = SubjectType.Practice,
-                    SubjectTime = SubjectNumber.First
-                  }
-                }
-              },
-              new Day
-              {
-                Name = "Пятница",
-                Week = Week.Even
-              },
-              new Day
-              {
-                Name = "Суббота",
-                Week = Week.Even,
-                Subjects = new List<Subject>
-                {
-                  new Subject
-                  {
-                    Discipline = "ТРПО",
-                    Cabinet = "126",
-                    Building = 7,
-                    SubjectType = SubjectType.Practice,
-                    SubjectTime = SubjectNumber.First
-                  }
-                }
-              }
             }
           }
         );

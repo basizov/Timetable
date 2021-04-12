@@ -43,7 +43,7 @@
   &__subject, &__time, &__day {
     padding: 3px;
     border: 1px solid rgba(#000, .3);
-    border-top: none;
+    border-bottom: none;
     border-left: none;
   }
   &__day {
@@ -60,7 +60,7 @@
     text-align: center;
     &-day {
       padding: 1rem;
-      border-bottom: 1px solid rgba(#000, .3);
+      border-top: 1px solid rgba(#000, .3);
       border-right: 1px solid rgba(#000, .3);
       width: 100%;
       display: flex;
@@ -96,8 +96,8 @@
   &__lastr {
     border-right: none;
   }
-  &__lastb {
-    border-bottom: none;
+  &__lastt {
+    border-top: none;
   }
   &__need {
     cursor: pointer;

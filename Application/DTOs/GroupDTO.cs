@@ -14,8 +14,8 @@ namespace Application.DTOs
 		/// </summary>
     public string Number { get; set; }
 		/// <summary>
-		/// Рассписания группы по дням
+		/// Рассписание группы по предметам
 		/// </summary>
-    public List<DayDTO> Days { get; set; }
+    public List<SubjectDTO> Subjects { get; set; }
   }
 }

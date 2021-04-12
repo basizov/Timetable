@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Domain.Enums;
 
 namespace Domain.Entities
@@ -29,5 +30,9 @@ namespace Domain.Entities
 		/// Время пары (первая, вторая и т.д.)
 		/// </summary>
     public SubjectNumber SubjectTime { get; set; }
+		/// <summary>
+		/// Рассписание предмета по дням
+		/// </summary>
+    public List<Day> Days { get; set; }
   }
 }

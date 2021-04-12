@@ -9,7 +9,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210412155314_CreateDBForGroups")]
+    [Migration("20210412215642_CreateDBForGroups")]
     partial class CreateDBForGroups
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,10 +27,10 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("GroupId")
+                    b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
+                    b.Property<Guid?>("SubjectId")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Week")
@@ -38,7 +38,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GroupId");
+                    b.HasIndex("SubjectId");
 
                     b.ToTable("Day");
                 });
@@ -69,10 +69,10 @@ namespace Persistence.Migrations
                     b.Property<string>("Cabinet")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("DayId")
+                    b.Property<string>("Discipline")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Discipline")
+                    b.Property<Guid?>("GroupId")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("SubjectTime")
@@ -83,31 +83,31 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DayId");
+                    b.HasIndex("GroupId");
 
                     b.ToTable("Subject");
                 });
 
             modelBuilder.Entity("Domain.Entities.Day", b =>
                 {
-                    b.HasOne("Domain.Entities.Group", null)
+                    b.HasOne("Domain.Entities.Subject", null)
                         .WithMany("Days")
-                        .HasForeignKey("GroupId");
+                        .HasForeignKey("SubjectId");
                 });
 
             modelBuilder.Entity("Domain.Entities.Subject", b =>
                 {
-                    b.HasOne("Domain.Entities.Day", null)
+                    b.HasOne("Domain.Entities.Group", null)
                         .WithMany("Subjects")
-                        .HasForeignKey("DayId");
+                        .HasForeignKey("GroupId");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Day", b =>
+            modelBuilder.Entity("Domain.Entities.Group", b =>
                 {
                     b.Navigation("Subjects");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Group", b =>
+            modelBuilder.Entity("Domain.Entities.Subject", b =>
                 {
                     b.Navigation("Days");
                 });

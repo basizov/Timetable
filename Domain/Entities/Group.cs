@@ -14,8 +14,8 @@ namespace Domain.Entities
 		/// </summary>
     public string Number { get; set; }
 		/// <summary>
-		/// Рассписания группы по дням
+		/// Рассписание группы по предметам
 		/// </summary>
-    public List<Day> Days { get; set; }
+    public List<Subject> Subjects { get; set; }
   }
 }

@@ -31,6 +31,8 @@ namespace Application.Group
         Result<List<GroupDTO>>.Success(
           await _context
             .Groups
+            .Include(g => g.Subjects)
+            .ThenInclude(s => s.Days)
             .ProjectTo<GroupDTO>(_mapper.ConfigurationProvider)
             .OrderBy(g => g.Number)
             .ToListAsync()

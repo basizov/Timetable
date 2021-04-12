@@ -1,5 +1,5 @@
 using System;
-using Domain.Enums;
+using System.Collections.Generic;
 
 namespace Application.DTOs
 {
@@ -29,5 +29,9 @@ namespace Application.DTOs
 		/// Время пары (первая, вторая и т.д.)
 		/// </summary>
     public string SubjectTime { get; set; }
+		/// <summary>
+		/// Рассписание предмета по дням
+		/// </summary>
+    public List<DayDTO> Days { get; set; }
   }
 }
