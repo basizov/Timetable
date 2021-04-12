@@ -5,6 +5,7 @@ import { IGroup } from "../api/models/Group";
 export default class  GroupStore {
   loading = false;
   loadingInitial = false;
+  selectedGroup: IGroup | undefined = undefined;
   groupsRegystry = new Map<string, IGroup>();
 
   constructor() {
@@ -27,8 +28,35 @@ export default class  GroupStore {
       console.log(error);
     }
   }
+
+  loadGroup = async (id: string) => {
+    this.loading = true;
+    let group = this.getGroup(id);
+
+    if (group) {
+      this.selectedGroup = group;
+      this.loading = false;
+    } else {
+      try {
+        group = await agent.Groups.details(id);
+
+        runInAction(() => {
+          this.groupsRegystry.set(group!.id, group!)
+          this.selectedGroup = group;
+          this.loading = false;
+        });
+      } catch(error) {
+        console.log(error);
+        this.loading = false;
+      }
+    }
+  }
   
   get getGroups(): IGroup[] {
     return Array.from(this.groupsRegystry.values());
+  }
+
+  private getGroup = (id: string) => {
+    return this.groupsRegystry.get(id);
   }
 }

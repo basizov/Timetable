@@ -1,102 +1,41 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { IGroup } from '../../../app/api/models/Group';
 import resize from './svg/resize.svg';
 
-const SchedulerList: React.FC = () => {
+interface Props {
+  groups: IGroup[];
+  loadGroup: (id: string) => void;
+}
+
+const SchedulerList: React.FC<Props> = ({groups, loadGroup}) => {
   return (
     <div className="sidebar__list">
-      <div className="sidebar__group">
-          <div className="sidebar__group_name">
-            <Link to={`/scheduler/4331`} className="sidebar__link">
-              4331
+      {groups && groups.map(group =>(
+        <div
+          key={group.id}
+          className="sidebar__group">
+          <div
+            className="sidebar__group_name"
+            onClick={() => loadGroup(group.id)}>
+            <Link
+              to={`/scheduler/${group.number}`}
+              className="sidebar__link">
+              {group.number}
             </Link>
-            <div className="sidebar__group_text">4331</div>
+            <div className="sidebar__group_text">{group.number}</div>
           </div>
-          <Link to={`/scheduler/4331`} className="sidebar__fullscrin">
+          <Link
+            onClick={() => loadGroup(group.id)}
+            to={`/scheduler/${group.number}`}
+            className="sidebar__fullscrin">
             <img src={resize} alt="resize"/>
           </Link>
-        
-      </div>
-      <div className="sidebar__group">
-        <div className="sidebar__group_name">4332</div>
-        <div className="sidebar__fullscrin">
-          <img src={resize} alt="resize"/>
         </div>
-      </div>
-      <div className="sidebar__group">
-        <div className="sidebar__group_name">4333</div>
-        <div className="sidebar__fullscrin">
-          <img src={resize} alt="resize"/>
-        </div>
-      </div>
-      <div className="sidebar__group">
-        <div className="sidebar__group_name">4334</div>
-        <div className="sidebar__fullscrin">
-          <img src={resize} alt="resize"/>
-        </div>
-      </div>
-      <div className="sidebar__group">
-        <div className="sidebar__group_name">4335</div>
-        <div className="sidebar__fullscrin">
-          <img src={resize} alt="resize"/>
-        </div>
-      </div>
-      <div className="sidebar__group">
-        <div className="sidebar__group_name">4336</div>
-        <div className="sidebar__fullscrin">
-          <img src={resize} alt="resize"/>
-        </div>
-      </div>
-      <div className="sidebar__group">
-        <div className="sidebar__group_name">4337</div>
-        <div className="sidebar__fullscrin">
-          <img src={resize} alt="resize"/>
-        </div>
-      </div>
-      <div className="sidebar__group">
-        <div className="sidebar__group_name">4348</div>
-        <div className="sidebar__fullscrin">
-          <img src={resize} alt="resize"/>
-        </div>
-      </div>
-      <div className="sidebar__group">
-        <div className="sidebar__group_name">4339</div>
-        <div className="sidebar__fullscrin">
-          <img src={resize} alt="resize"/>
-        </div>
-      </div>
-      <div className="sidebar__group">
-        <div className="sidebar__group_name">4340</div>
-        <div className="sidebar__fullscrin">
-          <img src={resize} alt="resize"/>
-        </div>
-      </div>
-      <div className="sidebar__group">
-        <div className="sidebar__group_name">4341</div>
-        <div className="sidebar__fullscrin">
-          <img src={resize} alt="resize"/>
-        </div>
-      </div>
-      <div className="sidebar__group">
-        <div className="sidebar__group_name">4342</div>
-        <div className="sidebar__fullscrin">
-          <img src={resize} alt="resize"/>
-        </div>
-      </div>
-      <div className="sidebar__group">
-        <div className="sidebar__group_name">4343</div>
-        <div className="sidebar__fullscrin">
-          <img src={resize} alt="resize"/>
-        </div>
-      </div>
-      <div className="sidebar__group">
-        <div className="sidebar__group_name">4344</div>
-        <div className="sidebar__fullscrin">
-          <img src={resize} alt="resize"/>
-        </div>
-      </div>
+      ))}
     </div>
   );
 };
 
-export default  SchedulerList;
+export default  observer(SchedulerList);

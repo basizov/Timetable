@@ -25,7 +25,8 @@ const requests = {
 }
 
 const Groups = {
-  list: () => requests.get<IGroup[]>(`/group`)
+  list: () => requests.get<IGroup[]>(`/group`),
+  details: (id: string) => requests.get<IGroup>(`/group/${id}`)
 }
 
 const agent = {
