@@ -21,7 +21,7 @@ namespace Application.DTOs
 		/// <summary>
 		/// Неделя (четная, нечетная)
 		/// </summary>
-    public Week Week { get; set; }
+    public string Week { get; set; }
 		/// <summary>
 		/// Рассписания дня по предметам
 		/// </summary>

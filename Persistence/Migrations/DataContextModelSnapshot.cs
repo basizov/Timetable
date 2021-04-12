@@ -73,11 +73,11 @@ namespace Persistence.Migrations
                     b.Property<string>("Discipline")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("SubjectTime")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("SubjectTime")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("SubjectType")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("SubjectType")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

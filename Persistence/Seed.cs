@@ -35,16 +35,16 @@ namespace Persistence
                     Discipline = "ТРПО",
                     Cabinet = "216a",
                     Building = 7,
-                    SubjectType = "Лаб. работа",
-                    SubjectTime = "9:40 - 12:50"
+                    SubjectType = SubjectType.LaboratoryWork,
+                    SubjectTime = SubjectNumber.Second
                   },
                   new Subject
                   {
                     Discipline = "БЖД",
                     Cabinet = "510",
                     Building = 7,
-                    SubjectType = "Практика",
-                    SubjectTime = "8:00 - 9:30"
+                    SubjectType = SubjectType.Practice,
+                    SubjectTime = SubjectNumber.First
                   }
                 }
               },
@@ -59,8 +59,8 @@ namespace Persistence
                     Discipline = "Информационные технологии",
                     Cabinet = "216a",
                     Building = 7,
-                    SubjectType = "Лаб. работа",
-                    SubjectTime = "15:00 - 18:10"
+                    SubjectType = SubjectType.LaboratoryWork,
+                    SubjectTime = SubjectNumber.Fourth
                   }
                 }
               },
@@ -75,16 +75,16 @@ namespace Persistence
                     Discipline = "ТРПО",
                     Cabinet = "416",
                     Building = 7,
-                    SubjectType = "Лекция",
-                    SubjectTime = "13:30 - 15:00"
+                    SubjectType = SubjectType.Lecture,
+                    SubjectTime = SubjectNumber.Fourth
                   },
                   new Subject
                   {
                     Discipline = "Системное программирование",
                     Cabinet = "425",
                     Building = 7,
-                    SubjectType = "Лаб. работа",
-                    SubjectTime = "8:00 - 9:30"
+                    SubjectType = SubjectType.LaboratoryWork,
+                    SubjectTime = SubjectNumber.First
                   },
                 }
               },
@@ -99,8 +99,8 @@ namespace Persistence
                     Discipline = "БЖД",
                     Cabinet = "410",
                     Building = 7,
-                    SubjectType = "Практика",
-                    SubjectTime = "8:00 - 9:30"
+                    SubjectType = SubjectType.Practice,
+                    SubjectTime = SubjectNumber.First
                   }
                 }
               },
@@ -120,8 +120,8 @@ namespace Persistence
                     Discipline = "ТРПО",
                     Cabinet = "126",
                     Building = 7,
-                    SubjectType = "Практика",
-                    SubjectTime = "8:00 - 9:30"
+                    SubjectType = SubjectType.Practice,
+                    SubjectTime = SubjectNumber.First
                   }
                 }
               }

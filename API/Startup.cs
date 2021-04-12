@@ -21,6 +21,8 @@ namespace API
     {
       services.AddControllers();
       services.AddDbContext<DataContext>(opt => opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+      services.AddCors(o => o.AddPolicy("CorsPolicy", policy =>
+        policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000")));
       services.AddMediatR(typeof(List.Handler).Assembly);
       services.AddAutoMapper(typeof(Mapping).Assembly);
     }
@@ -28,6 +30,7 @@ namespace API
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
       app.UseRouting();
+      app.UseCors("CorsPolicy");
       app.UseAuthorization();
       app.UseEndpoints(endpoints => endpoints.MapControllers());
     }

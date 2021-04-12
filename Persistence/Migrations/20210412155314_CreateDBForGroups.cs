@@ -48,8 +48,8 @@ namespace Persistence.Migrations
                     Discipline = table.Column<string>(type: "TEXT", nullable: true),
                     Cabinet = table.Column<string>(type: "TEXT", nullable: true),
                     Building = table.Column<int>(type: "INTEGER", nullable: false),
-                    SubjectType = table.Column<string>(type: "TEXT", nullable: true),
-                    SubjectTime = table.Column<string>(type: "TEXT", nullable: true),
+                    SubjectType = table.Column<int>(type: "INTEGER", nullable: false),
+                    SubjectTime = table.Column<int>(type: "INTEGER", nullable: false),
                     DayId = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>

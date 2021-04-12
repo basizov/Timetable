@@ -9,7 +9,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210411214321_CreateDBForGroups")]
+    [Migration("20210412155314_CreateDBForGroups")]
     partial class CreateDBForGroups
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,11 +75,11 @@ namespace Persistence.Migrations
                     b.Property<string>("Discipline")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("SubjectTime")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("SubjectTime")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("SubjectType")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("SubjectType")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

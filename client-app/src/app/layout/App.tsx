@@ -14,7 +14,7 @@ const App: React.FC = () => {
         render={() => (
           <>
             <Navgation />
-            <div className="container">
+            <div className="container container_fullpage">
               <Route exact path='/scheduler' component={SchedulerDashboard} />
               <Route exact path='/scheduler/:name' component={SchedulerFullDetails} />
             </div>

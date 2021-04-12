@@ -15,6 +15,10 @@ html {
 .container {
   margin: 0 auto;
   width: 1440px;
+  &_fullpage {
+    height: 100vh;
+    position: relative;
+  }
 }
 
 @import '../styles/extends';
@@ -24,6 +28,7 @@ html {
 @import '../styles/link';
 @import '../styles/media';
 @import './Navigation/navigation';
+@import './Loading/loading';
 @import '../../components/HomePage/home';
 @import '../../components/SchedulerPage/scheduler';
 @import '../../components/SchedulerPage/SchedulerSidebar/sidebar';

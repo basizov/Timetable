@@ -22,12 +22,12 @@ namespace Domain.Entities
 		/// </summary>
     public int Building { get; set; }
 		/// <summary>
-		/// Номер здания
+		/// Тип предмета
 		/// </summary>
-    public string SubjectType { get; set; }
+    public SubjectType SubjectType { get; set; }
 		/// <summary>
 		/// Время пары (первая, вторая и т.д.)
 		/// </summary>
-    public string SubjectTime { get; set; }
+    public SubjectNumber SubjectTime { get; set; }
   }
 }
