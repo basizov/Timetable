@@ -3,7 +3,7 @@ import { Route } from "react-router";
 import HomePage from "../../components/HomePage/HomePage";
 import SchedulerDashboard from "../../components/SchedulerPage/SchedulerDashboard";
 import SchedulerFullDetails from "../../components/SchedulerPage/SchedulerDetails/SchedulerFullDetails";
-import Navgation from "./Navigation/Navigation";
+import Navigation from "./Navigation/Navigation";
 
 const App: React.FC = () => {
   return (
@@ -13,8 +13,8 @@ const App: React.FC = () => {
         path={'/(.+)'}
         render={() => (
           <>
-            <Navgation />
-            <div className="container container_fullpage">
+            <Navigation />
+            <div className="container">
               <Route exact path='/scheduler' component={SchedulerDashboard} />
               <Route exact path='/scheduler/:name' component={SchedulerFullDetails} />
             </div>

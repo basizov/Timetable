@@ -12,7 +12,7 @@ interface Hamburger {
   isActive: boolean;
 }
 
-const Navgation: React.FC = () => {
+const Navigation: React.FC = () => {
   const initialState = {
     btnActiveClass: "",
     sidebarActiveClass: "",
@@ -101,4 +101,4 @@ const Navgation: React.FC = () => {
   );
 };
 
-export default  Navgation;
+export default  Navigation;

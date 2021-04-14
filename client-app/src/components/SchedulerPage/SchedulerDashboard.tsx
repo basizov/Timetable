@@ -17,21 +17,22 @@ const SchedulerDashboard: React.FC = () => {
     }
   }, [groupsRegystry.size, loadGroups]);
 
-  if (loadingInitial) {
-    return <Loading content='Загрузка списка групп...' />
-  }
   return (
     <section className="scheduler">
-      <div className="sidebar">
-        <SchedulerPaging />
-        <SchedulerSearch />
-        <SchedulerList
-          groups={groups}
-          loadGroup={loadGroup} />
-      </div>
-      <div className="details">
-        <SchedulerDetails group={group} />
-      </div>
+      {loadingInitial ?
+      <Loading content='Загрузка списка групп...' /> :
+      <>
+        <div className="sidebar">
+          <SchedulerPaging />
+          <SchedulerSearch />
+          <SchedulerList
+            groups={groups}
+            loadGroup={loadGroup} />
+        </div>
+        <div className="details">
+          <SchedulerDetails group={group} />
+        </div>
+      </>}
     </section>
   );
 };

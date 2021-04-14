@@ -15,10 +15,6 @@ html {
 .container {
   margin: 0 auto;
   width: 1440px;
-  &_fullpage {
-    height: 100vh;
-    position: relative;
-  }
 }
 
 @import '../styles/extends';

@@ -1,9 +1,11 @@
 .scheduler {
-  margin: 7rem 0 3rem 0;
+  padding: 7rem 0 3rem 0;
   display: grid;
   grid-template-columns: 30% calc(70% - 1rem);
   grid-gap: 1rem;
   table-layout: fixed;
+  min-height: 100vh;
+  position: relative;
 }
 
 @import './media';
