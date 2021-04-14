@@ -13,7 +13,7 @@ const SchedulerFullDetails: React.FC = () => {
         <SchedulerDetails group={groupStore.selectedGroup} />
       </div>
       <div className="details-fullsmall">
-        <SchedulerChoose />
+        <SchedulerChoose group={groupStore.selectedGroup} />
       </div>
     </div>
   );

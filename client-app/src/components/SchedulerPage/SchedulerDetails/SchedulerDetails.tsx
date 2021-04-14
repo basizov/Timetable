@@ -34,10 +34,10 @@ const tableColumn = (day: string, hasDay: boolean, subject: ISubject) => {
   }
 }
 
-const dayIndex = (day: string, days: IDay[]) => {
+export const dayIndex = (day: string, days: IDay[]) => {
   let res = false;
   
-  days.map(d => {
+  days.forEach(d => {
     if (day === d.name) res = true;
   });
 

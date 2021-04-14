@@ -7,6 +7,9 @@
   }
   &__wrapper {
     @extend %boxView;
+    &-day {
+      margin-top: 1rem;
+    }
   }
   &__info {
     padding: 3rem 0;
@@ -34,10 +37,11 @@
     display: grid;
     grid-template-columns: 1.7fr repeat(6, 1fr);
     &-day {
-      margin-top: 1rem;
       @extend %boxView;
       display: grid;
       grid-template-columns: 1fr 4fr;
+      margin-bottom: 5px;
+      box-shadow: 0 0 10px rgba(#000, .3);
     }
   }
   &__subject, &__time, &__day {

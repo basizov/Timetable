@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
+import { IGroup } from '../../../app/api/models/Group';
+import { dayIndex } from './SchedulerDetails';
 import down from './svg/down.svg';
+import info from './svg/info.svg';
 
-const SchedulerChoose: React.FC = () => {
+interface Props {
+  group: IGroup | undefined;
+}
+
+const SchedulerChoose: React.FC<Props> = ({group}) => {
   const [toggle, setToggle] = useState(false),
         days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
         [select, setSelect] = useState(days[0]);
@@ -11,6 +18,22 @@ const SchedulerChoose: React.FC = () => {
     setToggle(false);
   }
 
+  if (!group) {
+    return (
+      <div className="details__info">
+        <img
+          className="details__img"
+          src={info}
+          alt="info" />
+        <div className="details__help">
+          <li className="details__item">В данном окне высвечивается вся необходимая информация о расписании группы</li>
+          <li className="details__item">Для просмотра данной информации выберете нужную группу в меню (Расписание групп) и нажмите на нее</li>
+          <li className="details__item">После нажатия, вам будет предоставлена вся необходимая информация</li>
+          <li className="details__item">Удачи : &#41;</li>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="details__choose">
       <div
@@ -31,34 +54,25 @@ const SchedulerChoose: React.FC = () => {
             {day}</div>
         ))}
       </>}
-      <div className="details__scheduler-day">
-        <div className="details__subject-day">ТРПО</div>
-        <div className="details__time-day">
-          <div>
-            <span className='details__time_type'>Лаб. работа</span>
-            9:40-11:10
-            <span>7 здание</span>
-            <span>215 кабинет</span>
-          </div>
-        </div>
-        <div className="details__subject-day">Информационные технологии</div>
-        <div className="details__time-day">
-          <div>
-            <span className='details__time_type'>Лаб. работа</span>
-            9:40-11:10
-            <span>7 здание</span>
-            <span>215 кабинет</span>
-          </div>
-        </div>
-        <div className="details__subject-day  details__lastb">ТРПО</div>
-        <div className="details__time-day  details__lastb">
-          <div>
-            <span className='details__time_type'>Лаб. работа</span>
-            9:40-11:10
-            <span>7 здание</span>
-            <span>215 кабинет</span>
-          </div>
-        </div>
+      <div className="details__wrapper-day">
+        {group.subjects.map((subject) => {
+          return (
+            <React.Fragment key={subject.id}>
+              {dayIndex(select, subject.days) ?
+              <div className="details__scheduler-day">
+                <div className="details__subject-day details__lastt">{subject.discipline}</div>
+                <div className="details__time-day details__lastt">
+                  <div>
+                    <span className='details__time_type'>{subject.type}</span>
+                    {subject.time}
+                    <span>{subject.building} здание</span>
+                    <span>{subject.cabinet} кабинет</span>
+                  </div>
+                </div>
+              </div> : <></>}
+            </React.Fragment>
+          );
+        })}
       </div>
     </div>
   );
