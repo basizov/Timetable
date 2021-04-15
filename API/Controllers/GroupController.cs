@@ -8,8 +8,8 @@ namespace API.Controllers
   public class GroupController : BaseController
   {
     [HttpGet]
-    public async Task<IActionResult> GetGroups() =>
-      HandleResult(await Mediator.Send(new List.Query { }));
+    public async Task<IActionResult> GetGroups([FromQuery]GroupParams pagingParams) =>
+      HandlePagedResult(await Mediator.Send(new List.Query { PagingParams = pagingParams }));
     [HttpGet("{id}")]
     public async Task<IActionResult> GetGroup(Guid id) => 
       HandleResult(await Mediator.Send(new Details.Query { Id = id }));
