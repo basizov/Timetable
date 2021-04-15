@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import React, { useEffect, useRef, useState } from 'react';
 import { PagingParams } from '../../../app/api/models/paginations';
 import { useStore } from '../../../app/stores/store';
@@ -6,14 +7,12 @@ import right from './svg/right.svg';
 
 const SchedulerPaging: React.FC = () => {
   const { groupStore } = useStore(),
-        { setPagingParams, clearGroups, loadGroups, pagination } = groupStore;
+        { setPagingParams, clearGroups, loadGroups, pagination, offset, setOffset,
+          actualPage, setActualPage, actualScroll, setActualScroll, totalPages, setTotalPages } = groupStore;
   const numbers = Array.from(Array(pagination ? pagination!.totalPages : 0).keys()),
         targetRef = useRef<HTMLDivElement>(null),
         buttonRef = useRef<HTMLDivElement>(null),
-        [offset, setOffset] = useState(0),
-        [actualPage, setActualPage] = useState(0),
-        [pageShift, setPageShift] = useState(0),
-        [actualScroll, setActualScroll] = useState(0);
+        [pageShift, setPageShift] = useState(0);
 
   const scrollScrollBar = (newOffset: number, turn: number) => {
     const tempOffset = offset + newOffset * pageShift,
@@ -35,10 +34,10 @@ const SchedulerPaging: React.FC = () => {
   }
   
   const turnPage = (page: number) => {
-    if (actualPage != page) {
+    if (actualPage !== page) {
       setPagingParams(new PagingParams(page));
       clearGroups();
-      loadGroups().then(() => console.log(false));
+      loadGroups();
       setActualPage(page);
     }
   }
@@ -47,15 +46,25 @@ const SchedulerPaging: React.FC = () => {
     const temp = (buttonRef.current?.clientWidth ?? 50);
 
     if (targetRef && targetRef.current) {
-      if (actualScroll === 0) {
-        setActualScroll(Math.floor((targetRef.current!.clientWidth - temp) / temp));
-      }
-      if (offset !== 0) {
-        setOffset(temp * pageShift);
-      }
+      if (actualScroll === 0) setActualScroll(Math.floor((targetRef.current!.clientWidth - temp) / temp));
       setPageShift(Math.floor((targetRef.current!.clientWidth - temp) / temp));
     }
-  }, [targetRef, targetRef.current, targetRef.current?.clientWidth, setActualScroll, setPageShift]);
+  }, [targetRef, buttonRef, setActualScroll, setPageShift, actualScroll]);
+  useEffect(() => {
+    const temp = (buttonRef.current?.clientWidth ?? 50);
+
+    if (pagination && pagination.totalPages) {
+      if (totalPages !== pagination!.totalPages) {
+        setOffset(0);
+        setActualPage(1);
+        if (targetRef && targetRef.current) {
+          setActualScroll(Math.floor((targetRef.current!.clientWidth - temp) / temp));
+          setPageShift(Math.floor((targetRef.current!.clientWidth - temp) / temp));
+        }
+        setTotalPages(pagination!.totalPages);
+      }
+    }
+  }, [pagination, setOffset, targetRef, buttonRef, setActualScroll, setPageShift, setTotalPages, totalPages, setActualPage]);
 
   return (
     <div className="sidebar__paging">
@@ -82,6 +91,7 @@ const SchedulerPaging: React.FC = () => {
               onClick={() => turnPage(i + 1)}>{i + 1}</div>
           );
         })}
+        {(numbers.length === 0) && <div className="sidebar__error sidebar__error_top">Страниц нет : &#40;</div>}
       </div>
       <div
         className="btn__sidebar btn__sidebar_withimg btn__sidebar_withimg_right"
@@ -92,4 +102,4 @@ const SchedulerPaging: React.FC = () => {
   );
 };
 
-export default  SchedulerPaging;
+export default  observer(SchedulerPaging);

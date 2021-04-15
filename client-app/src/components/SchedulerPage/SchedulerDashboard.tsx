@@ -9,7 +9,7 @@ import SchedulerSearch from './SchedulerSidebar/SchedulerSearch';
 
 const SchedulerDashboard: React.FC = () => {
   const { groupStore } = useStore(),
-        { groupsRegystry, loadingInitial, loadGroups, getGroups: groups, loadGroup, selectedGroup: group } = groupStore;
+        { groupsRegystry, loadingInitial, loadGroups, getGroups: groups, loadGroup, selectedGroup: group, loading } = groupStore;
 
   useEffect(() => {
     if (groupsRegystry.size <= 1) {
@@ -27,7 +27,8 @@ const SchedulerDashboard: React.FC = () => {
           <SchedulerSearch />
           <SchedulerList
             groups={groups}
-            loadGroup={loadGroup} />
+            loadGroup={loadGroup}
+            loading={loading} />
         </div>
         <div className="details">
           <SchedulerDetails group={group} />

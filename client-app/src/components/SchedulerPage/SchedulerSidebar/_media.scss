@@ -1,5 +1,8 @@
 @media (max-width: 1199px) {
   .sidebar {
+    &__list {
+      min-height: 350px;
+    }
     &__paging {
       height: 35px;
     }
@@ -21,11 +24,21 @@
         font-size: 16px;
       }
     }
+    &__error {
+      font-size: 16px;
+      &_top {
+        width: calc(100% - 35px);
+        font-size: 14px;
+      }
+    }
   }
 }
 
 @media (max-width: 991px) {
   .sidebar {
+    &__list {
+      min-height: 300px;
+    }
     &__paging {
       height: 30px;
     }
@@ -45,6 +58,13 @@
       height: 30px;
       &_name {
         font-size: 14px;
+      }
+    }
+    &__error {
+      font-size: 13px;
+      &_top {
+        width: calc(100% - 30px);
+        font-size: 12px;
       }
     }
   }
