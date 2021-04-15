@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IGroup } from '../../../app/api/models/Group';
+import { IGroup } from '../../../app/api/models/group';
 import { dayIndex } from './SchedulerDetails';
 import down from './svg/down.svg';
 import info from './svg/info.svg';

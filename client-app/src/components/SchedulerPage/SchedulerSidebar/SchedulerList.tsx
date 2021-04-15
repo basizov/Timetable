@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { IGroup } from '../../../app/api/models/Group';
+import { IGroup } from '../../../app/api/models/group';
 import resize from './svg/resize.svg';
 
 interface Props {

@@ -1,13 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { PagingParams } from '../../../app/api/models/paginations';
+import { useStore } from '../../../app/stores/store';
 import left from './svg/left.svg';
 import right from './svg/right.svg';
 
 const SchedulerPaging: React.FC = () => {
-  const numbers = Array.from(Array(100).keys()),
+  const { groupStore } = useStore(),
+        { setPagingParams, clearGroups, loadGroups, pagination } = groupStore;
+  const numbers = Array.from(Array(pagination ? pagination!.totalPages : 0).keys()),
         targetRef = useRef<HTMLDivElement>(null),
         buttonRef = useRef<HTMLDivElement>(null),
         [offset, setOffset] = useState(0),
-        [actualPage, setaActualPage] = useState(0),
+        [actualPage, setActualPage] = useState(0),
         [pageShift, setPageShift] = useState(0),
         [actualScroll, setActualScroll] = useState(0);
 
@@ -15,22 +19,27 @@ const SchedulerPaging: React.FC = () => {
     const tempOffset = offset + newOffset * pageShift,
           tempActualScroll = actualScroll + turn * pageShift;
 
-    if (tempActualScroll <= 100 && tempOffset >= 0) {
-      console.log('Here1');
+    if (tempActualScroll <= pagination!.totalPages && tempOffset >= 0) {
       setOffset(tempOffset);
       setActualScroll(tempActualScroll);
-    } else if (tempActualScroll > 100 && actualScroll < 100) {
-      console.log('Here2');
-      setOffset(offset + newOffset * (100 - actualScroll));
-      setActualScroll(100);
+    } else if (tempActualScroll > pagination!.totalPages && actualScroll < pagination!.totalPages) {
+      setOffset(offset + newOffset * (pagination!.totalPages - actualScroll));
+      setActualScroll(pagination!.totalPages);
     } else if (actualScroll > pageShift) {
-      console.log('Here3');
       setOffset(0);
       setActualScroll(pageShift);
     } else if (actualScroll === pageShift && offset === 0 && newOffset < 0) {
-      console.log(offset, newOffset, actualScroll);
-      setOffset(offset + -newOffset * (100 - actualScroll));
-      setActualScroll(100);
+      setOffset(offset + -newOffset * (pagination!.totalPages - actualScroll));
+      setActualScroll(pagination!.totalPages);
+    }
+  }
+  
+  const turnPage = (page: number) => {
+    if (actualPage != page) {
+      setPagingParams(new PagingParams(page));
+      clearGroups();
+      loadGroups().then(() => console.log(false));
+      setActualPage(page);
     }
   }
   
@@ -70,7 +79,7 @@ const SchedulerPaging: React.FC = () => {
             <div
               key={i}
               className={classes.join(' ')}
-              onClick={() => console.log(i + 1)}>{i + 1}</div>
+              onClick={() => turnPage(i + 1)}>{i + 1}</div>
           );
         })}
       </div>

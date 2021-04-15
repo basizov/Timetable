@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
-import { IGroup } from "./models/Group";
+import { IGroup } from "./models/group";
+import { PaginatedResult } from "./models/paginations";
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => {
@@ -9,23 +10,28 @@ const sleep = (delay: number) => {
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
-axios.interceptors.response.use(response => {
-  return sleep(1000).then(() => {
-    return response;
-  }).catch(error => {
-    console.log(error);
-    return Promise.reject(error);
-  });
-})
+axios.interceptors.response.use(async response => {
+  await sleep(1000);
+  const pagination = response.headers['pagination'];
+
+  if (pagination) {
+    response.data = new PaginatedResult(response.data, JSON.parse(pagination));
+    return response as AxiosResponse<PaginatedResult<any>>;
+  }
+  return response;
+}, (error) => {
+  console.log(error);
+  return Promise.reject(error);
+});
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
 const requests = {
-  get: <T>(url: string) => axios.get<T>(url).then(responseBody)
+  get: <T>(url: string) => axios.get<T>(url).then(responseBody),
 }
 
 const Groups = {
-  list: () => requests.get<IGroup[]>(`/group`),
+  list: (params: URLSearchParams) => axios.get<PaginatedResult<IGroup[]>>('/group', {params}).then(responseBody),
   details: (id: string) => requests.get<IGroup>(`/group/${id}`)
 }
 

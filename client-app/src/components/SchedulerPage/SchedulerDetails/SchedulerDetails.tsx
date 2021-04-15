@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { IDay, IGroup, ISubject } from '../../../app/api/models/Group';
+import { IDay, IGroup, ISubject } from '../../../app/api/models/group';
 import info from './svg/info.svg';
 
 interface Props {
