@@ -17,6 +17,8 @@ namespace Application.Core
         .ForMember(s => s.SubjectType, o => o.MapFrom(s => s.SubjectType.ConvertEntityToItem()))
         .ForMember(s => s.SubjectTime, o => o.MapFrom(s => s.SubjectTime.ConvertEntityToItem()));
       CreateMap<Domain.Entities.Group, GroupDTO>();
+      CreateMap<User, UserDTO>();
+      CreateMap<User, LoginDTO>();
     }
   }
 }
