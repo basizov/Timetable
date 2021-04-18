@@ -1,7 +1,9 @@
 using API.Extensions;
 using API.Middleware;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,8 +18,16 @@ namespace API
 
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddControllers();
+      services.AddControllers(opt =>
+      {
+        var policy = new AuthorizationPolicyBuilder()
+            .RequireAuthenticatedUser()
+            .Build();
+
+        opt.Filters.Add(new AuthorizeFilter(policy));
+      });
       services.AddApplicationServices(_config);
+      services.AddIdentityServices(_config);
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -25,6 +35,7 @@ namespace API
       app.UseMiddleware<ExtensionMiddleware>();
       app.UseRouting();
       app.UseCors("CorsPolicy");
+      app.UseAuthentication();
       app.UseAuthorization();
       app.UseEndpoints(endpoints => endpoints.MapControllers());
     }

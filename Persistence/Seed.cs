@@ -3,16 +3,43 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities;
 using Domain.Enums;
+using Microsoft.AspNetCore.Identity;
 
 namespace Persistence
 {
   public class Seed
   {
-    public static async Task SeedAsync(DataContext context)
+    public static async Task SeedAsync(DataContext context, UserManager<User> userManager)
     {
       if (context.Groups.Any())
         return;
       var groups = new List<Group>();
+      var users = new List<User>();
+      var students = new List<Student>();
+
+      if (!userManager.Users.Any())
+      {
+        users.AddRange(
+          new List<User>
+          {
+            new User { DisplayName = "Boris", UserName = "boris", Email = "boris@test.com" },
+            new User { DisplayName = "Adel", UserName = "adel", Email = "adel@test.com" },
+            new User { DisplayName = "Vova", UserName = "vova", Email = "vova@test.com" }
+          }
+        );
+        foreach (var user in users)
+          await userManager.CreateAsync(user, "Pa$$w0rd");
+        foreach (var user in users)
+        {
+          students.Add(
+            new Student
+            {
+              UserId = user.Id,
+              User = user,
+            }
+          );
+        }
+      }
 
       for (int i = 1301; i <= 5344; ++i)
       {
@@ -78,6 +105,15 @@ namespace Persistence
             }
           }
         );
+        if (i == 4343)
+        {
+          groups.Last().Students = students;
+          foreach (var student in groups.Last().Students)
+          {
+            student.GroupId = groups.Last().Id;
+            student.Group = groups.Last();
+          }
+        }
       }
 
       await context.Groups.AddRangeAsync(groups);

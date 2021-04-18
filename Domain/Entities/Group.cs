@@ -17,5 +17,9 @@ namespace Domain.Entities
 		/// Рассписание группы по предметам
 		/// </summary>
     public List<Subject> Subjects { get; set; }
+		/// <summary>
+		/// Студенты группы
+		/// </summary>
+    public List<Student> Students { get; set; }
   }
 }

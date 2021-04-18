@@ -48,8 +48,10 @@ export default class  GroupStore {
         this.loadingInitial = false;
       });
     } catch(error) {
-      this.loadingInitial = false;
-      this.loading = false;
+      runInAction(() => {
+        this.loading = false;
+        this.loadingInitial = false;
+      });
       console.log(error);
     }
   }
@@ -77,7 +79,7 @@ export default class  GroupStore {
         });
       } catch(error) {
         console.log(error);
-        this.loading = false;
+        runInAction(() => this.loading = false);
       }
     }
   }
