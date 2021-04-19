@@ -1,12 +1,18 @@
 import { createContext, useContext } from "react";
+import CommonStore from "./commonStore";
 import GroupStore from "./groupStore";
+import UserStore from "./userStore";
 
 interface IStore {
-  groupStore: GroupStore
+  groupStore: GroupStore,
+  commonStore: CommonStore,
+  userStore: UserStore
 }
 
 export const  store: IStore = {
-  groupStore: new GroupStore()
+  groupStore: new GroupStore(),
+  commonStore: new CommonStore(),
+  userStore: new UserStore()
 }
 
 export const  StoreContext = createContext(store);

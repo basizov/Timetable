@@ -39,4 +39,30 @@
     }
     @extend %hoverActiveEffect;
   }
+  &__form {
+    cursor: pointer;
+    padding: .3rem;
+    font-size: 16px;
+    font-weight: 500;
+    border: 1px solid rgba(#000, .3);
+    box-shadow: 0 0 5px rgba(rgb(207, 207, 207), .4);
+    border-radius: 5px;
+    outline: none;
+    transition: all .3s;
+    color: #fff;
+    &:hover {
+      background-color: transparent;
+    }
+    &:active {
+      box-shadow: 0 0 10px rgba(rgb(207, 207, 207), .4);
+    }
+  }
+  &__enter {
+    border-color: rgb(12, 116, 21);
+    background-color: rgb(12, 116, 21);
+  }
+  &__clear {
+    border-color: rgb(116, 12, 12);
+    background-color: rgb(116, 12, 12);
+  }
 }

@@ -5,6 +5,7 @@ import down from './svg/down.svg';
 import userIcon from './svg/defaultUser.svg';
 import profileIcon from './svg/profile.svg';
 import logout from './svg/logout.svg';
+import { store } from '../../stores/store';
 
 interface Hamburger {
   btnActiveClass: string;
@@ -87,7 +88,10 @@ const Navigation: React.FC = () => {
             </Link>
             <div
               className="navigation__ability"
-              onClick={() => setShowMenu(!showMenu)}>
+              onClick={() => {
+                setShowMenu(!showMenu);
+                store.userStore.logout();
+              }}>
               <img
                 src={logout}
                 alt="logout"

@@ -19,6 +19,7 @@ html {
 
 @import '../styles/extends';
 @import '../styles/btns';
+@import '../styles/inputs';
 @import '../styles/scrollbar';
 @import '../styles/root';
 @import '../styles/link';
@@ -26,6 +27,7 @@ html {
 @import './Navigation/navigation';
 @import './Loading/loading';
 @import '../../components/HomePage/home';
+@import '../../components/LoginPage/login';
 @import '../../components/SchedulerPage/scheduler';
 @import '../../components/SchedulerPage/SchedulerSidebar/sidebar';
 @import '../../components/SchedulerPage/SchedulerDetails/details';

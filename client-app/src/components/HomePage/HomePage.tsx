@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { store } from '../../app/stores/store';
 import KAILogo from './svg/logotip-KAI.svg';
 
 const HomePage: React.FC = () => {
@@ -11,7 +12,9 @@ const HomePage: React.FC = () => {
         </div>
         <h1 className="home__title">Расписание</h1>
         <h2 className="home__subtitle">Для студентов КАИ</h2>
-        <Link to='/scheduler' className="link home__link">Просмотр расписания групп</Link>
+        {store.userStore.isLoggedIn ?
+        <Link to='/scheduler' className="link home__link">Просмотр расписания групп</Link> :
+        <Link to='/login' className="link home__link">Войти</Link>}
       </div>
     </section>
   );

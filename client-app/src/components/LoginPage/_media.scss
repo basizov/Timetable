@@ -1,0 +1,22 @@
+@media (max-width: 991px) {
+  .login {
+    &__enter {
+      width: 60%;
+    }
+    &__clear {
+      margin-left: 5px;
+      width: calc(40% - 5px);
+    }
+    &__logo {
+      width: 175px;
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .login {
+    &__logo {
+      width: 150px;
+    }
+  }
+}

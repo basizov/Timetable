@@ -43,16 +43,13 @@ export default class  GroupStore {
         });
       });
       this.setPagination(result.pagination);
-      runInAction(() => {
-        this.loading = false;
-        this.loadingInitial = false;
-      });
     } catch(error) {
+      console.log(error);
+    } finally {
       runInAction(() => {
         this.loading = false;
         this.loadingInitial = false;
       });
-      console.log(error);
     }
   }
 
