@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 import Home from '../../components/HomePage/Home';
+import Scheduler from '../../components/SchedulerPage/Scheduler';
 
 const App: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ const App: React.FC = () => {
         render={() => (
           <>
             <div className="container">
+              <Route exact path='/scheduler' component={Scheduler} />
             </div>
           </>
         )} />
