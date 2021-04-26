@@ -1,0 +1,15 @@
+.link {
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.3rem;
+  line-height: 1.5rem;
+  color: var(--link-color);
+  &:hover {
+    color: rgb(23, 73, 119);
+    text-decoration: underline;
+  }
+  &:active {
+    color: rgb(10, 61, 109);
+  }
+}

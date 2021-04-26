@@ -1,0 +1,13 @@
+$main-color: rgb(11, 120, 223);
+$help-color: rgb(23, 95, 161);
+$link-color: rgb(33, 85, 134);
+
+:root {
+  --main-color: #{$main-color};
+  --help-color: #{$help-color};
+  --link-color: #{$link-color};
+}
+
+::selection {
+  color: rgb(228, 152, 152);
+}

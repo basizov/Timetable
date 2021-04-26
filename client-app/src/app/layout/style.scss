@@ -7,9 +7,18 @@
   font-family: 'Roboto', sans-serif;
 }
 
+body {
+  overflow-y: overlay;
+}
+
 .container {
   width: 1440px;
   margin: 0 auto;
 }
 
+@import '../styles/root';
+@import '../styles/extends';
+@import '../styles/scroll';
+@import '../styles/link';
+@import '../../features/List/list';
 @import '../../components/HomePage/home';
