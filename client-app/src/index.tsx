@@ -1,19 +1,14 @@
 import ReactDOM from 'react-dom';
-import './app/layout/style.scss';
-import App from './app/layout/App';
-import { Router } from "react-router-dom";
+import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
-import { store, StoreContext } from './app/stores/store';
-import ScrollToTop from './app/layout/ScrollToTop';
+import App from './app/layout/App';
+import './app/layout/style.scss';
 
 export const  history = createBrowserHistory();
 
 ReactDOM.render(
-  <StoreContext.Provider value={store}>
-    <Router history={history}>
-      <ScrollToTop />
-      <App />
-    </Router>
-  </StoreContext.Provider>,
+  <Router history={history}>
+    <App />
+  </Router>,
   document.getElementById('root')
 );
