@@ -1,0 +1,17 @@
+.input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  width: 100%;
+  padding: 1rem;
+  border-bottom: 1px solid var(--secondary);
+  transition: border .3s ease-out;
+  &__file {
+    display: none;
+  }
+  &:focus {
+    border-bottom: 1px solid var(--classic);
+  }
+}

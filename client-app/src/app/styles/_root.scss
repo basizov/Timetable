@@ -1,11 +1,31 @@
-$main-color: rgb(11, 120, 223);
-$help-color: rgb(23, 95, 161);
-$link-color: rgb(33, 85, 134);
+$primary: rgb(32, 32, 32);
+$secondary: rgb(18, 18, 18);
+$black: rgb(0, 0, 0);
+$white: rgb(255, 255, 255);
+$classic: rgb(15, 62, 105);
+$success: rgb(14, 75, 12);
+$failure: rgb(75, 12, 12);
+
+$header: 5rem;
+$sidebar: 35rem;
+
+$zindex-header: 1000;
+$zindex-sidebar: 1000;
 
 :root {
-  --main-color: #{$main-color};
-  --help-color: #{$help-color};
-  --link-color: #{$link-color};
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+  --black: #{$black};
+  --white: #{$white};
+  --classic: #{$classic};
+  --success: #{$success};
+  --failure: #{$failure};
+
+  --sidebar: #{$sidebar};
+  --header: #{$header};
+
+  --zindex-header: #{$zindex-header};
+  --zindex-sidebar: #{$zindex-sidebar};
 }
 
 ::selection {

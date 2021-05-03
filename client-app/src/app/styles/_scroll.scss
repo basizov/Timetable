@@ -1,10 +1,15 @@
 ::-webkit-scrollbar {
-  width: .5rem;
+  width: .7rem;
+  height: .7rem;
 }
 :-webkit-scrollbar * {
-  background:transparent;
+  background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: var(--help-color) !important;
+  background: var(--primary) !important;
   border-radius: 10px;
+  &:hover {
+    background: rgba($primary, .9) !important;
+  }
 }

@@ -1,0 +1,56 @@
+.profile {
+  position: relative;
+  display: flex;
+  margin-top: -5rem;
+  padding: 1rem;
+  &__icon {
+    cursor: pointer;
+    width: 10rem;
+    height: 10rem;
+    max-height: 35rem;
+    border-radius: 50%;
+    border: 1px solid var(--white);
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .3s linear;
+    }
+    &:hover {
+      img {
+        transform: scale(1.2);
+      }
+    }
+    &:active {
+      img {
+        transform: scale(1.1);
+      }
+    }
+  }
+  &__info {
+    margin-top: 3.5rem;
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  &__name {
+    cursor: pointer;
+    font-size: 1.8rem;
+    font-weight: 700;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__group {
+    cursor: pointer;
+    &:hover {
+      color: rgba($white, .7);
+    }
+  }
+  &__name, &__group {
+    &:active {
+      color: rgba($white, .9);
+    }
+  }
+}

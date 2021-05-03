@@ -1,24 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;900&display=swap');
-
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+html, body, #root, .App {
+  height: 100%;
+}
+
+html {
+  font-size: 62.5%;
 }
 
 body {
   overflow-y: overlay;
-}
-
-.container {
-  width: 1440px;
-  margin: 0 auto;
+  font-size: 1.4rem;
+  color: var(--white);
+  background-color: rgb(24, 24, 24);
 }
 
 @import '../styles/root';
-@import '../styles/extends';
 @import '../styles/scroll';
+@import '../styles/container';
+@import '../styles/btn';
+@import '../styles/textarea';
+@import '../styles/input';
+@import '../styles/form';
 @import '../styles/link';
-@import '../../features/List/list';
-@import '../../components/HomePage/home';
+@import '../../components/Header/header';
+@import '../../components/Header/navigation';
+@import '../../components/Sidebar/sidebar';
+@import '../../components/Sidebar/profile';
+@import '../../components/News/news';
+@import '../../components/Login/login';
+@import '../../features/Slider/slider';

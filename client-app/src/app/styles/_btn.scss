@@ -1,0 +1,37 @@
+.btn {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: var(--classic);
+  text-decoration: none;
+  font-family: inherit;
+  color: inherit;
+  padding: 1rem;
+  box-shadow: 0 0 5px rgba($black, .7) inset;
+  border-radius: 1rem;
+  transition: background-color .3s ease-in;
+  &:hover {
+    background-color: rgba($classic, .7);
+  }
+  &:active {
+    background-color: rgba($classic, .9);
+  }
+  &--success {
+    background-color: var(--success);
+    &:hover {
+      background-color: rgba($success, .7);
+    }
+    &:active {
+      background-color: rgba($success, .9);
+    }
+  }
+  &--error {
+    background-color: var(--failure);
+    &:hover {
+      background-color: rgba($failure, .7);
+    }
+    &:active {
+      background-color: rgba($failure, .9);
+    }
+  }
+}

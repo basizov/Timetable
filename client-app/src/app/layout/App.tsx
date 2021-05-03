@@ -1,18 +1,22 @@
 import React from 'react';
 import { Route } from 'react-router';
-import Home from '../../components/HomePage/Home';
-import Scheduler from '../../components/SchedulerPage/Scheduler';
+import Header from '../../components/Header/Header';
+import Login from '../../components/Login/Login';
+import News from '../../components/News/News';
+import Sidebar from '../../components/Sidebar/Sidebar';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Route exact path='/' component={Home} />
       <Route
         path='/(.+)'
         render={() => (
           <>
-            <div className="container">
-              <Route exact path='/scheduler' component={Scheduler} />
+            <Header />
+            <Sidebar />
+            <div className="container container--full">
+              <Route exact path='/news' component={News} />
+              <Route exact path='/login' component={Login} />
             </div>
           </>
         )} />
