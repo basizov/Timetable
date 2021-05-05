@@ -7,10 +7,12 @@
   &__elements {
     width: 800%;
     display: flex;
+    &-radious {
+      border-radius: 1rem;
+      overflow: hidden;
+    }
   }
   &__element {
-    border-radius: 1rem;
-    overflow: hidden;
     width: 100%;
     transition: transform .3s linear;
     img {

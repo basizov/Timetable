@@ -1,6 +1,5 @@
 .news {
-  margin-top: 3rem;
-  height: 1010vh;
+  padding: 3rem 0;
   width: 100%;
   &__form {
     position: relative;
@@ -21,5 +20,12 @@
     position: absolute;
     bottom: 1rem;
     right: 1rem;
+  }
+  &__posts {
+    display: flex;
+    flex-direction: column;
+  }
+  &__nav-bot {
+    margin-top: 3rem !important;
   }
 }

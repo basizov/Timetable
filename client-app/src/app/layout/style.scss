@@ -30,8 +30,11 @@ body {
 @import '../styles/link';
 @import '../../components/Header/header';
 @import '../../components/Header/navigation';
+@import '../../components/Home/home';
 @import '../../components/Sidebar/sidebar';
 @import '../../components/Sidebar/profile';
 @import '../../components/News/news';
 @import '../../components/Login/login';
 @import '../../features/Slider/slider';
+@import '../../features/Post/post';
+@import '../../features/Paging/paging';

@@ -1,7 +1,7 @@
 import React from 'react';
 import Slider from '../../features/Slider/Slider';
-import vk from '../../assets/svg/vk.svg';
-import insta from '../../assets/svg/instagram.svg';
+import vk from '../../assets/socials/vk.svg';
+import insta from '../../assets/socials/instagram.svg';
 import { Link } from 'react-router-dom';
 
 const Login: React.FC = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/svg/logo.svg';
+import kai from '../../assets/socials/kai.svg';
 
 const Header: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const Header: React.FC = () => {
       <div className="header__utils">
         <Link to='/login' className="btn btn--success header__login">Авторизоваться</Link>
         <div className="header__logo">
-          <a href="https://kai.ru/"><img src={logo} alt="logo" className="sidebar__logo"/></a>
+          <a href="https://kai.ru/"><img src={kai} alt="logo" className="sidebar__logo"/></a>
         </div>
       </div>
     </header>
