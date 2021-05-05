@@ -3,11 +3,12 @@ import Slider from '../../features/Slider/Slider';
 import vk from '../../assets/socials/vk.svg';
 import insta from '../../assets/socials/instagram.svg';
 import { Link } from 'react-router-dom';
+import Modal from '../../features/Modal/Modal';
 
 const Login: React.FC = () => {
   return (
-    <section className="login">
-      <div className="login__wrapper">
+    <Modal>
+      <section className="login">
         <h2 className="login__title">Авторизация</h2>
         <ul className="login__socials">
           <li className="login__social">
@@ -50,8 +51,8 @@ const Login: React.FC = () => {
             } />
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </Modal>
   );
 };
 
