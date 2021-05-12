@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities;
+using Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 
 namespace Persistence
@@ -17,9 +18,9 @@ namespace Persistence
         students.AddRange(
           new List<User>
           {
-            new User { UserName = "boris", Email = "boris@test.com" },
-            new User { UserName = "adel", Email = "adel@test.com" },
-            new User { UserName = "vova", Email = "vova@test.com" }
+            new User { UserName = "boris", Email = "boris@test.com", Status = (int)UserStatus.Student },
+            new User { UserName = "adel", Email = "adel@test.com", Status = (int)UserStatus.Student },
+            new User { UserName = "vova", Email = "vova@test.com", Status = (int)UserStatus.Student }
           }
         );
 
