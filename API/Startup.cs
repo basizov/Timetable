@@ -1,3 +1,4 @@
+using API.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -18,11 +19,14 @@ namespace API
     {
       services.AddControllers();
       services.AddDbContext<DataContext>(opt => opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+      services.AddIdentityServices(Configuration);
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
       app.UseRouting();
+      app.UseAuthorization();
+      app.UseAuthentication();
       app.UseEndpoints(endpoints => endpoints.MapControllers());
     }
   }

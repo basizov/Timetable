@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
 namespace Domain.Entities
@@ -6,8 +5,12 @@ namespace Domain.Entities
   public class User : IdentityUser
   {
     /// <summary>
-    /// Фотографии пользователя 
+    /// Статус пользователя
     /// </summary>
-    public IEnumerable<Photo> Photos { get; set; }
+    public int Status { get; set; }
+    /// <summary>
+    /// Фотография пользователя 
+    /// </summary>
+    public Photo Photo { get; set; }
   }
 }

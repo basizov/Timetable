@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace Domain.Entities
+namespace Application.DTOs
 {
-  public class Post
+  public class PostDTO
   {
     /// <summary>
     /// Идентификатор поста 
@@ -16,10 +16,10 @@ namespace Domain.Entities
     /// <summary>
     /// Фотографии поста
     /// </summary>
-    public IEnumerable<Photo> Photos { get; set; }
+    public IEnumerable<PhotoDTO> Photos { get; set; }
     /// <summary>
     /// Фотографии поста
     /// </summary>
-    public IEnumerable<File> Files { get; set; }
+    public IEnumerable<FileDTO> Files { get; set; }
   }
 }
