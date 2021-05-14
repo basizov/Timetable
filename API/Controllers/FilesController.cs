@@ -11,7 +11,7 @@ namespace API.Controllers
 {
   public class FilesController : BaseController
   {
-      private readonly DataContext _context;
+    private readonly DataContext _context;
 
     public FilesController(DataContext context) =>
       _context = context;
