@@ -10,7 +10,7 @@ namespace API.Controllers
   {
     [HttpGet]
     public async Task<IActionResult> GetPosts([FromQuery]PagingParams pagingParams) =>
-      HandleResult(await Mediator.Send(new List.Query { PagingParams = pagingParams }));
+      HandlePagedResult(await Mediator.Send(new List.Query { PagingParams = pagingParams }));
     [HttpPost]
     public async Task<IActionResult> CreatePost(Post post) =>
       HandleResult(await Mediator.Send(new Create.Command { Post = post }));
