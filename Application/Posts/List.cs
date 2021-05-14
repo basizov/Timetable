@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core;
@@ -6,15 +6,17 @@ using Application.DTOs;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Posts
 {
   public class List
   {
-    public class Query : IRequest<Result<List<PostDTO>>> { }
-    public class Handler : IRequestHandler<Query, Result<List<PostDTO>>>
+    public class Query : IRequest<Result<PagedList<PostDTO>>>
+    {
+      public PagingParams PagingParams { get; set; }
+    }
+    public class Handler : IRequestHandler<Query, Result<PagedList<PostDTO>>>
     {
       private readonly DataContext _context;
       private readonly IMapper _mapper;
@@ -25,13 +27,13 @@ namespace Application.Posts
         _context = context;
       }
 
-      public async Task<Result<List<PostDTO>>> Handle(Query request, CancellationToken cancellationToken)
+      public async Task<Result<PagedList<PostDTO>>> Handle(Query request, CancellationToken cancellationToken)
       {
-        var posts = await _context.Posts
+        var posts = await PagedList<PostDTO>.CreateAsync(_context.Posts
           .ProjectTo<PostDTO>(_mapper.ConfigurationProvider)
-          .ToListAsync();
+          .AsQueryable(), request.PagingParams.PageNumber, request.PagingParams.PageSize);
 
-        return Result<List<PostDTO>>.Success(posts);
+        return Result<PagedList<PostDTO>>.Success(posts);
       }
     }
   }
