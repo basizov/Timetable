@@ -13,6 +13,7 @@ import Navigation from '../../features/Paging/Paging';
 import { useStore } from '../../app/stores/store';
 import Loading from '../../features/Loading/Loading';
 import Modal from '../../features/Modal/Modal';
+import { observer } from 'mobx-react-lite';
 
 const News: React.FC = () => {
   const { postStore: { postRegystry, loadPosts, loading } } = useStore();
@@ -41,7 +42,7 @@ const News: React.FC = () => {
 		setTextAreaHeight("auto");
 	};
 
-  if (loading) return <Modal><Loading backgroundColor="#fff" /></Modal>
+  if (loading) return <Modal className='modal--block'><Loading backgroundColor="#fff" /></Modal>
   return (
     <section className="news news--light">
       {false && <Navigation />}
@@ -184,4 +185,4 @@ const News: React.FC = () => {
   );
 };
 
-export default  News;
+export default  observer(News);

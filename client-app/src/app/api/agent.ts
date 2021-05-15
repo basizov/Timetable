@@ -8,6 +8,12 @@ axios.defaults.baseURL = 'http://localhost:5000/api';
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
+const sleep = (delay: number) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, delay);
+  });
+}
+
 axios.interceptors.request.use(config => {
   const token = store.commonStore.token;
 
@@ -15,6 +21,16 @@ axios.interceptors.request.use(config => {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return (config);
+});
+axios.interceptors.response.use(async response => {
+  await sleep(1000);
+  const pagination = response.headers['pagination'];
+
+  if (pagination) {
+    response.data = new PaginatedResult(response.data, JSON.parse(pagination));
+    return response as AxiosResponse<PaginatedResult<any>>;
+  }
+  return response;
 });
 
 const requests = {

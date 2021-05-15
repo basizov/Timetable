@@ -22,7 +22,7 @@ export default class  UserStore {
 
       store.commonStore.setToken(user.token);
       this.setUser(user);
-      history.push('/groups');
+      history.push('/news');
     } catch (error) {
       throw error;
     } finally {

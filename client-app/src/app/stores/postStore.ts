@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from "mobx";
+import { makeAutoObservable } from "mobx";
 import agent from "../api/agent";
 import { IPagination, PagingParams } from "../api/models/pagination";
 import { IPost, Post, PostFormValues } from "../api/models/post";
@@ -22,7 +22,7 @@ export default class  PostStore {
     try {
       const result = await agent.Posts.list(this.axiosParams);
 
-      result.data?.forEach(p => runInAction(() => this.postRegystry.set(p.id, p)));
+      result.data?.forEach(post => this.setPost(post));
       this.setPagination(result.pagination);
     } catch(error) {
       console.log(error);

@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import Modal from '../../features/Modal/Modal';
 import { IUserForm } from '../../app/api/models/user';
 import { useStore } from '../../app/stores/store';
+import Loading from '../../features/Loading/Loading';
+import { observer } from 'mobx-react-lite';
 
 const Login: React.FC = () => {
   const initialState: IUserForm = {
@@ -13,7 +15,7 @@ const Login: React.FC = () => {
     password: ""
   };
   const [creds, setCreds] = useState<IUserForm>(initialState);
-  const { userStore } = useStore();
+  const { userStore: { loading, login } } = useStore();
   
   const changeValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCreds({...creds, [e.target.name]: e.target.value});
@@ -54,9 +56,16 @@ const Login: React.FC = () => {
                   onClick={(e) => {
                     e.preventDefault();
 
-                    userStore.login(creds);
+                    login(creds);
                   }}
-                  className="btn btn--success login__btn">Войти</button>
+                  className="btn btn--success login__btn">
+                  {loading ? <Loading
+                    width={15}
+                    height={15}
+                    spanWidth={3}
+                    spanHeight={3}
+                    backgroundColor="#fff" /> : <>Войти</>}
+                </button>
                 <button
                   onClick={(e) => {
                     e.preventDefault();
@@ -87,4 +96,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default  Login;
+export default  observer(Login);
