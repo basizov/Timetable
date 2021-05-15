@@ -41,12 +41,10 @@ const News: React.FC = () => {
 		setTextAreaHeight("auto");
 	};
 
-  if (loading) {
-    console.log(loading);
-    return <Modal><Loading backgroundColor="#fff" /></Modal>
-  }
+  if (loading) return <Modal><Loading backgroundColor="#fff" /></Modal>
   return (
     <section className="news news--light">
+      {false && <Navigation />}
       {true && <form className="news__form">
         <textarea
           ref={textAreaRef}
@@ -72,8 +70,6 @@ const News: React.FC = () => {
             Выложить</button>
         </div>
       </form>}
-      
-      {true && <Navigation />}
       <div className="news__posts">
         <Post fstUser={false}>
           <h2 className="post__title">Новый пост</h2>

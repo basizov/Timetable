@@ -6,7 +6,7 @@ export interface  IUser {
 }
 
 export interface  IUserForm {
-  email: string;
+  login: string;
   password: string;
   username?: string;
   displayName?: string;

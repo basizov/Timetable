@@ -22,7 +22,7 @@ export default class  PostStore {
     try {
       const result = await agent.Posts.list(this.axiosParams);
 
-      result.data.forEach(p => runInAction(() => this.postRegystry.set(p.id, p)));
+      result.data?.forEach(p => runInAction(() => this.postRegystry.set(p.id, p)));
       this.setPagination(result.pagination);
     } catch(error) {
       console.log(error);

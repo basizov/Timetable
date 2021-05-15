@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Slider from '../../features/Slider/Slider';
 import vk from '../../assets/socials/vk.svg';
 import insta from '../../assets/socials/instagram.svg';
 import { Link } from 'react-router-dom';
 import Modal from '../../features/Modal/Modal';
+import { IUserForm } from '../../app/api/models/user';
+import { useStore } from '../../app/stores/store';
 
 const Login: React.FC = () => {
+  const initialState: IUserForm = {
+    login: "",
+    password: ""
+  };
+  const [creds, setCreds] = useState<IUserForm>(initialState);
+  const { userStore } = useStore();
+  
+  const changeValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCreds({...creds, [e.target.name]: e.target.value});
+  }
+
   return (
     <Modal>
       <section className="login">
@@ -23,16 +36,34 @@ const Login: React.FC = () => {
             <input
               type="text"
               placeholder="Введите ваш логин"
+              name="login"
+              value={creds.login}
+              onChange={changeValueHandler}
               onFocus={(e) => e.target.select()}
               className="input login__input"></input>
             <input
               type="password"
               placeholder="Введите ваш пароль"
+              name="password"
+              value={creds.password}
+              onChange={changeValueHandler}
               onFocus={(e) => e.target.select()}
               className="input login__input"></input>
               <div className="login__btns">
-                <button className="btn btn--success login__btn">Войти</button>
-                <button className="btn btn--error login__btn">Стереть</button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+
+                    userStore.login(creds);
+                  }}
+                  className="btn btn--success login__btn">Войти</button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+
+                    setCreds(initialState);
+                  }}
+                  className="btn btn--error login__btn">Стереть</button>
               </div>
             <Link to="/forgot" className="link login__link">Забыли пароль?</Link>
           </form>
