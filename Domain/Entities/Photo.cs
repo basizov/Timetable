@@ -12,9 +12,5 @@ namespace Domain.Entities
     /// Адрес фото 
     /// </summary>
     public string Url { get; set; }
-    /// <summary>
-    /// Статус фото (true - основная)
-    /// </summary>
-    public bool Status { get; set; }
   }
 }

@@ -10,12 +10,19 @@ import powerpoint from '../../assets/post/powerpoint.svg';
 import video from '../../assets/post/video.svg';
 import word from '../../assets/post/word.svg';
 import Navigation from '../../features/Paging/Paging';
+import { useStore } from '../../app/stores/store';
+import Loading from '../../features/Loading/Loading';
+import Modal from '../../features/Modal/Modal';
 
 const News: React.FC = () => {
+  const { postStore: { postRegystry, loadPosts, loading } } = useStore();
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
 	const [text, setText] = useState("");
 	const [textAreaHeight, setTextAreaHeight] = useState("auto");
 
+  useEffect(() => {
+    if (postRegystry.size <= 1) loadPosts();
+  }, [postRegystry.size, loadPosts]);
 	useEffect(() => {
     if (textAreaRef && textAreaRef.current) {
       setTextAreaHeight(`${textAreaRef.current!.scrollHeight}px`);
@@ -34,9 +41,13 @@ const News: React.FC = () => {
 		setTextAreaHeight("auto");
 	};
 
+  if (loading) {
+    console.log(loading);
+    return <Modal><Loading backgroundColor="#fff" /></Modal>
+  }
   return (
     <section className="news news--light">
-      {false && <form className="news__form">
+      {true && <form className="news__form">
         <textarea
           ref={textAreaRef}
           rows={2}
