@@ -42,7 +42,22 @@ const requests = {
 
 const Posts = {
   list: (params: URLSearchParams) => axios.get<PaginatedResult<IPost[]>>('/posts', {params}).then(responseBody),
-  create: (post: PostFormValues) => requests.post<void>('/posts', post),
+  create: (post: PostFormValues) => {
+    let formData = new FormData();
+
+    if (post.files && post.files.length > 0) {
+      for (let i = 0; i < post.files.length; ++i) {
+        const file = post.files.item(i);
+
+        if (file) formData.append('Files', file, file.name);
+      }
+    }
+    if (post.title) formData.append('Title', post.title);
+    if (post.description) formData.append('Description', post.description);
+    return axios.post<void>('/posts', formData, {
+      headers: { 'Content-type': 'multipart/form-data' }
+    })
+},
 }
 
 const Account = {

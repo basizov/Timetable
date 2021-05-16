@@ -52,7 +52,7 @@ export default class  PostStore {
     params.append('pageSize', this.pagingParams.pageSize.toString());
     return (params);
   }
-  get getGroups(): IPost[] {
+  get getPosts(): IPost[] {
     return Array.from(this.postRegystry.values());
   }
   

@@ -14,12 +14,28 @@ import { useStore } from '../../app/stores/store';
 import Loading from '../../features/Loading/Loading';
 import Modal from '../../features/Modal/Modal';
 import { observer } from 'mobx-react-lite';
+import { v4 as uuid } from 'uuid';
 
 const News: React.FC = () => {
-  const { postStore: { postRegystry, loadPosts, loading } } = useStore();
+  const { postStore: { postRegystry, loadPosts, loading, getPosts: posts, createPost } } = useStore();
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
 	const [text, setText] = useState("");
 	const [textAreaHeight, setTextAreaHeight] = useState("auto");
+	const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
+
+  const convertTypeToIcon = (name: string) => {
+    const split = name.split('.');
+    const type = split[split.length - 1];
+
+    if (type === 'docx') return (word);
+    else if (type === 'pdf') return (pdf);
+    else if (type === 'xls') return (excel);
+    else if (type === 'cs') return (code);
+    else if (type === 'pptx') return (powerpoint);
+    else if (type === 'rar' || type === 'zip') return (archive);
+    else if (type === 'mp3') return (video);
+    else return (file);
+  }
 
   useEffect(() => {
     if (postRegystry.size <= 1) loadPosts();
@@ -35,12 +51,23 @@ const News: React.FC = () => {
 		setText(event.target.value);
 	};
 
-	const onButtomClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+	const onButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     
 		setText("");
 		setTextAreaHeight("auto");
+    createPost({
+      id: uuid(),
+      title: "Test",
+      description: "Test",
+      photos: null,
+      files: selectedFiles
+    });
 	};
+
+  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedFiles(event.target.files);
+  }
 
   if (loading) return <Modal className='modal--block'><Loading backgroundColor="#fff" /></Modal>
   return (
@@ -62,16 +89,45 @@ const News: React.FC = () => {
             <input
               className="input__file" 
               id="uploadFile" 
-              type="file"/>
-              Выбрать файл
+              onChange={(e) => onFileChange(e)}
+              type="file"
+              multiple={true} />
+              Выбрать файлы
           </label>
           <button
-          onClick={(e) => onButtomClick(e)}
+          onClick={(e) => onButtonClick(e)}
             className="btn btn--success form__btn">
             Выложить</button>
         </div>
       </form>}
       <div className="news__posts">
+        {posts && posts.map((post) => (
+          <Post key={post.id} fstUser={false}>
+            <h2 className="post__title">{post.title}</h2>
+            {post.description && <div className="post__description">
+              <span>{post.description}</span>
+            </div>}
+            {post.photos && post.photos.length > 0 && <div className="post__images">
+              <h2 className="post__subtitle">Изображения</h2>
+              {post.photos.map((photo) => (
+                <img key={photo.id} src={photo.url} alt="" className="post__image"/>
+              ))}
+              {/* <img src="/assets/clock.jpg" alt="" className="post__image post__image--vertical"/> */}
+              {/* <img src="/assets/clock.jpg" alt="" className="post__image post__image--horizontal"/> */}
+            </div>}
+            {post.files && post.files.length > 0 && <div className="post__files">
+              <h2 className="post__subtitle">Файлы</h2>
+              {post.files.map((file) => (
+                <div key={file.id} className="post__file">
+                  <img src={convertTypeToIcon(file.name)} alt="icon" className="post__file-icon" />
+                  <div className="post__file-name">{file.name}</div>
+                  <img src={download} alt="download" className="post__file-download" />
+                </div>
+              ))}
+            </div>}
+          </Post>
+        ))}
+{/*         
         <Post fstUser={false}>
           <h2 className="post__title">Новый пост</h2>
           <div className="post__description">
@@ -179,6 +235,7 @@ const News: React.FC = () => {
             </div>
           </div>
         </Post>
+       */}
       </div>
       {true && <Navigation className="news__nav-bot" />}
     </section>
