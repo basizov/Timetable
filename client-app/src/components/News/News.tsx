@@ -10,7 +10,7 @@ import powerpoint from '../../assets/post/powerpoint.svg';
 import video from '../../assets/post/video.svg';
 import word from '../../assets/post/word.svg';
 import Navigation from '../../features/Paging/Paging';
-import { useStore } from '../../app/stores/store';
+import { store, useStore } from '../../app/stores/store';
 import Loading from '../../features/Loading/Loading';
 import Modal from '../../features/Modal/Modal';
 import { observer } from 'mobx-react-lite';
@@ -19,7 +19,8 @@ import { v4 as uuid } from 'uuid';
 const News: React.FC = () => {
   const { postStore: { postRegystry, loadPosts, loading, getPosts: posts, createPost } } = useStore();
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
-	const [text, setText] = useState("");
+	const [description, setDescription] = useState("");
+	const [title, setTitle] = useState("");
 	const [textAreaHeight, setTextAreaHeight] = useState("auto");
 	const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
 
@@ -44,22 +45,27 @@ const News: React.FC = () => {
     if (textAreaRef && textAreaRef.current) {
       setTextAreaHeight(`${textAreaRef.current!.scrollHeight}px`);
     }
-	}, [text]);
+	}, [description]);
 
 	const onTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setTextAreaHeight("auto");
-		setText(event.target.value);
+		setDescription(event.target.value);
 	};
+
+  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setTitle(event.target.value);
+  }
 
 	const onButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     
-		setText("");
+		setTitle("");
+		setDescription("");
 		setTextAreaHeight("auto");
     createPost({
       id: uuid(),
-      title: "Test",
-      description: "Test",
+      title: title,
+      description: description,
       photos: null,
       files: selectedFiles
     });
@@ -81,9 +87,19 @@ const News: React.FC = () => {
           onChange={onTextareaChange}
           onFocus={(e) => e.target.select()}
           placeholder="Текст новой новости..."
-          value={text}
+          value={description}
           name="newPost"
           className="textarea news__textarea"></textarea>
+        <div className="news__set-title">
+          <input
+            type="text"
+            placeholder="Введите название поста"
+            name="postTitle"
+            value={title}
+            onChange={onInputChange}
+            onFocus={(e) => e.target.select()}
+            className="input"></input>
+        </div>
         <div className="news__actions">
           <label htmlFor="uploadFile" className="btn news__label">
             <input
@@ -118,7 +134,10 @@ const News: React.FC = () => {
             {post.files && post.files.length > 0 && <div className="post__files">
               <h2 className="post__subtitle">Файлы</h2>
               {post.files.map((file) => (
-                <div key={file.id} className="post__file">
+                <div
+                  key={file.id}
+                  className="post__file"
+                  onClick={() => store.fileStore.downloadFile(file)}>
                   <img src={convertTypeToIcon(file.name)} alt="icon" className="post__file-icon" />
                   <div className="post__file-name">{file.name}</div>
                   <img src={download} alt="download" className="post__file-download" />

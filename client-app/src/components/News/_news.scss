@@ -4,6 +4,7 @@
   &__form {
     position: relative;
     width: 100%;
+    min-height: 10.5rem;
     padding: 1rem;
     background-color: var(--primary);
     border: 1px solid rgba($black, .7);
@@ -15,6 +16,11 @@
   }
   &__textarea {
     width: 80%;
+  }
+  &__set-title {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
   }
   &__actions {
     position: absolute;

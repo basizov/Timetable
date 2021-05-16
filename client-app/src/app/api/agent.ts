@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { store } from '../stores/store';
+import { IFile } from './models/file';
 import { PaginatedResult } from './models/pagination';
 import { IPost, PostFormValues } from './models/post';
 import { IUser, IUserForm } from './models/user';
@@ -65,9 +66,14 @@ const Account = {
   login: (user: IUserForm) => requests.post<IUser>('/account/login', user),
 }
 
+const File = {
+  download: (id: string) => requests.get<File>(`/files/${id}`)
+}
+
 const agent = {
   Posts,
-  Account
+  Account,
+  File
 }
 
 export default agent;

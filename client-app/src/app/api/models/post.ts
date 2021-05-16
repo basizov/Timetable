@@ -2,11 +2,6 @@ import { IFile } from "./file";
 import { IPhoto } from "./photo";
 import { v4 as uuid } from 'uuid';
 
-interface IPostSimple {
-  title: string;
-  description?: string;
-}
-
 export interface  IPost {
   id: string;
   title: string;
