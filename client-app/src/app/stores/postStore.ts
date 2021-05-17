@@ -34,8 +34,7 @@ export default class  PostStore {
   createPost = async (value: PostFormValues) => {
     this.setLoading(true);
     try {
-      await agent.Posts.create(value);
-      const post = new Post(value);
+      const post = await (await agent.Posts.create(value));
 
       this.setPost(post);
       this.setLoading(false);

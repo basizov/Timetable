@@ -10,6 +10,10 @@ namespace Domain.Entities
     /// </summary>
     public Guid Id { get; set; }
     /// <summary>
+    /// Дата создания поста 
+    /// </summary>
+    public DateTime CreatedTime { get; set; }
+    /// <summary>
     /// Название поста 
     /// </summary>
     public string Title { get; set; }

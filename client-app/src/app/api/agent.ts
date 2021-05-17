@@ -55,9 +55,9 @@ const Posts = {
     }
     if (post.title) formData.append('Title', post.title);
     if (post.description) formData.append('Description', post.description);
-    return axios.post<void>('/posts', formData, {
+    return axios.post<IPost>('/posts', formData, {
       headers: { 'Content-type': 'multipart/form-data' }
-    })
+    }).then(responseBody);
 },
 }
 

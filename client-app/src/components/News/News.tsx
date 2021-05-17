@@ -15,6 +15,7 @@ import Loading from '../../features/Loading/Loading';
 import Modal from '../../features/Modal/Modal';
 import { observer } from 'mobx-react-lite';
 import { v4 as uuid } from 'uuid';
+import { File, IFile } from '../../app/api/models/file';
 
 const News: React.FC = () => {
   const { postStore: { postRegystry, loadPosts, loading, getPosts: posts, createPost } } = useStore();
@@ -61,6 +62,7 @@ const News: React.FC = () => {
     
 		setTitle("");
 		setDescription("");
+    setSelectedFiles(null);
 		setTextAreaHeight("auto");
     createPost({
       id: uuid(),
@@ -70,6 +72,29 @@ const News: React.FC = () => {
       files: selectedFiles
     });
 	};
+
+  const ifileValues = () => {
+    const files: IFile[] = [];
+
+    if (selectedFiles && selectedFiles.length > 0) {
+      let fileArray = Array.from(selectedFiles);
+
+      fileArray.forEach((file) => files.push(new File(file)));
+    }
+    return (files);
+  }
+
+  const deleteItem = (name: string) => {
+    if (selectedFiles && selectedFiles.length > 0) {
+      let   fileArray = Array.from(selectedFiles);
+      const index = fileArray.findIndex(file => file.name === name);
+      let   dt = new DataTransfer();
+      
+      fileArray.splice(index, 1);
+      fileArray.forEach(file => dt.items.add(file));
+      setSelectedFiles(dt.files);
+    }
+  }
 
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedFiles(event.target.files);
@@ -90,30 +115,42 @@ const News: React.FC = () => {
           value={description}
           name="newPost"
           className="textarea news__textarea"></textarea>
-        <div className="news__set-title">
-          <input
-            type="text"
-            placeholder="Введите название поста"
-            name="postTitle"
-            value={title}
-            onChange={onInputChange}
-            onFocus={(e) => e.target.select()}
-            className="input"></input>
-        </div>
-        <div className="news__actions">
-          <label htmlFor="uploadFile" className="btn news__label">
+        {selectedFiles && selectedFiles.length > 0 && <div className="news__files">
+          {ifileValues().map((file) => (
+            <div className="news__file" key={file.id}>
+              <div className="news__file-name">{file.name}</div>
+              <div
+                onClick={() => deleteItem(file.name)}
+                className="news__file-delete"></div>
+            </div>
+          ))}
+        </div>}
+        <div className="news__right">
+          <div className="news__set-title">
             <input
-              className="input__file" 
-              id="uploadFile" 
-              onChange={(e) => onFileChange(e)}
-              type="file"
-              multiple={true} />
-              Выбрать файлы
-          </label>
-          <button
-          onClick={(e) => onButtonClick(e)}
-            className="btn btn--success form__btn">
-            Выложить</button>
+              type="text"
+              placeholder="Введите название поста"
+              name="postTitle"
+              value={title}
+              onChange={onInputChange}
+              onFocus={(e) => e.target.select()}
+              className="input"></input>
+          </div>
+          <div className="news__actions">
+            <label htmlFor="uploadFile" className="btn news__label">
+              <input
+                className="input__file" 
+                id="uploadFile" 
+                onChange={(e) => onFileChange(e)}
+                type="file"
+                multiple={true} />
+                Выбрать файлы
+            </label>
+            <button
+            onClick={(e) => onButtonClick(e)}
+              className="btn btn--success form__btn">
+              Выложить</button>
+          </div>
         </div>
       </form>}
       <div className="news__posts">
@@ -146,115 +183,6 @@ const News: React.FC = () => {
             </div>}
           </Post>
         ))}
-{/*         
-        <Post fstUser={false}>
-          <h2 className="post__title">Новый пост</h2>
-          <div className="post__description">
-            <span>New post</span>
-            <span>New post</span>
-            <span>New post</span>
-            <span>New post</span>
-          </div>
-          <div className="post__videos">
-            <h2 className="post__subtitle">Видео</h2>
-          </div>
-        </Post>
-        <Post>
-          <h2 className="post__title">Новый пост</h2>
-          <div className="post__description">
-            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi velit sequi ab laudantium ipsum architecto rem quos veniam fuga, asperiores explicabo quod? Placeat impedit dignissimos maiores, unde similique aliquam assumenda.</span>
-            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi velit sequi ab laudantium ipsum architecto rem quos veniam fuga, asperiores explicabo quod? Placeat impedit dignissimos maiores, unde similique aliquam assumenda.</span>
-            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi velit sequi ab laudantium ipsum architecto rem quos veniam fuga, asperiores explicabo quod? Placeat impedit dignissimos maiores, unde similique aliquam assumenda.</span>
-          </div>
-          <div className="post__images">
-            <h2 className="post__subtitle">Изображения</h2>
-            <img src="/assets/clock.jpg" alt="" className="post__image post__image--full"/>
-          </div>
-        </Post>
-        <Post>
-          <h2 className="post__title">Новый пост</h2>
-          <div className="post__description">
-            <span>New post</span>
-          </div>
-          <div className="post__files">
-            <h2 className="post__subtitle">Файлы</h2>
-            <div className="post__file">
-              <img src={video} alt="icon" className="post__file-icon" />
-              <div className="post__file-name">Тестовый файл для скачиванияТестовый файл для скачиванияТестовый файл для скачивания</div>
-              <img src={download} alt="download" className="post__file-download" />
-            </div>
-            <div className="post__file">
-              <img src={word} alt="icon" className="post__file-icon" />
-              <div className="post__file-name">Тестовый файл для скачиванияТестовый файл для скачиванияТестовый файл для скачивания</div>
-              <img src={download} alt="download" className="post__file-download" />
-            </div>
-            <div className="post__file">
-              <img src={file} alt="icon" className="post__file-icon" />
-              <div className="post__file-name">Тестовый файл для скачиванияТестовый файл для скачиванияТестовый файл для скачивания</div>
-              <img src={download} alt="download" className="post__file-download" />
-            </div>
-          </div>
-        </Post>
-        <Post>
-          <h2 className="post__title">Новый пост</h2>
-          <div className="post__description">
-            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi velit sequi ab laudantium ipsum architecto rem quos veniam fuga, asperiores explicabo quod? Placeat impedit dignissimos maiores, unde similique aliquam assumenda.</span>
-          </div>
-          <div className="post__videos">
-            <h2 className="post__subtitle">Видео</h2>
-          </div>
-          <div className="post__images">
-            <h2 className="post__subtitle">Изображения</h2>
-            <img src="/assets/clock.jpg" alt="" className="post__image post__image--vertical"/>
-            <img src="/assets/clock.jpg" alt="" className="post__image"/>
-            <img src="/assets/clock.jpg" alt="" className="post__image"/>
-            <img src="/assets/clock.jpg" alt="" className="post__image post__image--horizontal"/>
-          </div>
-          <div className="post__files">
-            <h2 className="post__subtitle">Файлы</h2>
-            <div className="post__file">
-              <img src={archive} alt="icon" className="post__file-icon" />
-              <div className="post__file-name">Тестовый файл для скачиванияТестовый файл для скачиванияТестовый файл для скачивания</div>
-              <img src={download} alt="download" className="post__file-download" />
-            </div>
-            <div className="post__file">
-              <img src={code} alt="icon" className="post__file-icon" />
-              <div className="post__file-name">Тестовый файл для скачиванияТестовый файл для скачиванияТестовый файл для скачивания</div>
-              <img src={download} alt="download" className="post__file-download" />
-            </div>
-            <div className="post__file">
-              <img src={excel} alt="icon" className="post__file-icon" />
-              <div className="post__file-name">Тестовый файл для скачиванияТестовый файл для скачиванияТестовый файл для скачивания</div>
-              <img src={download} alt="download" className="post__file-download" />
-            </div>
-            <div className="post__file">
-              <img src={pdf} alt="icon" className="post__file-icon" />
-              <div className="post__file-name">Тестовый файл для скачиванияТестовый файл для скачиванияТестовый файл для скачивания</div>
-              <img src={download} alt="download" className="post__file-download" />
-            </div>
-            <div className="post__file">
-              <img src={powerpoint} alt="icon" className="post__file-icon" />
-              <div className="post__file-name">Тестовый файл для скачиванияТестовый файл для скачиванияТестовый файл для скачивания</div>
-              <img src={download} alt="download" className="post__file-download" />
-            </div>
-            <div className="post__file">
-              <img src={video} alt="icon" className="post__file-icon" />
-              <div className="post__file-name">Тестовый файл для скачиванияТестовый файл для скачиванияТестовый файл для скачивания</div>
-              <img src={download} alt="download" className="post__file-download" />
-            </div>
-            <div className="post__file">
-              <img src={word} alt="icon" className="post__file-icon" />
-              <div className="post__file-name">Тестовый файл для скачиванияТестовый файл для скачиванияТестовый файл для скачивания</div>
-              <img src={download} alt="download" className="post__file-download" />
-            </div>
-            <div className="post__file">
-              <img src={file} alt="icon" className="post__file-icon" />
-              <div className="post__file-name">Тестовый файл для скачиванияТестовый файл для скачиванияТестовый файл для скачивания</div>
-              <img src={download} alt="download" className="post__file-download" />
-            </div>
-          </div>
-        </Post>
-       */}
       </div>
       {true && <Navigation className="news__nav-bot" />}
     </section>

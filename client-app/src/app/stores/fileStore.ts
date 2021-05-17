@@ -14,7 +14,6 @@ export default class  FileStore {
   downloadFile = async (selectFile: IFile) => {
     this.setLoading(true);
     try {
-      console.log(selectFile);
       const file = await agent.File.download(selectFile.id);
       const url = window.URL.createObjectURL(new Blob([file]));
       const link = document.createElement('a');

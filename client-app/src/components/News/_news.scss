@@ -11,21 +11,74 @@
     box-shadow: 5px 10px 12px rgba($black, .7);
     border-radius: 1rem;
   }
+  &__files {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 80%;
+  }
+  &__file {
+    position: relative;
+    margin: .3rem;
+    width: 25%;
+    padding: 1rem;
+    border-radius: 1rem;
+    justify-content: space-between;
+    background-color: var(--secondary);
+    &-name {
+      margin-right: 1rem;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    &-delete {
+      cursor: pointer;
+      position: absolute;
+      height: 100%;
+      top: 0;
+      right: 1rem;
+      width: 1rem;
+      &:after, &:before {
+        top: 50%;
+        position: absolute;
+        content: '';
+        width: 1rem;
+        height: .1rem;
+        background-color: var(--white);
+        transition: background-color .3s linear;
+      }
+      &:after {
+        transform: rotate(-45deg);
+      }
+      &:before {
+        transform: rotate(45deg);
+      }
+      &:hover {
+        &:after, &:before {
+          background-color: rgba($white, .7);
+        }
+      }
+      &:active {
+        &:after, &:before {
+          background-color: rgba($white, .9);
+        }
+      }
+    }
+  }
   &__label {
     margin-right: 1rem;
   }
   &__textarea {
     width: 80%;
   }
-  &__set-title {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-  }
-  &__actions {
+  &__right {
     position: absolute;
     bottom: 1rem;
     right: 1rem;
+  }
+  &__actions {
+    margin-top: 1rem;
   }
   &__posts {
     display: flex;

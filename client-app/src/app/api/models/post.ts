@@ -31,19 +31,17 @@ export class  Post implements IPost {
     let res: IFile[] = [];
 
     if (value) {
-      for (let i = 0; i < value.length; ++i) {
-        const temp = value.item(i);
+      const fileArray = Array.from(value);
 
-        if (temp && temp.name) {
-          const split = temp.name.split('/');
+      fileArray.forEach(file => {
+        const split = file.name.split('/');
 
-          res.push({
-            id: uuid(),
-            name: split[split.length - 1],
-            path: temp.name
-          });
-        }
-      }
+        res.push({
+          id: uuid(),
+          name: split[split.length - 1],
+          path: file.name
+        });
+      });
     }
     return (res);
   }
@@ -51,16 +49,14 @@ export class  Post implements IPost {
     let res: IPhoto[] = [];
 
     if (value) {
-      for (let i = 0; i < value.length; ++i) {
-        const temp = value.item(i);
+      const fileArray = Array.from(value);
 
-        if (temp && temp.name) {
-          res.push({
-            id: uuid(),
-            url: temp.name
-          });
-        }
-      }
+      fileArray.forEach(file => {
+        res.push({
+          id: uuid(),
+          url: file.name
+        });
+      });
     }
     return (res);
   }
