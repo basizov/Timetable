@@ -59,6 +59,36 @@ const News: React.FC = () => {
 
 	const onButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    let photos: FileList | null = null;
+    let files: FileList | null = null;
+
+    if (selectedFiles && selectedFiles.length > 0) {
+      console.log('Here');
+      let   selectedfilesArray = Array.from(selectedFiles);
+
+      const photosArray  = selectedfilesArray.filter(p => {
+        p.name.toLowerCase();
+        console.log(p.name, p.name.endsWith('.jpg'));
+        return (p.name.endsWith('.jpeg') || p.name.endsWith('.jpg') ||
+                p.name.endsWith('.png') || p.name.endsWith('.bmp') || 
+                p.name.endsWith('.svg'));
+      });
+
+      const filesArray = selectedfilesArray.filter(p => {
+        p.name.toLowerCase();
+        return (!(p.name.endsWith('.jpeg') || p.name.endsWith('.jpg') ||
+                p.name.endsWith('.png') || p.name.endsWith('.bmp') || 
+                p.name.endsWith('.svg')));
+      });
+      let   dt = new DataTransfer();
+
+      photosArray.forEach(photo => dt.items.add(photo));
+      photos = dt.files;
+
+      dt.items.clear();
+      filesArray.forEach(file => dt.items.add(file));
+      files = dt.files;
+    }
     
 		setTitle("");
 		setDescription("");
@@ -67,9 +97,10 @@ const News: React.FC = () => {
     createPost({
       id: uuid(),
       title: title,
+      createdTime: null,
       description: description,
-      photos: null,
-      files: selectedFiles
+      photos: photos,
+      files: files
     });
 	};
 
@@ -162,9 +193,17 @@ const News: React.FC = () => {
             </div>}
             {post.photos && post.photos.length > 0 && <div className="post__images">
               <h2 className="post__subtitle">Изображения</h2>
-              {post.photos.map((photo) => (
-                <img key={photo.id} src={photo.url} alt="" className="post__image"/>
-              ))}
+              {post.photos.map((photo, i) => {
+                let additionalClassname = '';
+
+                if (post.photos?.length === 1) additionalClassname = 'post__image--full';
+                else if (post.photos && post.photos.length % 2 === 1 && i === 2) additionalClassname = 'post__image--vertical';
+                return (<img
+                  key={photo.id}
+                  src={photo.url}
+                  alt=""
+                  className={`post__image ${additionalClassname}`}/>)
+              })}
               {/* <img src="/assets/clock.jpg" alt="" className="post__image post__image--vertical"/> */}
               {/* <img src="/assets/clock.jpg" alt="" className="post__image post__image--horizontal"/> */}
             </div>}

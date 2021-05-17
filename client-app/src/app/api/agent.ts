@@ -47,11 +47,14 @@ const Posts = {
     let formData = new FormData();
 
     if (post.files && post.files.length > 0) {
-      for (let i = 0; i < post.files.length; ++i) {
-        const file = post.files.item(i);
+      const fileArray = Array.from(post.files);
 
-        if (file) formData.append('Files', file, file.name);
-      }
+      fileArray.forEach(file => formData.append('Files', file, file.name));
+    }
+    if (post.photos && post.photos.length > 0) {
+      const photosArray = Array.from(post.photos);
+
+      photosArray.forEach(photo => formData.append('Photos', photo, photo.name));
     }
     if (post.title) formData.append('Title', post.title);
     if (post.description) formData.append('Description', post.description);

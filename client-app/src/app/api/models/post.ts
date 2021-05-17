@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid';
 export interface  IPost {
   id: string;
   title: string;
+  createdTime: Date | null;
   description?: string;
   photos?: IPhoto[];
   files?: IFile[];
@@ -13,6 +14,7 @@ export interface  IPost {
 export interface  Post {
   id: string;
   title: string;
+  createdTime: Date | null;
   description?: string;
   photos?: IPhoto[];
   files?: IFile[];
@@ -22,6 +24,7 @@ export class  Post implements IPost {
   constructor(init: PostFormValues) {
     this.id = init.id;
     this.title = init.title;
+    this.createdTime = init.createdTime;
     this.description = init.description;
     this.photos = this.convertToIPhoto(init.photos);
     this.files = this.convertToIFile(init.files);
@@ -65,6 +68,7 @@ export class  Post implements IPost {
 export class  PostFormValues {
   id: string;
   title: string;
+  createdTime: Date | null;
   description?: string;
   photos?: FileList | null;
   files?: FileList | null;
@@ -72,6 +76,7 @@ export class  PostFormValues {
   constructor(activity: PostFormValues) {
     this.id = activity.id;
     this.title = activity.title;
+    this.createdTime = activity.createdTime;
     this.description = activity.description;
     this.photos = activity.photos;
     this.files = activity.files;

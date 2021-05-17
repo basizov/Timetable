@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import agent from "../api/agent";
 import { IPagination, PagingParams } from "../api/models/pagination";
-import { IPost, Post, PostFormValues } from "../api/models/post";
+import { IPost, PostFormValues } from "../api/models/post";
 
 export default class  PostStore {
   postRegystry = new Map<string, IPost>();
@@ -34,7 +34,7 @@ export default class  PostStore {
   createPost = async (value: PostFormValues) => {
     this.setLoading(true);
     try {
-      const post = await (await agent.Posts.create(value));
+      const post = await agent.Posts.create(value);
 
       this.setPost(post);
       this.setLoading(false);
@@ -52,8 +52,11 @@ export default class  PostStore {
     return (params);
   }
   get getPosts(): IPost[] {
-    return Array.from(this.postRegystry.values());
+    return Array.from(this.postRegystry.values()).sort((a, b) => b.createdTime!.getTime() - a.createdTime!.getTime());
   }
   
-  private setPost = (post: IPost) => this.postRegystry.set(post.id, post);
+  private setPost = (post: IPost) => {
+    post.createdTime = new Date(post.createdTime!);
+    this.postRegystry.set(post.id, post);
+  };
 }

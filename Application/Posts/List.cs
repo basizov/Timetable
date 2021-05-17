@@ -30,7 +30,6 @@ namespace Application.Posts
       public async Task<Result<PagedList<PostDTO>>> Handle(Query request, CancellationToken cancellationToken)
       {
         var posts = await PagedList<PostDTO>.CreateAsync(_context.Posts
-          .OrderByDescending(p => p.CreatedTime)
           .ProjectTo<PostDTO>(_mapper.ConfigurationProvider)
           .AsQueryable(), request.PagingParams.PageNumber, request.PagingParams.PageSize);
 
