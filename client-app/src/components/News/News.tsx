@@ -18,7 +18,7 @@ import { v4 as uuid } from 'uuid';
 import { File, IFile } from '../../app/api/models/file';
 
 const News: React.FC = () => {
-  const { postStore: { postRegystry, loadPosts, loading, getPosts: posts, createPost } } = useStore();
+  const { postStore: { postRegystry, loadPosts, loading, getPosts: posts, createPost, pagination, setPagingParams, clearPosts } } = useStore();
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
 	const [description, setDescription] = useState("");
 	const [title, setTitle] = useState("");
@@ -134,7 +134,12 @@ const News: React.FC = () => {
   if (loading) return <Modal className='modal--block'><Loading backgroundColor="#fff" /></Modal>
   return (
     <section className="news news--light">
-      {false && <Navigation />}
+      {true && <Navigation
+        clear={clearPosts}
+        load={loadPosts}
+        setPagingParams={setPagingParams}
+        pagination={pagination}
+        className={'paging--mb'} />}
       {true && <form className="news__form">
         <textarea
           ref={textAreaRef}
@@ -198,11 +203,11 @@ const News: React.FC = () => {
 
                 if (post.photos?.length === 1) additionalClassname = 'post__image--full';
                 else if (post.photos && post.photos.length % 2 === 1 && i === 2) additionalClassname = 'post__image--vertical';
-                return (<img
-                  key={photo.id}
-                  src={photo.url}
-                  alt=""
-                  className={`post__image ${additionalClassname}`}/>)
+                return (<div key={photo.id} className={`post__image ${additionalClassname}`}>
+                    <img
+                      src={photo.url}
+                      alt="image" />
+                  </div>)
               })}
               {/* <img src="/assets/clock.jpg" alt="" className="post__image post__image--vertical"/> */}
               {/* <img src="/assets/clock.jpg" alt="" className="post__image post__image--horizontal"/> */}
@@ -223,7 +228,12 @@ const News: React.FC = () => {
           </Post>
         ))}
       </div>
-      {true && <Navigation className="news__nav-bot" />}
+      {true && <Navigation
+        clear={clearPosts}
+        load={loadPosts}
+        setPagingParams={setPagingParams}
+        className="news__nav-bot"
+        pagination={pagination} />}
     </section>
   );
 };

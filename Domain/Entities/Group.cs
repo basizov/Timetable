@@ -17,5 +17,9 @@ namespace Domain.Entities
     /// Студенты группы 
     /// </summary>
     public IEnumerable<Student> Students { get; set; }
+    /// <summary>
+    /// Расписание группы
+    /// </summary>
+    public IEnumerable<Timetable> Timetable { get; set; }
   }
 }

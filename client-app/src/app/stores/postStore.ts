@@ -7,7 +7,7 @@ export default class  PostStore {
   postRegystry = new Map<string, IPost>();
   loading = false;
   pagination: IPagination | null = null;
-  pagingParams = new PagingParams(1, 10);
+  pagingParams = new PagingParams(1, 2);
   
   constructor() {
     makeAutoObservable(this);
@@ -16,6 +16,8 @@ export default class  PostStore {
   setLoading = (value: boolean) => this.loading = value;
   setPagination = (value: IPagination) => this.pagination = value;
   setPagingParams = (value: PagingParams) => this.pagingParams = value;
+
+  clearPosts = () => this.postRegystry.clear();
   
   loadPosts = async () => {
     this.setLoading(true);

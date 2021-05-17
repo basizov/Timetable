@@ -3,6 +3,9 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
+  &--mb {
+    margin-bottom: 3rem;
+  }
   &__pages {
     display: flex;
     margin: 0 auto;

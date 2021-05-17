@@ -17,5 +17,9 @@ namespace Application.DTOs
     /// Студенты группы 
     /// </summary>
     public IEnumerable<StudentDTO> Students { get; set; }
+    /// <summary>
+    /// Расписание группы
+    /// </summary>
+    public IEnumerable<TimetableDTO> Timetable { get; set; }
   }
 }
