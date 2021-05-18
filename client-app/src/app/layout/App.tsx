@@ -1,4 +1,5 @@
-import React from 'react';
+import { observer } from 'mobx-react-lite';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router';
 import Groups from '../../components/Groups/Groups';
 import Header from '../../components/Header/Header';
@@ -7,8 +8,23 @@ import Information from '../../components/Information/Information';
 import Login from '../../components/Login/Login';
 import News from '../../components/News/News';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import Timetable from '../../components/Timetable/Timetable';
+import Loading from '../../features/Loading/Loading';
+import { store } from '../stores/store';
 
 const App: React.FC = () => {
+  const { commonStore, userStore } = store;
+  
+  useEffect(() => {
+    if (commonStore.token) {
+      console.log(commonStore.appLoaded);
+      userStore.getUser().finally(() => commonStore.setAppLoaded());
+    } else {
+      commonStore.setAppLoaded();
+    }
+  }, [commonStore, userStore]);
+  
+  if (!commonStore.appLoaded) return <Loading backgroundColor='#fff' />;
   return (
     <div className="App">
       <Route exact path='/' component={Home} />
@@ -22,6 +38,7 @@ const App: React.FC = () => {
               <Route exact path='/news' component={News} />
               <Route exact path='/info' component={Information} />
               <Route exact path='/groups' component={Groups} />
+              <Route exact path='/groups/:group' component={Timetable} />
               <Route exact path='/login' component={Login} />
             </main>
           </>
@@ -30,4 +47,4 @@ const App: React.FC = () => {
   );
 }
 
-export default  App;
+export default  observer(App);

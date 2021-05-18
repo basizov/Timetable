@@ -48,6 +48,11 @@
       background-color: rgba($white, .2);
     }
   }
+  &__link {
+    color: inherit;
+    font-family: inherit;
+    text-decoration: none;
+  }
   &__error {
     font-size: 1.8rem;
     font-weight: 500;

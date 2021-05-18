@@ -19,9 +19,9 @@ namespace Persistence
         users.AddRange(
           new List<User>
           {
-            new User { UserName = "boris", Email = "boris@test.com", Status = (int)UserStatus.Student },
-            new User { UserName = "adel", Email = "adel@test.com", Status = (int)UserStatus.Student },
-            new User { UserName = "vova", Email = "vova@test.com", Status = (int)UserStatus.Student }
+            new User { UserName = "boris", Email = "boris@test.com", Status = UserStatus.Admin },
+            new User { UserName = "adel", Email = "adel@test.com", Status = UserStatus.Student },
+            new User { UserName = "vova", Email = "vova@test.com", Status = UserStatus.Student }
           }
         );
 

@@ -6,5 +6,9 @@ namespace Domain.Enums
     /// Студент
     /// </summary>
     Student = 0,
+    /// <summary>
+    /// Админ
+    /// </summary>
+    Admin = 1
   }
 }

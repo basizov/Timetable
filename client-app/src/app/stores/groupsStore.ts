@@ -4,6 +4,7 @@ import { IGroup } from "../api/models/group";
 
 export default class  GroupsStore {
   groupRegystry = new Map<string, IGroup>();
+  selectedGroup: IGroup | null = null;
   loading = false;
   
   constructor() {
@@ -11,6 +12,8 @@ export default class  GroupsStore {
   }
   
   setLoading = (value: boolean) => this.loading = value;
+  setSelectedGroup = (value: IGroup | null) => this.selectedGroup = value;
+
   clearGroups = () => this.groupRegystry.clear();
   
   loadGroups = async (label: string) => {
@@ -24,6 +27,12 @@ export default class  GroupsStore {
     } finally {
       this.setLoading(false);
     }
+  }
+
+  selectGroup = (id: string) => {
+    const group = this.groupRegystry.get(id);
+
+    if (group) this.setSelectedGroup(group);
   }
   
   get getGroups(): IGroup[] {

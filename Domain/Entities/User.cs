@@ -1,3 +1,4 @@
+using Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 
 namespace Domain.Entities
@@ -7,7 +8,7 @@ namespace Domain.Entities
     /// <summary>
     /// Статус пользователя
     /// </summary>
-    public int Status { get; set; }
+    public UserStatus Status { get; set; }
     /// <summary>
     /// Фотография пользователя 
     /// </summary>

@@ -134,13 +134,13 @@ const News: React.FC = () => {
   if (loading) return <Modal className='modal--block'><Loading backgroundColor="#fff" /></Modal>
   return (
     <section className="news news--light">
-      {true && <Navigation
+      {posts && posts.length > 0 && <Navigation
         clear={clearPosts}
         load={loadPosts}
         setPagingParams={setPagingParams}
         pagination={pagination}
         className={'paging--mb'} />}
-      {true && <form className="news__form">
+      {store.userStore.user && store.userStore.user.isAdmin && <form className="news__form">
         <textarea
           ref={textAreaRef}
           rows={2}
@@ -228,7 +228,7 @@ const News: React.FC = () => {
           </Post>
         ))}
       </div>
-      {true && <Navigation
+      {posts && posts.length > 0 && <Navigation
         clear={clearPosts}
         load={loadPosts}
         setPagingParams={setPagingParams}

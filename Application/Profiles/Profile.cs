@@ -18,5 +18,13 @@ namespace Application.Profiles
     /// Номер группы пользователя
     /// </summary>
     public string Group { get; set; }
+    /// <summary>
+    /// Статус пользователя
+    /// </summary>
+    public string Status { get; set; }
+    /// <summary>
+    /// Флаг о админстве пользователя
+    /// </summary>
+    public bool IsAdmin { get; set; }
   }
 }

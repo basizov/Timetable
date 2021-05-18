@@ -24,6 +24,10 @@ namespace Application.DTOs
     /// <summary>
     /// Статус пользователя
     /// </summary>
-    public UserStatus Status { get; set; }
+    public string Status { get; set; }
+    /// <summary>
+    /// Флаг о админстве пользователя
+    /// </summary>
+    public bool IsAdmin { get; set; }
   }
 }

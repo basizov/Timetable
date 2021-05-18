@@ -1,8 +1,10 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Services;
+using Application.Core;
 using Application.DTOs;
 using Domain.Entities;
+using Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -63,7 +65,9 @@ namespace API.Controllers
       {
         Image = user?.Photo?.Url,
         Token = _tokenService.CreateToken(user),
-        Username = user.UserName
+        Username = user.UserName,
+        Status = user.Status.ConvertEntityToItem(),
+        IsAdmin = user.Status == UserStatus.Admin
       });
     }
   }

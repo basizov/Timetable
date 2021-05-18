@@ -9,7 +9,7 @@ import Modal from '../../features/Modal/Modal';
 import search from '../../assets/search.svg';
 
 const Groups: React.FC = () => {
-  const { groupsStore: { loadGroups, clearGroups, getGroups, groupRegystry, loading, setLoading } } = useStore();
+  const { groupsStore: { loadGroups, clearGroups, getGroups, groupRegystry, loading, setLoading, selectGroup } } = useStore();
 	const [label, setLabel] = useState("");
 
   useEffect(() => {
@@ -42,12 +42,16 @@ const Groups: React.FC = () => {
         </div>
         <List className="groups__list">
           {loading && <Loading backgroundColor='#fff' />}
-          {getGroups && getGroups.length > 0 && getGroups.map(group => (
-            <Item key={group.id} className="groups__item">
-              <Link to={`/groups/${group.number}`}>
-                {group.number}
-              </Link>
-            </Item>
+          {getGroups && getGroups.length > 0 && !loading && getGroups.map(group => (
+            <Link
+              key={group.id}
+              className="groups__link"
+              onClick={() => selectGroup(group.id)}
+              to={`/groups/${group.number}`}>
+              <Item className="groups__item">
+                  {group.number}
+              </Item>
+            </Link>
           ))}
           {(!getGroups || (getGroups && getGroups.length === 0)) && !loading &&
           <h2 className="groups__error">Группы не найдены...</h2>}

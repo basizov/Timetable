@@ -10,6 +10,14 @@ namespace Application.Core
         return ("Чет");
       return ("Нечет");
     }
+    public static string ConvertEntityToItem(this UserStatus status)
+    {
+      if (status == UserStatus.Student)
+        return ("студент");
+      else if (status == UserStatus.Admin)
+        return ("админ");
+      return ("");
+    }
     public static string ConvertEntityToItem(this SubjectType subjectType)
     {
       if (subjectType == SubjectType.Laborotory)

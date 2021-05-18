@@ -13,7 +13,7 @@ const Header: React.FC = () => {
         <Link to='/groups' className="navigation__item">Группы</Link>
       </nav>
       <div className="header__utils">
-        {store.userStore.isLoggedIn && <Link to='/login' className="btn btn--success header__login">Авторизоваться</Link>}
+        {!store.userStore.isLoggedIn && <Link to='/login' className="btn btn--success header__login">Авторизоваться</Link>}
         <div className="header__logo">
           <a href="https://kai.ru/"><img src={kai} alt="logo" className="sidebar__logo"/></a>
         </div>
