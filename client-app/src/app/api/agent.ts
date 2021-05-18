@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { store } from '../stores/store';
-import { IFile } from './models/file';
+import { IGroup } from './models/group';
 import { PaginatedResult } from './models/pagination';
 import { IPost, PostFormValues } from './models/post';
 import { IUser, IUserForm } from './models/user';
@@ -73,10 +73,15 @@ const File = {
   download: (id: string) => requests.get<File>(`/files/${id}`)
 }
 
+const Groups = {
+  list: (label: string) => axios.get<IGroup[]>(`/groups/?label=${label}`).then(responseBody),
+}
+
 const agent = {
   Posts,
   Account,
-  File
+  File,
+  Groups
 }
 
 export default agent;

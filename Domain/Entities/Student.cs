@@ -19,7 +19,7 @@ namespace Domain.Entities
     /// <summary>
     /// Id пользователя системы
     /// </summary>
-    public int UserId { get; set; }
+    public string UserId { get; set; }
     /// <summary>
     /// Пользователь системы
     /// </summary>

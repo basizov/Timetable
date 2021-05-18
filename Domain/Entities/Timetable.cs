@@ -37,5 +37,9 @@ namespace Domain.Entities
     /// Номер пары (первая, вторая ...)
     /// </summary>
     public SubjectNumber SubjectNumber { get; set; }
+    /// <summary>
+    /// Тип предмета (лекция, лаба, пратика)
+    /// </summary>
+    public SubjectType SubjectType { get; set; }
   }
 }

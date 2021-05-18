@@ -206,7 +206,7 @@ const News: React.FC = () => {
                 return (<div key={photo.id} className={`post__image ${additionalClassname}`}>
                     <img
                       src={photo.url}
-                      alt="image" />
+                      alt={`${photo.url}`} />
                   </div>)
               })}
               {/* <img src="/assets/clock.jpg" alt="" className="post__image post__image--vertical"/> */}

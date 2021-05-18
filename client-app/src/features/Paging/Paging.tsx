@@ -58,6 +58,7 @@ const Paging: React.FC<IProps> = ({className = '', pagination, setPagingParams, 
                 {key + 1}</div>
             );
           }
+          return <></>;
         })}
       </div>
       <div

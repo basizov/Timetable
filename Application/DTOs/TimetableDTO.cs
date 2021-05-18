@@ -23,7 +23,7 @@ namespace Application.DTOs
     /// <summary>
     /// Неделя (чет или нечет)
     /// </summary>
-    public bool Week { get; set; }
+    public string Week { get; set; }
     /// <summary>
     /// Предмет
     /// </summary>
@@ -36,5 +36,9 @@ namespace Application.DTOs
     /// Номер пары (первая, вторая ...)
     /// </summary>
     public string SubjectNumber { get; set; }
+    /// <summary>
+    /// Тип предмета (лекция, лаба, пратика)
+    /// </summary>
+    public string SubjectType { get; set; }
   }
 }

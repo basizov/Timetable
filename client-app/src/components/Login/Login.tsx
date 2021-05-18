@@ -27,10 +27,10 @@ const Login: React.FC = () => {
         <h2 className="login__title">Авторизация</h2>
         <ul className="login__socials">
           <li className="login__social">
-            <a href="#"><img src={vk} alt="vk"/></a>
+            <a href="https://vk.com/kaiknitu"><img src={vk} alt="vk"/></a>
           </li>
           <li className="login__social">
-            <a href="#"><img src={insta} alt="insta"/></a>
+            <a href="https://vk.com/kaiknitu"><img src={insta} alt="insta"/></a>
           </li>
         </ul>
         <div className="login__content">

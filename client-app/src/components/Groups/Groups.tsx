@@ -1,37 +1,60 @@
-import React from 'react';
+import { observer } from 'mobx-react-lite';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useStore } from '../../app/stores/store';
 import Item from '../../features/List/Item';
 import List from '../../features/List/List';
+import Loading from '../../features/Loading/Loading';
 import Modal from '../../features/Modal/Modal';
+import search from '../../assets/search.svg';
 
 const Groups: React.FC = () => {
+  const { groupsStore: { loadGroups, clearGroups, getGroups, groupRegystry, loading, setLoading } } = useStore();
+	const [label, setLabel] = useState("");
+
+  useEffect(() => {
+    if (groupRegystry.size <= 1) loadGroups(label);
+  }, [groupRegystry.size, loadGroups, label]);
+  
+  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setLabel(event.target.value);
+  }
+
   return (
     <Modal>
       <section className="groups">
-        <input
-          type="text"
-          className="input groups__search"
-          onFocus={(e) => e.target.select()}
-          placeholder='Расписание какой группы найти?' />
+        <div className="groups__uppanel">
+          <input
+            type="text"
+            className="input groups__input"
+            onFocus={(e) => e.target.select()}
+            value={label}
+            onChange={onInputChange}
+            placeholder='Расписание какой группы найти?' />
+          <img
+            src={search}
+            alt="search"
+            onClick={() => {
+              clearGroups();
+              setLoading(true);
+            }}
+            className="groups__search" />
+        </div>
         <List className="groups__list">
-          <Item className="groups__item"><Link to='/groups/4331'>4331</Link></Item>
-          <Item className="groups__item"><Link to='/groups/4332'>4332</Link></Item>
-          <Item className="groups__item"><Link to='/groups/4333'>4333</Link></Item>
-          <Item className="groups__item"><Link to='/groups/4334'>4334</Link></Item>
-          <Item className="groups__item"><Link to='/groups/4335'>4335</Link></Item>
-          <Item className="groups__item"><Link to='/groups/4336'>4336</Link></Item>
-          <Item className="groups__item"><Link to='/groups/4337'>4337</Link></Item>
-          <Item className="groups__item"><Link to='/groups/4338'>4338</Link></Item>
-          <Item className="groups__item"><Link to='/groups/4339'>4339</Link></Item>
-          <Item className="groups__item"><Link to='/groups/4340'>4340</Link></Item>
-          <Item className="groups__item"><Link to='/groups/4341'>4341</Link></Item>
-          <Item className="groups__item"><Link to='/groups/4342'>4342</Link></Item>
-          <Item className="groups__item"><Link to='/groups/4343'>4343</Link></Item>
-          <Item className="groups__item"><Link to='/groups/4344'>4344</Link></Item>
+          {loading && <Loading backgroundColor='#fff' />}
+          {getGroups && getGroups.length > 0 && getGroups.map(group => (
+            <Item key={group.id} className="groups__item">
+              <Link to={`/groups/${group.number}`}>
+                {group.number}
+              </Link>
+            </Item>
+          ))}
+          {(!getGroups || (getGroups && getGroups.length === 0)) && !loading &&
+          <h2 className="groups__error">Группы не найдены...</h2>}
         </List>
       </section>
     </Modal>
   );
 };
 
-export default  Groups;
+export default  observer(Groups);
