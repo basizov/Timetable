@@ -34,6 +34,14 @@ namespace Domain.Entities
     /// </summary>
     public string Teacher { get; set; }
     /// <summary>
+    /// Здание
+    /// </summary>
+    public int Building { get; set; }
+    /// <summary>
+    /// Кабинет
+    /// </summary>
+    public string Cabinet { get; set; }
+    /// <summary>
     /// Номер пары (первая, вторая ...)
     /// </summary>
     public SubjectNumber SubjectNumber { get; set; }

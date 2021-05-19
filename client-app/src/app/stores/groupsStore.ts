@@ -29,15 +29,36 @@ export default class  GroupsStore {
     }
   }
 
-  selectGroup = (id: string) => {
-    const group = this.groupRegystry.get(id);
+  loadGroup = async (id: string): Promise<void> => {
+    let group: IGroup | undefined = this.getGroup(id);
 
-    if (group) this.setSelectedGroup(group);
+    this.setLoading(true);
+    if (group) {
+      this.setGroup(group);
+      this.setLoading(false);
+    } else {
+      try {
+        group = await agent.Groups.details(id);
+
+        this.setGroup(group)
+        this.setSelectedGroup(group);
+      } catch(error) {
+        console.log(error);
+      } finally {
+        this.setLoading(false);
+      }
+    }
   }
+
   
   get getGroups(): IGroup[] {
     return Array.from(this.groupRegystry.values());
   }
 
   private setGroup = (group: IGroup) => this.groupRegystry.set(group.id, group);
+  private getGroup = (id: string) => {
+    const group = this.groupRegystry.get(id);
+
+    return (group);
+  }
 }

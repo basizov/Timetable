@@ -9,11 +9,11 @@ import Modal from '../../features/Modal/Modal';
 import search from '../../assets/search.svg';
 
 const Groups: React.FC = () => {
-  const { groupsStore: { loadGroups, clearGroups, getGroups, groupRegystry, loading, setLoading, selectGroup } } = useStore();
+  const { groupsStore: { loadGroups, clearGroups, getGroups, groupRegystry, loading, setLoading, setSelectedGroup } } = useStore();
 	const [label, setLabel] = useState("");
 
   useEffect(() => {
-    if (groupRegystry.size <= 1) loadGroups(label);
+    if (groupRegystry.size === 0) loadGroups(label);
   }, [groupRegystry.size, loadGroups, label]);
   
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,9 +45,9 @@ const Groups: React.FC = () => {
           {getGroups && getGroups.length > 0 && !loading && getGroups.map(group => (
             <Link
               key={group.id}
+              onClick={() => setSelectedGroup(group)}
               className="groups__link"
-              onClick={() => selectGroup(group.id)}
-              to={`/groups/${group.number}`}>
+              to={`/groups/${group.id}`}>
               <Item className="groups__item">
                   {group.number}
               </Item>

@@ -38,7 +38,7 @@ const App: React.FC = () => {
               <Route exact path='/news' component={News} />
               <Route exact path='/info' component={Information} />
               <Route exact path='/groups' component={Groups} />
-              <Route exact path='/groups/:group' component={Timetable} />
+              <Route exact path='/groups/:id' component={Timetable} />
               <Route exact path='/login' component={Login} />
             </main>
           </>

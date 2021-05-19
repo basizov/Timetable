@@ -1,4 +1,5 @@
 import React from 'react';
+import { store } from '../../app/stores/store';
 
 const Sidebar: React.FC = () => {
   return (
@@ -33,6 +34,7 @@ const Sidebar: React.FC = () => {
             className="sidebar__scheduler-item">Системное программирование</li>
         </ul>
       </div>
+      {store.userStore.isLoggedIn && <button className='btn btn--error sidebar__logout' onClick={() => store.userStore.logout()}>Выйти</button>}
     </aside>
   );
 };

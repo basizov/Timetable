@@ -1,6 +1,7 @@
 import React from 'react';
 
 interface IProps {
+  className?: string;
   width?: number;
   height?: number;
   spanWidth?: number;
@@ -11,6 +12,7 @@ interface IProps {
 }
 
 const Loading: React.FC<IProps> = ({
+  className = '',
   width = 25,
   height = 25,
   spanWidth = 5,
@@ -23,7 +25,7 @@ const Loading: React.FC<IProps> = ({
 
   return (
     <div
-      className="loading"
+      className={`loading ${className}`}
       style={{
         width: width,
         height: height,

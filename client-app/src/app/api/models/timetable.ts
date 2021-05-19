@@ -7,6 +7,8 @@ export interface  ITimetable {
   week: true;
   subject: string;
   teacher: string;
+  building: number;
+  cabinet: string;
   subjectNumber: string;
   subjectType: string;
 }

@@ -75,6 +75,7 @@ const File = {
 
 const Groups = {
   list: (label: string) => axios.get<IGroup[]>(`/groups/?label=${label}`).then(responseBody),
+  details: (id: string) => requests.get<IGroup>(`/groups/${id}`)
 }
 
 const agent = {

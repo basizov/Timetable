@@ -51,6 +51,8 @@ namespace Persistence
                 Week = true,
                 Subject = "Технология разработки программного обеспечения",
                 Teacher = "Александров Александр Александрович",
+                Building = 7,
+                Cabinet = "431",
                 SubjectNumber = SubjectNumber.Third,
                 SubjectType = SubjectType.Lecture
               },
@@ -60,6 +62,8 @@ namespace Persistence
                 Week = true,
                 Subject = "Безопасность жизнедеятельности",
                 Teacher = "Калинин Петр Петрович",
+                Building = 5,
+                Cabinet = "411",
                 SubjectNumber = SubjectNumber.First,
                 SubjectType = SubjectType.Practice
               },
@@ -69,6 +73,8 @@ namespace Persistence
                 Week = true,
                 Subject = "Информационные технологии",
                 Teacher = "Иванова Людмилла Ивановна",
+                Building = 7,
+                Cabinet = "211",
                 SubjectNumber = SubjectNumber.Second,
                 SubjectType = SubjectType.Lecture
               },
@@ -79,6 +85,8 @@ namespace Persistence
                 Subject = "Информационные технологии",
                 Teacher = "Иванова Людмилла Ивановна",
                 SubjectNumber = SubjectNumber.Fourth,
+                Building = 3,
+                Cabinet = "215a",
                 SubjectType = SubjectType.Laborotory
               },
               new Timetable
@@ -88,6 +96,8 @@ namespace Persistence
                 Subject = "Системное программирование",
                 Teacher = "Безлепкин Антон Антоныч",
                 SubjectNumber = SubjectNumber.Third,
+                Building = 5,
+                Cabinet = "341",
                 SubjectType = SubjectType.Lecture
               },
               new Timetable
@@ -97,6 +107,8 @@ namespace Persistence
                 Subject = "Системное программирование",
                 Teacher = "Безлепкин Антон Антоныч",
                 SubjectNumber = SubjectNumber.Third,
+                Building = 1,
+                Cabinet = "111",
                 SubjectType = SubjectType.Laborotory
               },
               new Timetable
@@ -106,6 +118,8 @@ namespace Persistence
                 Subject = "Экономика",
                 Teacher = "Васильева Дина Васильевна",
                 SubjectNumber = SubjectNumber.Fourth,
+                Building = 8,
+                Cabinet = "551",
                 SubjectType = SubjectType.Practice
               },
               new Timetable
@@ -114,6 +128,8 @@ namespace Persistence
                 Week = true,
                 Subject = "Физическая культура",
                 Teacher = "Василисова Василиса Ивановна",
+                Building = 7,
+                Cabinet = "Спорт зал",
                 SubjectNumber = SubjectNumber.Second,
                 SubjectType = SubjectType.Practice
               },
@@ -123,6 +139,8 @@ namespace Persistence
                 Week = true,
                 Subject = "Безопасность жизнедеятельности",
                 Teacher = "Калинин Петр Петрович",
+                Building = 7,
+                Cabinet = "410",
                 SubjectNumber = SubjectNumber.First,
                 SubjectType = SubjectType.Practice
               },
@@ -132,6 +150,8 @@ namespace Persistence
                 Week = true,
                 Subject = "Наладчик технического оборудования",
                 Teacher = "Пелагеин Алексндр Александрович",
+                Building = 7,
+                Cabinet = "214a",
                 SubjectNumber = SubjectNumber.First,
                 SubjectType = SubjectType.Laborotory
               },
@@ -141,6 +161,8 @@ namespace Persistence
                 Week = true,
                 Subject = "Дискретная математика",
                 Teacher = "Третнев Александр Александрович",
+                Building = 5,
+                Cabinet = "401",
                 SubjectNumber = SubjectNumber.Third,
                 SubjectType = SubjectType.Practice
               },
@@ -150,6 +172,8 @@ namespace Persistence
                 Week = true,
                 Subject = "Английский язык",
                 Teacher = "Петрова Наташа Петровна",
+                Building = 5,
+                Cabinet = "421",
                 SubjectNumber = SubjectNumber.Fourth,
                 SubjectType = SubjectType.Practice
               },
@@ -159,6 +183,8 @@ namespace Persistence
                 Week = true,
                 Subject = "Документирование и сертификация",
                 Teacher = "Петров Иван Петрович",
+                Building = 3,
+                Cabinet = "202",
                 SubjectNumber = SubjectNumber.Third,
                 SubjectType = SubjectType.Practice
               }

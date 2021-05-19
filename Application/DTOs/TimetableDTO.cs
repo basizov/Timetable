@@ -33,6 +33,14 @@ namespace Application.DTOs
     /// </summary>
     public string Teacher { get; set; }
     /// <summary>
+    /// Здание
+    /// </summary>
+    public int Building { get; set; }
+    /// <summary>
+    /// Кабинет
+    /// </summary>
+    public string Cabinet { get; set; }
+    /// <summary>
     /// Номер пары (первая, вторая ...)
     /// </summary>
     public string SubjectNumber { get; set; }

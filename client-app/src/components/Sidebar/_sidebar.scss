@@ -7,6 +7,11 @@
   height: 100%;
   z-index: var(--zindex-sidebar);
   box-shadow: 5px 10px 20px rgba($black, .3);
+  &__logout {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+  }
   &__img {
     width: 100%;
     object-fit: cover;
