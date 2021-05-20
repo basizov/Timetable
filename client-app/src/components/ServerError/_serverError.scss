@@ -9,4 +9,44 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  &__wrapper {
+    display: flex;
+  }
+  &__left {
+    min-width: 30rem;
+    max-width: 60rem;
+  }
+  &__right {
+    margin-left: 5rem;
+    width: 25rem;
+    height: 25rem;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__header {
+    display: flex;
+    align-items: flex-end;
+  }
+  &__code {
+    font-size: 9rem;
+    line-height: 7rem;
+  }
+  &__message {
+    margin-left: 2rem;
+    font-size: 3rem;
+    font-weight: 300;
+  }
+  &__details {
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    text-align: justify;
+    font-style: italic;
+  }
+  &__link {
+    display: block;
+    text-align: left;
+    margin-top: 1.5rem;
+  }
 }
