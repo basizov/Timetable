@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from "mobx";
+import { makeAutoObservable } from "mobx";
 import agent from "../api/agent";
 import { IPagination, PagingParams } from "../api/models/pagination";
 import { IPost, PostFormValues } from "../api/models/post";
@@ -38,16 +38,11 @@ export default class  PostStore {
   createPost = async (value: PostFormValues) => {
     this.setLoading(true);
     try {
-      const post = await agent.Posts.create(value);
+      await agent.Posts.create(value);
 
-      runInAction(() => {
-        if (this.pagination) {
-          ++this.pagination.totalItems;
-          if (this.pagination.totalItems / this.pagination.itemsPerPage !== this.pagination.totalPages) ++this.pagination.totalPages;
-        }
-      });
-      this.deletePost(this.getPosts[this.getPosts.length - 1]);
-      this.setPost(post);
+      this.clearPosts();
+      this.setPagingParams(new PagingParams(1, 2));
+      this.loadPosts();
       this.setLoading(false);
     } catch(error) {
       console.log(error);
@@ -70,5 +65,4 @@ export default class  PostStore {
     post.createdTime = new Date(post.createdTime!);
     this.postRegystry.set(post.id, post);
   };
-  private deletePost = (post: IPost) => this.postRegystry.delete(post.id);
 }

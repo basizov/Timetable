@@ -17,7 +17,7 @@ body {
   overflow-y: overlay;
   font-size: 1.4rem;
   color: var(--white);
-  background-color: rgb(24, 24, 24);
+  background-color: var(--ground);
 }
 
 @import '../styles/root';
@@ -38,6 +38,8 @@ body {
 @import '../../components/Groups/groups';
 @import '../../components/Timetable/timetable';
 @import '../../components/Information/info';
+@import '../../components/NotFound/notfound';
+@import '../../components/ServerError/serverError';
 @import '../../features/Slider/slider';
 @import '../../features/Post/post';
 @import '../../features/Paging/paging';

@@ -5,12 +5,14 @@ $white: rgb(255, 255, 255);
 $classic: rgb(15, 62, 105);
 $success: rgb(14, 75, 12);
 $failure: rgb(75, 12, 12);
+$ground: rgb(24, 24, 24);
 
 $header: 5rem;
 $sidebar: 35rem;
 
 $zindex-header: 1000;
 $zindex-sidebar: 1000;
+$zindex-errors: 1000;
 
 :root {
   --primary: #{$primary};
@@ -20,12 +22,14 @@ $zindex-sidebar: 1000;
   --classic: #{$classic};
   --success: #{$success};
   --failure: #{$failure};
+  --ground: #{$ground};
 
   --sidebar: #{$sidebar};
   --header: #{$header};
 
   --zindex-header: #{$zindex-header};
   --zindex-sidebar: #{$zindex-sidebar};
+  --zindex-errors: #{$zindex-errors};
 }
 
 ::selection {
