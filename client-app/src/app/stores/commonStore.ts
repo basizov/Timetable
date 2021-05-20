@@ -1,6 +1,8 @@
 import { makeAutoObservable, reaction } from "mobx";
+import { IError } from "../api/models/error";
 
 export default class  CommonStore {
+  error: IError | null = null;
   token: string | null = window.localStorage.getItem('jwt');
   appLoaded = false;
 
@@ -19,6 +21,7 @@ export default class  CommonStore {
     );
   }
   
-  setToken = (token: string | null) => this.token = token;
+  setToken = (value: string | null) => this.token = value;
+  setError = (value: IError | null) => this.error = value;
   setAppLoaded = () => this.appLoaded = true;
 }

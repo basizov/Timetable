@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 import { IPagination, PagingParams } from '../../app/api/models/pagination';
 import left from '../../assets/navigation/leftW.svg';
@@ -26,10 +27,15 @@ const Paging: React.FC<IProps> = ({className = '', pagination, setPagingParams, 
   const [endPaging, setEndPaging] = useState(startPaging + 5);
 
   const setStartEndPaging = (start: number, end: number = start + 5) => {
-    if (pagination && start < pagination!.totalPages) {
-      if (start < 0) {
+    if (pagination) {
+      if (start >= pagination.totalPages) {
         start = 0;
         end = start + 5;
+      } else if (start < 0) {
+        start = pagination.totalPages % 5 !== 0 ? pagination.totalPages : pagination.totalPages - 1;
+  
+        if (start % 5 !== 0) for (start; start % 5 !== 0; --start);
+        end = pagination.totalPages;
       }
       setStartPaging(start);
       setEndPaging(end);
@@ -58,7 +64,7 @@ const Paging: React.FC<IProps> = ({className = '', pagination, setPagingParams, 
                 {key + 1}</div>
             );
           }
-          return <></>;
+          return <React.Fragment key={key}></React.Fragment>;
         })}
       </div>
       <div
@@ -70,4 +76,4 @@ const Paging: React.FC<IProps> = ({className = '', pagination, setPagingParams, 
   );
 };
 
-export default  Paging;
+export default  observer(Paging);

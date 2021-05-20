@@ -17,7 +17,6 @@ const App: React.FC = () => {
   
   useEffect(() => {
     if (commonStore.token) {
-      console.log(commonStore.appLoaded);
       userStore.getUser().finally(() => commonStore.setAppLoaded());
     } else {
       commonStore.setAppLoaded();

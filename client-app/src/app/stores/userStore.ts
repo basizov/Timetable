@@ -35,6 +35,8 @@ export default class  UserStore {
     window.localStorage.removeItem('jwt');
     this.user = null;
     history.push('/');
+    store.groupsStore.clearGroups();
+    store.postStore.clearPosts();
   }
 
   getUser = async () => {

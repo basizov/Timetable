@@ -27,10 +27,9 @@ namespace API.Controllers
       var file = await _context.Files.FindAsync(id);
       var mas = System.IO.File.ReadAllBytes(file.Path);
       var subpath = $".{file.Name.Split('.').Last()}";
-
-      if (!fileProvider.TryGetContentType(subpath, out string contentType))
-        throw new ArgumentOutOfRangeException($"Unable to find Content Type for file name {file.Name}.");
-      return File(mas, contentType, file.Name);
+      
+      fileProvider.TryGetContentType(subpath, out string contentType);
+      return File(mas, contentType ?? "application/octet-stream", file.Name);
     }
   }
 }

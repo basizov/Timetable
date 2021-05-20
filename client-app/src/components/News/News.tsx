@@ -18,7 +18,7 @@ import { v4 as uuid } from 'uuid';
 import { File, IFile } from '../../app/api/models/file';
 
 const News: React.FC = () => {
-  const { postStore: { postRegystry, loadPosts, loading, getPosts: posts, createPost, pagination, setPagingParams, clearPosts } } = useStore();
+  const { postStore: { postRegystry, loadPosts, loading, loadingInitial, getPosts: posts, createPost, pagination, setPagingParams, clearPosts } } = useStore();
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
 	const [description, setDescription] = useState("");
 	const [title, setTitle] = useState("");
@@ -90,10 +90,6 @@ const News: React.FC = () => {
       files = dt.files;
     }
     
-		setTitle("");
-		setDescription("");
-    setSelectedFiles(null);
-		setTextAreaHeight("auto");
     createPost({
       id: uuid(),
       title: title,
@@ -102,6 +98,10 @@ const News: React.FC = () => {
       photos: photos,
       files: files
     });
+		setTitle("");
+		setDescription("");
+    setSelectedFiles(null);
+		setTextAreaHeight("auto");
 	};
 
   const ifileValues = () => {
@@ -131,7 +131,7 @@ const News: React.FC = () => {
     setSelectedFiles(event.target.files);
   }
 
-  if (loading) return <Modal className='modal--block'><Loading backgroundColor="#fff" /></Modal>
+  if (loadingInitial) return <Modal className='modal--block'><Loading backgroundColor="#fff" /></Modal>
   return (
     <section className="news news--light">
       {posts && posts.length > 0 && <Navigation
@@ -183,15 +183,20 @@ const News: React.FC = () => {
                 Выбрать файлы
             </label>
             <button
-            onClick={(e) => onButtonClick(e)}
+              onClick={(e) => onButtonClick(e)}
               className="btn btn--success form__btn">
-              Выложить</button>
+              {loading ? <Loading
+                width={15}
+                height={15}
+                spanWidth={3}
+                spanHeight={3}
+                backgroundColor="#fff" /> : <>Выложить</>}</button>
           </div>
         </div>
       </form>}
       <div className="news__posts">
         {posts && posts.map((post) => (
-          <Post key={post.id} fstUser={false}>
+          <Post key={post.id}>
             <h2 className="post__title">{post.title}</h2>
             {post.description && <div className="post__description">
               <span>{post.description}</span>
@@ -209,8 +214,6 @@ const News: React.FC = () => {
                       alt={`${photo.url}`} />
                   </div>)
               })}
-              {/* <img src="/assets/clock.jpg" alt="" className="post__image post__image--vertical"/> */}
-              {/* <img src="/assets/clock.jpg" alt="" className="post__image post__image--horizontal"/> */}
             </div>}
             {post.files && post.files.length > 0 && <div className="post__files">
               <h2 className="post__subtitle">Файлы</h2>

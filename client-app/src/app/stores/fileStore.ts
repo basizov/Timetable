@@ -12,6 +12,7 @@ export default class  FileStore {
   setLoading = (value: boolean) => this.loading = value;
 
   downloadFile = async (selectFile: IFile) => {
+    console.log(selectFile.id);
     this.setLoading(true);
     try {
       const file = await agent.File.download(selectFile.id);

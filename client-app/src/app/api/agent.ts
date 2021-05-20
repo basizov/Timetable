@@ -1,9 +1,10 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { store } from '../stores/store';
 import { IGroup } from './models/group';
 import { PaginatedResult } from './models/pagination';
 import { IPost, PostFormValues } from './models/post';
 import { IUser, IUserForm } from './models/user';
+import { history } from '../../index';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
@@ -32,6 +33,40 @@ axios.interceptors.response.use(async response => {
     return response as AxiosResponse<PaginatedResult<any>>;
   }
   return response;
+}, (error: AxiosError) => {
+  const { data, status, config } = error.response!;
+
+  switch (status) {
+    case 400:
+      if (typeof data === 'string') {
+        console.log(data);
+      }
+      if (config.method === 'get' && data.errors.hasOwnProperty('id')) {
+        history.push('/not-found');
+      }
+      if (data.errors) {
+        const modalStateErros = [];
+
+        for (const key in data.errors) {
+          if (data.errors[key]) {
+            modalStateErros.push(data.errors[key]);
+          }
+        }
+        throw modalStateErros.flat();
+      }
+      break;
+    case 401:
+      history.push('/unauthorised');
+      break;
+    case 404:
+      history.push('/not-found');
+      break;
+    case 500:
+      store.commonStore.setError(data);
+      history.push('/server-error');
+      break;
+  }
+  return Promise.reject(error);
 });
 
 const requests = {
