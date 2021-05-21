@@ -75,7 +75,7 @@ const Timetable: React.FC = () => {
           <div className="timetable__item timetable__item-title">Здание</div>
           <div className="timetable__item timetable__item-title">Преподаватель</div>
           {selectedGroup && selectedGroup.timetable.map(t => {
-            if (t.day !== label) return <></>
+            if (t.day !== label) return <React.Fragment key={t.id}></React.Fragment>
             return (
               <React.Fragment key={t.id}>
                 <div className="timetable__item">{t.subject}</div>

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 
@@ -13,5 +14,9 @@ namespace Domain.Entities
     /// Фотография пользователя 
     /// </summary>
     public Photo Photo { get; set; }
+    /// <summary>
+    /// Токены пользователя
+    /// </summary>
+    public ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
   }
 }

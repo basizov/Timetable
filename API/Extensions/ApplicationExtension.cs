@@ -15,7 +15,12 @@ namespace API.Extensions
     public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
     {
       services.AddDbContext<DataContext>(opt => opt.UseSqlite(config.GetConnectionString("DefaultConnection")));
-      services.AddCors(opt => opt.AddPolicy("CorsPolicy", policy => policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000")));
+      services.AddCors(opt => opt.AddPolicy("CorsPolicy", policy => policy
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .WithExposedHeaders("WWW-Authenticate", "Pagination")
+        .WithOrigins("http://localhost:3000")
+      ));
       services.AddMediatR(typeof(Create.Handler).Assembly);
       services.AddAutoMapper(typeof(MappingProfiles).Assembly);
       services.AddScoped<IPhotoAccessor, PhotoAccessor>();

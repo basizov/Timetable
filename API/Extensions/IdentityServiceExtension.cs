@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using API.Services;
 using Domain.Entities;
@@ -30,7 +31,9 @@ namespace API.Extensions
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"])),
             ValidateIssuer = false,
-            ValidateAudience = false
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ClockSkew = TimeSpan.Zero
           };
         });
       services.AddScoped<TokenService>();
