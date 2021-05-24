@@ -3,7 +3,7 @@ import Slider from '../../features/Slider/Slider';
 import vk from '../../assets/socials/vk.svg';
 import insta from '../../assets/socials/instagram.svg';
 import { Link } from 'react-router-dom';
-import Modal from '../../features/Modal/Modal';
+import Modal from '../../features/Pages/Pages';
 import { IUserForm } from '../../app/api/models/user';
 import { useStore } from '../../app/stores/store';
 import Loading from '../../features/Loading/Loading';

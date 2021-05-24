@@ -1,10 +1,10 @@
 import React from 'react';
-import Modal from '../../features/Modal/Modal';
+import Pages from '../../features/Pages/Pages';
 import info from '../../assets/info.svg';
 
 const Information: React.FC = () => {
   return (
-    <Modal>
+    <Pages>
       <section className="information">
         <img src={info} alt="icon" className='information__icon' />
         <h2 className="information__title">Информация</h2>
@@ -17,7 +17,7 @@ const Information: React.FC = () => {
           <li className="information__instruction">5</li>
         </ol>
       </section>
-    </Modal>
+    </Pages>
   );
 };
 

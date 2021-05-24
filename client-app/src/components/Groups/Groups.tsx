@@ -5,7 +5,7 @@ import { useStore } from '../../app/stores/store';
 import Item from '../../features/List/Item';
 import List from '../../features/List/List';
 import Loading from '../../features/Loading/Loading';
-import Modal from '../../features/Modal/Modal';
+import Pages from '../../features/Pages/Pages';
 import search from '../../assets/search.svg';
 
 const Groups: React.FC = () => {
@@ -21,7 +21,7 @@ const Groups: React.FC = () => {
   }
 
   return (
-    <Modal>
+    <Pages>
       <section className="groups">
         <div className="groups__uppanel">
           <input
@@ -57,7 +57,7 @@ const Groups: React.FC = () => {
           <h2 className="groups__error">Группы не найдены...</h2>}
         </List>
       </section>
-    </Modal>
+    </Pages>
   );
 };
 

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { ITimetable } from '../../app/api/models/timetable';
 import { store } from '../../app/stores/store';
 import Loading from '../../features/Loading/Loading';
-import Modal from '../../features/Modal/Modal';
+import Pages from '../../features/Pages/Pages';
 import Select from '../../features/Select/Select';
 
 const Timetable: React.FC = () => {
@@ -46,7 +46,7 @@ const Timetable: React.FC = () => {
   )
 
   
-  if (loading) return <Modal><Loading backgroundColor='#fff' className='timetable__loading' /></Modal>
+  if (loading) return <Pages><Loading backgroundColor='#fff' className='timetable__loading' /></Pages>
   return (
     <div className="timetable">
       <Select
