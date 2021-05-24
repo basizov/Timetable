@@ -24,10 +24,14 @@ namespace Domain.Entities
     /// <summary>
     /// Фотографии поста
     /// </summary>
-    public IEnumerable<Photo> Photos { get; set; }
+    public ICollection<Photo> Photos { get; set; }
     /// <summary>
     /// Фотографии поста
     /// </summary>
-    public IEnumerable<File> Files { get; set; }
+    public ICollection<File> Files { get; set; }
+    /// <summary>
+    /// Комментарии к посту
+    /// </summary>
+    public ICollection<Message> Comments { get; set; } = new List<Message>();
   }
 }

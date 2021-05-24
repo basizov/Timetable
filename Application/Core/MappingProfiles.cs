@@ -13,6 +13,9 @@ namespace Application.Core
       CreateMap<Group, GroupDTO>();
       CreateMap<Photo, PhotoDTO>();
       CreateMap<Post, PostDTO>();
+      CreateMap<Message, MessageDTO>()
+        .ForMember(s => s.Username, o => o.MapFrom(s => s.Author.UserName))
+        .ForMember(s => s.Image, o => o.MapFrom(s => s.Author.Photo.Url));
       CreateMap<Timetable, TimetableDTO>()
         .ForMember(s => s.Week, o => o.MapFrom(s => s.Week.ConvertEntityToItem()))
         .ForMember(s => s.SubjectNumber, o => o.MapFrom(s => s.SubjectNumber.ConvertEntityToItem()))

@@ -14,6 +14,10 @@ namespace Application.DTOs
     /// </summary>
     public string Username { get; set; }
     /// <summary>
+    /// ФИО пользователя
+    /// </summary>
+    public string Displayname { get; set; }
+    /// <summary>
     /// Токен для входа пользователя
     /// </summary>
     public string Token { get; set; }

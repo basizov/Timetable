@@ -24,10 +24,14 @@ namespace Application.DTOs
     /// <summary>
     /// Фотографии поста
     /// </summary>
-    public IEnumerable<PhotoDTO> Photos { get; set; }
+    public ICollection<PhotoDTO> Photos { get; set; }
     /// <summary>
     /// Фотографии поста
     /// </summary>
-    public IEnumerable<FileDTO> Files { get; set; }
+    public ICollection<FileDTO> Files { get; set; }
+    /// <summary>
+    /// Комментарии к посту
+    /// </summary>
+    public ICollection<MessageDTO> Comments { get; set; }
   }
 }

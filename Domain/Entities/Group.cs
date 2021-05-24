@@ -16,10 +16,10 @@ namespace Domain.Entities
     /// <summary>
     /// Студенты группы 
     /// </summary>
-    public IEnumerable<Student> Students { get; set; }
+    public ICollection<Student> Students { get; set; }
     /// <summary>
     /// Расписание группы
     /// </summary>
-    public IEnumerable<Timetable> Timetable { get; set; }
+    public ICollection<Timetable> Timetable { get; set; }
   }
 }

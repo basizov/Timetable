@@ -16,10 +16,10 @@ namespace Application.DTOs
     /// <summary>
     /// Студенты группы 
     /// </summary>
-    public IEnumerable<StudentDTO> Students { get; set; }
+    public ICollection<StudentDTO> Students { get; set; }
     /// <summary>
     /// Расписание группы
     /// </summary>
-    public IEnumerable<TimetableDTO> Timetable { get; set; }
+    public ICollection<TimetableDTO> Timetable { get; set; }
   }
 }

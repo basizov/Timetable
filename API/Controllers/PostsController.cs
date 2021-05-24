@@ -19,8 +19,8 @@ namespace API.Controllers
       var filesEntity = HandleResult(await Mediator.Send(new Application.Files.Create.Command { Files = files }));
       var photosEntity = HandleResult(await Mediator.Send(new Application.Photos.Add.Command { Files = photos }));
 
-      post.Files = (IEnumerable<File>)((filesEntity as ObjectResult).Value);
-      post.Photos = (IEnumerable<Photo>)((photosEntity as ObjectResult).Value);
+      post.Files = (ICollection<File>)((filesEntity as ObjectResult).Value);
+      post.Photos = (ICollection<Photo>)((photosEntity as ObjectResult).Value);
       return HandleResult(await Mediator.Send(new Create.Command { Post = post }));
     }
   }

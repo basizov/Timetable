@@ -9,10 +9,6 @@ namespace Domain.Entities
     /// </summary>
     public Guid Id { get; set; }
     /// <summary>
-    /// ФИО студента
-    /// </summary>
-    public string FIO { get; set; }
-    /// <summary>
     /// Статус студента (true - староста)
     /// </summary>
     public bool Status { get; set; }

@@ -11,6 +11,7 @@ namespace Persistence
     public DbSet<Photo> Photos { get; set; }
     public DbSet<Student> Students { get; set; }
     public DbSet<Post> Posts { get; set; }
+    public DbSet<Message> Messages { get; set; }
 
     public DataContext(DbContextOptions options) : base(options) { }
   }

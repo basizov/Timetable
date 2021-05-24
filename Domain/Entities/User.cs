@@ -15,6 +15,10 @@ namespace Domain.Entities
     /// </summary>
     public Photo Photo { get; set; }
     /// <summary>
+    /// ФИО пользователя
+    /// </summary>
+    public string Displayname { get; set; }
+    /// <summary>
     /// Токены пользователя
     /// </summary>
     public ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
