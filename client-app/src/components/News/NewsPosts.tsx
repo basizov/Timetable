@@ -17,9 +17,10 @@ import { store } from '../../app/stores/store';
 
 interface IProps {
   posts: IPost[];
+  setPost: (value: IPost | null) => void;
 }
 
-const NewsPosts: React.FC<IProps> = ({posts}) => {
+const NewsPosts: React.FC<IProps> = ({posts, setPost}) => {
   const convertTypeToIcon = (name: string) => {
     const split = name.split('.');
     const type = split[split.length - 1];
@@ -39,7 +40,11 @@ const NewsPosts: React.FC<IProps> = ({posts}) => {
       {posts && posts.map((post) => (
         <Post key={post.id}>
           <div className="post__menu">
-            <img src={comments} alt="comments" className="post__comments" />
+            <img
+              src={comments}
+              alt="comments"
+              onClick={() => {setPost(post)}}
+              className="post__comments" />
             {store.userStore.user && store.userStore.user.isAdmin &&
             <img src={settings} alt="settings" className="post__settings" />}
           </div>

@@ -1,9 +1,10 @@
 import { observer } from 'mobx-react-lite';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { File, IFile } from '../../app/api/models/file';
 import { v4 as uuid } from 'uuid';
 import Loading from '../../features/Loading/Loading';
 import { PostFormValues } from '../../app/api/models/post';
+import Textarea from '../../features/Textarea/Textarea';
 
 interface IProps {
   loading: boolean;
@@ -11,16 +12,11 @@ interface IProps {
 }
 
 const NewsForm: React.FC<IProps> = ({loading, createPost}) => {
-	const textAreaRef = useRef<HTMLTextAreaElement>(null);
-	const [textAreaHeight, setTextAreaHeight] = useState("auto");
 	const [description, setDescription] = useState("");
 	const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
 	const [title, setTitle] = useState("");
+	const [reset, setReset] = useState(false);
   
-	const onTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-		setTextAreaHeight("auto");
-		setDescription(event.target.value);
-	};
   const ifileValues = () => {
     const files: IFile[] = [];
 
@@ -91,67 +87,58 @@ const NewsForm: React.FC<IProps> = ({loading, createPost}) => {
 		setTitle("");
 		setDescription("");
     setSelectedFiles(null);
-		setTextAreaHeight("auto");
+    setReset(true);
 	};
-  
-	useEffect(() => {
-    if (textAreaRef && textAreaRef.current) {
-      setTextAreaHeight(`${textAreaRef.current!.scrollHeight}px`);
-    }
-	}, [description]);
   
   return (
     <form className="news__form">
-        <textarea
-          ref={textAreaRef}
-          rows={2}
-          style={{ height: textAreaHeight }}
-          onChange={onTextareaChange}
-          onFocus={(e) => e.target.select()}
-          placeholder="Текст новой новости..."
-          value={description}
-          name="newPost"
-          className="textarea news__textarea"></textarea>
-        {selectedFiles && selectedFiles.length > 0 && <div className="news__files">
-          {ifileValues().map((file) => (
-            <div className="news__file" key={file.id}>
-              <div className="news__file-name">{file.name}</div>
-              <div
-                onClick={() => deleteItem(file.name)}
-                className="news__file-delete"></div>
-            </div>
-          ))}
-        </div>}
-        <div className="news__right">
-          <div className="news__set-title">
-            <input
-              type="text"
-              placeholder="Введите название поста"
-              name="postTitle"
-              value={title}
-              onChange={onInputChange}
-              onFocus={(e) => e.target.select()}
-              className="input"></input>
+      <Textarea
+        text={description}
+        setText={setDescription}
+        reset={reset}
+        placeholder="Текст новой новости..."
+        setReset={setReset}
+        className='news__textarea' />
+      {selectedFiles && selectedFiles.length > 0 && <div className="news__files">
+        {ifileValues().map((file) => (
+          <div className="news__file" key={file.id}>
+            <div className="news__file-name">{file.name}</div>
+            <div
+              onClick={() => deleteItem(file.name)}
+              className="news__file-delete"></div>
           </div>
-          <div className="news__actions">
-            <label htmlFor="uploadFile" className="btn news__label">
-              <input
-                className="input__file" 
-                id="uploadFile" 
-                onChange={(e) => onFileChange(e)}
-                type="file"
-                multiple={true} />
-                Выбрать файлы
-            </label>
-            <button
-              onClick={(e) => onButtonClick(e)}
-              className="btn btn--success form__btn">
-              {loading ? <Loading
-                width={15}
-                height={15}
-                spanWidth={3}
-                spanHeight={3}
-                backgroundColor="#fff" /> : <>Выложить</>}</button>
+        ))}
+      </div>}
+      <div className="news__right">
+        <div className="news__set-title">
+          <input
+            type="text"
+            placeholder="Введите название поста"
+            name="postTitle"
+            value={title}
+            onChange={onInputChange}
+            onFocus={(e) => e.target.select()}
+            className="input"></input>
+        </div>
+        <div className="news__actions">
+          <label htmlFor="uploadFile" className="btn news__label">
+            <input
+              className="input__file" 
+              id="uploadFile" 
+              onChange={(e) => onFileChange(e)}
+              type="file"
+              multiple={true} />
+              Выбрать файлы
+          </label>
+          <button
+            onClick={(e) => onButtonClick(e)}
+            className="btn btn--success form__btn">
+            {loading ? <Loading
+              width={15}
+              height={15}
+              spanWidth={3}
+              spanHeight={3}
+              backgroundColor="#fff" /> : <>Выложить</>}</button>
           </div>
         </div>
       </form>

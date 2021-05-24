@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navigation from '../../features/Paging/Paging';
 import { store, useStore } from '../../app/stores/store';
 import Loading from '../../features/Loading/Loading';
-import Modal from '../../features/Pages/Pages';
 import { observer } from 'mobx-react-lite';
 import NewsForm from './NewsForm';
 import NewsPosts from './NewsPosts';
+import Pages from '../../features/Pages/Pages';
+import Modal from '../../features/Modal/Modal';
+import Comments from '../../features/Comments/Comments';
+import { IPost } from '../../app/api/models/post';
 
 const News: React.FC = () => {
   const { postStore:
@@ -21,33 +24,39 @@ const News: React.FC = () => {
       clearPosts
     }
   } = useStore();
+  const [post, setPost] = useState<IPost | null>(null);
 
   useEffect(() => {
     if (postRegystry.size <= 1) loadPosts();
   }, [postRegystry.size, loadPosts]);
 
-  if (loadingInitial) return <Modal className='modal--block'><Loading backgroundColor="#fff" /></Modal>
+  if (loadingInitial) return <Pages className='pages--block'><Loading backgroundColor="#fff" /></Pages>
   return (
-    <section className="news news--light">
-      {posts && posts.length > 0 && <Navigation
-        clear={clearPosts}
-        load={loadPosts}
-        setPagingParams={setPagingParams}
-        pagination={pagination}
-        className={'paging--mb'} />}
+    <>
+      {post && <Modal className='modal__transparent'>
+        <Comments post={post!} setPost={setPost} />  
+      </Modal>}
+      <section className="news news--light">
+        {posts && posts.length > 0 && <Navigation
+          clear={clearPosts}
+          load={loadPosts}
+          setPagingParams={setPagingParams}
+          pagination={pagination}
+          className={'paging--mb'} />}
 
-      {store.userStore.user && store.userStore.user.isAdmin &&
-      <NewsForm loading={loading} createPost={createPost} />}
+        {store.userStore.user && store.userStore.user.isAdmin &&
+        <NewsForm loading={loading} createPost={createPost} />}
 
-      <NewsPosts posts={posts} />
-      
-      {posts && posts.length > 0 && <Navigation
-        clear={clearPosts}
-        load={loadPosts}
-        setPagingParams={setPagingParams}
-        className="news__nav-bot"
-        pagination={pagination} />}
-    </section>
+        <NewsPosts posts={posts} setPost={setPost} />
+        
+        {posts && posts.length > 0 && <Navigation
+          clear={clearPosts}
+          load={loadPosts}
+          setPagingParams={setPagingParams}
+          className="news__nav-bot"
+          pagination={pagination} />}
+      </section>
+    </>
   );
 };
 

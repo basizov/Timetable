@@ -1,8 +1,12 @@
 import React from 'react';
 
-const Modal: React.FC = ({children}) => {
+interface IProps {
+  className?: string;
+}
+
+const Modal: React.FC<IProps> = ({className = '', children}) => {
   return (
-    <div className="modal">
+    <div className={`modal ${className}`}>
       {children}
     </div>
   );
