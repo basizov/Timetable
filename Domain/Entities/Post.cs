@@ -32,6 +32,6 @@ namespace Domain.Entities
     /// <summary>
     /// Комментарии к посту
     /// </summary>
-    public ICollection<Message> Comments { get; set; } = new List<Message>();
+    public ICollection<Comment> Comments { get; set; } = new List<Comment>();
   }
 }

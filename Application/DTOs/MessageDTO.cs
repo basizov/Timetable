@@ -4,7 +4,7 @@ namespace Application.DTOs
 {
   public class MessageDTO
   {
-    /// /// <summary>
+    /// <summary>
     /// Идентификатор сообщения
     /// </summary>
     public int Id { get; set; }

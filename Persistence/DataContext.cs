@@ -12,6 +12,7 @@ namespace Persistence
     public DbSet<Student> Students { get; set; }
     public DbSet<Post> Posts { get; set; }
     public DbSet<Message> Messages { get; set; }
+    public DbSet<Comment> Comments { get; set; }
 
     public DataContext(DbContextOptions options) : base(options) { }
   }

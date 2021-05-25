@@ -1,5 +1,6 @@
 import React from 'react';
 import { store } from '../../app/stores/store';
+import defaultUser from '../../assets/defaultUser.svg'; 
 
 const Sidebar: React.FC = () => {
   return (
@@ -7,7 +8,7 @@ const Sidebar: React.FC = () => {
       <img src="/assets/clock.jpg" alt="clock" className="sidebar__img"/>
       <div className="profile">
         <div className="profile__icon">
-          <img src="https://via.placeholder.com/100" alt="user-icon" />
+          <img src={defaultUser} alt="user-icon" className={'profile__icon-default'} />
         </div>
         <div className="profile__info">
           <div className="profile__name">Сизов Борис</div>
