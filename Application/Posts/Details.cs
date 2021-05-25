@@ -9,15 +9,15 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.Groups
+namespace Application.Posts
 {
   public class Details
   {
-    public class Query : IRequest<Result<GroupDTO>>
+    public class Query : IRequest<Result<PostDTO>>
     {
       public Guid Id { get; set; }
     }
-    public class Handler : IRequestHandler<Query, Result<GroupDTO>>
+    public class Handler : IRequestHandler<Query, Result<PostDTO>>
     {
       private readonly DataContext _context;
       private readonly IMapper _mapper;
@@ -28,9 +28,9 @@ namespace Application.Groups
         _context = context;
       }
       
-      public async Task<Result<GroupDTO>> Handle(Query request, CancellationToken cancellationToken) =>
-        Result<GroupDTO>.Success(await _context.Groups
-          .ProjectTo<GroupDTO>(_mapper.ConfigurationProvider)
+      public async Task<Result<PostDTO>> Handle(Query request, CancellationToken cancellationToken) =>
+        Result<PostDTO>.Success(await _context.Posts
+          .ProjectTo<PostDTO>(_mapper.ConfigurationProvider)
           .FirstOrDefaultAsync(g => g.Id == request.Id));
     }
   }

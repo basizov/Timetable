@@ -29,12 +29,12 @@ export default class  GroupsStore {
     }
   }
 
-  loadGroup = async (id: string): Promise<void> => {
+  loadGroup = async (id: string) => {
     let group: IGroup | undefined = this.getGroup(id);
 
     this.setLoading(true);
     if (group) {
-      this.setGroup(group);
+      this.setSelectedGroup(group);
       this.setLoading(false);
     } else {
       try {
@@ -51,7 +51,7 @@ export default class  GroupsStore {
   }
 
   
-  get getGroups(): IGroup[] {
+  get getGroups() {
     return Array.from(this.groupRegystry.values());
   }
 

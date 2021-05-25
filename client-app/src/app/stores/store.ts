@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import CommentStore from "./commentStore";
 import CommonStore from "./commonStore";
 import FileStore from "./fileStore";
 import GroupsStore from "./groupsStore";
@@ -11,6 +12,7 @@ interface IStore {
   userStore: UserStore;
   fileStore: FileStore;
   groupsStore: GroupsStore;
+  commentStore: CommentStore;
 }
 
 export const  store: IStore = {
@@ -18,7 +20,8 @@ export const  store: IStore = {
   commonStore: new CommonStore(),
   userStore: new UserStore(),
   fileStore: new FileStore(),
-  groupsStore: new GroupsStore()
+  groupsStore: new GroupsStore(),
+  commentStore: new CommentStore()
 }
 
 export const  StoreContext = createContext(store);

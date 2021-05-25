@@ -72,6 +72,7 @@
   }
   &__btn {
     align-self: end;
+    min-width: 7rem;
   }
   &__list {
     margin-top: 1rem;
@@ -91,6 +92,7 @@
     box-shadow: .3rem .3rem 1rem var(--secondary);
     border: 1px solid rgba($secondary, .3);
     margin-top: 1rem;
+    word-wrap: break-word;
     &:first-of-type {
       margin-top: 0;
     }
@@ -101,6 +103,11 @@
   &__item {
     span {
       display: block;
+    }
+    &-time {
+      margin-top: -.4rem;
+      font-size: 1rem;
+      font-weight: 300;
     }
     &-sender {
       font-weight: 700;

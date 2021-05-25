@@ -9,6 +9,7 @@ export default class  PostStore {
   loadingInitial = false;
   pagination: IPagination | null = null;
   pagingParams = new PagingParams(1, 2);
+  selectedPost: IPost | null = null;
   
   constructor() {
     makeAutoObservable(this);
@@ -18,6 +19,7 @@ export default class  PostStore {
   setLoadingInitial = (value: boolean) => this.loadingInitial = value;
   setPagination = (value: IPagination) => this.pagination = value;
   setPagingParams = (value: PagingParams) => this.pagingParams = value;
+  setSelectedPost = (value: IPost | null) => this.selectedPost = value;
 
   clearPosts = () => this.postRegystry.clear();
   
@@ -32,6 +34,27 @@ export default class  PostStore {
       console.log(error);
     } finally {
       this.setLoadingInitial(false);
+    }
+  }
+  
+  loadPost = async (id: string) => {
+    let post: IPost | undefined = this.getPost(id);
+
+    this.setLoading(true);
+    if (post) {
+      this.setSelectedPost(post);
+      this.setLoading(false);
+    } else {
+      try {
+        post = await agent.Posts.details(id);
+
+        this.setPost(post!)
+        this.setSelectedPost(post!);
+      } catch(error) {
+        console.log(error);
+      } finally {
+        this.setLoading(false);
+      }
     }
   }
 
@@ -57,7 +80,7 @@ export default class  PostStore {
     params.append('pageSize', this.pagingParams.pageSize.toString());
     return (params);
   }
-  get getPosts(): IPost[] {
+  get getPosts() {
     return Array.from(this.postRegystry.values()).sort((a, b) => b.createdTime!.getTime() - a.createdTime!.getTime());
   }
   
@@ -65,4 +88,9 @@ export default class  PostStore {
     post.createdTime = new Date(post.createdTime!);
     this.postRegystry.set(post.id, post);
   };
+  private getPost = (id: string) => {
+    const post = this.postRegystry.get(id);
+
+    return (post);
+  }
 }

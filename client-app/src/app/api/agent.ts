@@ -81,6 +81,7 @@ const requests = {
 
 const Posts = {
   list: (params: URLSearchParams) => axios.get<PaginatedResult<IPost[]>>('/posts', {params}).then(responseBody),
+  details: (id: string) => requests.get<IPost>(`/posts/${id}`),
   create: (post: PostFormValues) => {
     let formData = new FormData();
 

@@ -18,6 +18,7 @@ body {
   font-size: 1.4rem;
   color: var(--white);
   background-color: var(--ground);
+  scroll-behavior: smooth;
 }
 
 @import '../styles/root';

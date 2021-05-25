@@ -6,7 +6,7 @@ import GroupsUppanel from './GroupsUppanel';
 import GroupsList from './GroupsList';
 
 const Groups: React.FC = () => {
-  const { groupsStore: { loadGroups, clearGroups, getGroups, groupRegystry, loading, setLoading, setSelectedGroup } } = useStore();
+  const { groupsStore: { loadGroups, clearGroups, getGroups, groupRegystry, loading, setLoading, loadGroup } } = useStore();
 	const [label, setLabel] = useState("");
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Groups: React.FC = () => {
     <Pages>
       <section className="groups">
         <GroupsUppanel label={label} setLabel={setLabel} clearGroups={clearGroups} setLoading={setLoading} />
-        <GroupsList loading={loading} groups={getGroups} setSelectedGroup={setSelectedGroup} />
+        <GroupsList loading={loading} groups={getGroups} loadGroup={loadGroup} />
       </section>
     </Pages>
   );

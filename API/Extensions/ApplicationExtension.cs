@@ -19,6 +19,7 @@ namespace API.Extensions
       services.AddCors(opt => opt.AddPolicy("CorsPolicy", policy => policy
         .AllowAnyMethod()
         .AllowAnyHeader()
+        .AllowCredentials()
         .WithExposedHeaders("WWW-Authenticate", "Pagination")
         .WithOrigins("http://localhost:3000")
       ));

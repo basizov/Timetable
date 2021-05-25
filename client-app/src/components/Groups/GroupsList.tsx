@@ -9,17 +9,17 @@ import Loading from '../../features/Loading/Loading';
 interface IProps {
   loading: boolean;
   groups: IGroup[];
-  setSelectedGroup: (group: IGroup) => void;
+  loadGroup: (id: string) => void;
 }
 
-const GroupsList: React.FC<IProps> = ({loading, groups, setSelectedGroup}) => {
+const GroupsList: React.FC<IProps> = ({loading, groups, loadGroup}) => {
   return (
     <List className="groups__list">
       {loading && <Loading backgroundColor='#fff' />}
       {groups && groups.length > 0 && !loading && groups.map(group => (
         <Link
           key={group.id}
-          onClick={() => setSelectedGroup(group)}
+          onClick={() => loadGroup(group.id)}
           className="groups__link"
           to={`/groups/${group.id}`}>
           <Item className="groups__item">

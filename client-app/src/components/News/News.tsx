@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Navigation from '../../features/Paging/Paging';
 import { store, useStore } from '../../app/stores/store';
 import Loading from '../../features/Loading/Loading';
@@ -8,11 +8,12 @@ import NewsPosts from './NewsPosts';
 import Pages from '../../features/Pages/Pages';
 import Modal from '../../features/Modal/Modal';
 import Comments from '../../features/Comments/Comments';
-import { IPost } from '../../app/api/models/post';
 
 const News: React.FC = () => {
   const { postStore:
     {
+      selectedPost,
+      setSelectedPost,
       postRegystry,
       loadPosts,
       loading,
@@ -24,7 +25,6 @@ const News: React.FC = () => {
       clearPosts
     }
   } = useStore();
-  const [post, setPost] = useState<IPost | null>(null);
 
   useEffect(() => {
     if (postRegystry.size <= 1) loadPosts();
@@ -33,8 +33,8 @@ const News: React.FC = () => {
   if (loadingInitial) return <Pages className='pages--block'><Loading backgroundColor="#fff" /></Pages>
   return (
     <>
-      {post && <Modal className='modal__transparent'>
-        <Comments post={post!} setPost={setPost} />  
+      {selectedPost && <Modal className='modal__transparent'>
+        <Comments postId={selectedPost.id} />  
       </Modal>}
       <section className="news news--light">
         {posts && posts.length > 0 && <Navigation
@@ -47,7 +47,7 @@ const News: React.FC = () => {
         {store.userStore.user && store.userStore.user.isAdmin &&
         <NewsForm loading={loading} createPost={createPost} />}
 
-        <NewsPosts posts={posts} setPost={setPost} />
+        <NewsPosts posts={posts} setPost={setSelectedPost} />
         
         {posts && posts.length > 0 && <Navigation
           clear={clearPosts}

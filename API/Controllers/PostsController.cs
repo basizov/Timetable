@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Core;
@@ -13,6 +14,9 @@ namespace API.Controllers
     [HttpGet]
     public async Task<IActionResult> GetPosts([FromQuery]PagingParams pagingParams) =>
       HandlePagedResult(await Mediator.Send(new List.Query { PagingParams = pagingParams }));
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetPost(Guid id) =>
+      HandleResult(await Mediator.Send((new Details.Query { Id = id })));
     [HttpPost]
     public async Task<IActionResult> CreatePost([FromForm] IFormFileCollection files, [FromForm] IFormFileCollection photos, [FromForm] Post post)
     {
