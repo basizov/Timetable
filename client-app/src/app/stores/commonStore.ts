@@ -5,6 +5,7 @@ export default class  CommonStore {
   error: IError | null = null;
   token: string | null = window.localStorage.getItem('jwt');
   appLoaded = false;
+  showSidebar = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -23,5 +24,6 @@ export default class  CommonStore {
   
   setToken = (value: string | null) => this.token = value;
   setError = (value: IError | null) => this.error = value;
+  setShowSidebar = (value: boolean) => this.showSidebar = value;
   setAppLoaded = () => this.appLoaded = true;
 }

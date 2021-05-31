@@ -16,17 +16,20 @@ import { store } from '../stores/store';
 import PrivateRoute from './PrivateRoute';
 
 const App: React.FC = () => {
-  const { commonStore, userStore } = store;
+  const {
+    commonStore: { token, setAppLoaded, appLoaded, showSidebar },
+    userStore
+  } = store;
   
   useEffect(() => {
-    if (commonStore.token) {
-      userStore.getUser().finally(() => commonStore.setAppLoaded());
+    if (token) {
+      userStore.getUser().finally(() => setAppLoaded());
     } else {
-      commonStore.setAppLoaded();
+      setAppLoaded();
     }
-  }, [commonStore, userStore]);
+  }, [token, setAppLoaded, userStore]);
   
-  if (!commonStore.appLoaded) return <Loading backgroundColor='#fff' />;
+  if (!appLoaded) return <Loading backgroundColor='#fff' />;
   return (
     <div className="App">
       <Route exact path='/' component={Home} />
@@ -36,12 +39,13 @@ const App: React.FC = () => {
           <>
             <Header />
             <Sidebar />
-            <main className="container">
+            <main className='container'>
+              <div className={`dimmed ${showSidebar && 'active'}`}></div>
               <Switch>
                 <PrivateRoute exact path='/news' component={News} />
-                <PrivateRoute exact path='/info' component={Information} />
                 <PrivateRoute exact path='/groups' component={Groups} />
                 <PrivateRoute exact path='/groups/:id' component={Timetable} />
+                <Route exact path='/info' component={Information} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/server-error' component={ServerError} />
                 <Route component={NotFound} />

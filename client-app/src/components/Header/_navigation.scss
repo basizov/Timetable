@@ -25,3 +25,15 @@
     }
   }
 }
+
+@media (max-width: 1450px) {
+  .navigation {
+    padding-left: 4.6rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .navigation {
+    display: none;
+  }
+}

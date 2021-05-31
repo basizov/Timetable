@@ -5,3 +5,28 @@
   max-width: 1440px;
   margin: 0 auto;
 }
+
+.dimmed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba($black, .7);
+  z-index: var(--zindex-sidebar);
+  margin-left: var(--sidebar);
+  opacity: 0;
+  display: none;
+  transition: opacity .3s linear;
+  &.active {
+    opacity: 1;
+    display: block;
+  }
+}
+
+@media (max-width: 1450px) {
+  .container {
+    padding: 0 3rem;
+    padding-top: var(--header);
+  }
+}

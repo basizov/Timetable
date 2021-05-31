@@ -13,3 +13,9 @@
     display: block;
   }
 }
+
+@media (max-width: 1450px) {
+  .pages {
+    padding-left: 0;
+  }
+}

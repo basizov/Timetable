@@ -13,6 +13,7 @@ $sidebar: 35rem;
 $zindex-header: 1000;
 $zindex-sidebar: 1000;
 $zindex-errors: 1000;
+$zindex-more: 10000;
 
 :root {
   --primary: #{$primary};
@@ -30,6 +31,7 @@ $zindex-errors: 1000;
   --zindex-header: #{$zindex-header};
   --zindex-sidebar: #{$zindex-sidebar};
   --zindex-errors: #{$zindex-errors};
+  --zindex-more: #{$zindex-more};
 }
 
 ::selection {

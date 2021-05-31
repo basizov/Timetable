@@ -1,18 +1,31 @@
 .information {
-  width: 35rem;
-  position: relative;
-  padding: 1rem;
-  background-color: var(--primary);
-  border: 1px solid rgba($black, .7);
-  box-shadow: 0 0 15px rgba($black, .7);
-  border-radius: 1rem;
-  &__title {
-    font-size: 2.2rem;
-    font-weight: 700;
+  width: 70%;
+  height: 70%;
+  &__slide {
+    display: none;
   }
-  &__subtitle {
-    font-size: 1.4rem;
-    color: rgba($white, .7);
+  &__slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    perspective: 100rem;
+    transform-style: preserve-3d;
+    user-select: none;
+  }
+  &__label {
+    padding: 1rem;
+    border: 1px solid rgba($black, .7);
+    border-radius: 1rem;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+    background-color: var(--primary);
+    box-shadow: 0 0 2rem rgba($black, .3);
   }
   &__icon {
     position: absolute;
@@ -20,9 +33,52 @@
     right: 1rem;
     width: 3rem;
     height: 3rem;
+    &:nth-of-type(1) {
+      left: 1rem;
+    }
   }
-  &__instructions {
-    margin-top: .3rem;
-    padding: 0 1.7rem;
+  &__title {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba($black, .7);
   }
+}
+
+#fst-slide:checked ~ #slide-fou,
+#sec-slide:checked ~ #slide-fiv,
+#thd-slide:checked ~ #slide-fst,
+#fou-slide:checked ~ #slide-sec,
+#fiv-slide:checked ~ #slide-thd  {
+  transform: translate3d(-30%, 0, -20rem);
+}
+#fst-slide:checked ~ #slide-fiv,
+#sec-slide:checked ~ #slide-fst,
+#thd-slide:checked ~ #slide-sec,
+#fou-slide:checked ~ #slide-thd,
+#fiv-slide:checked ~ #slide-fou  {
+  transform: translate3d(-15%, 0, -10rem);
+}
+#fst-slide:checked ~ #slide-fst,
+#sec-slide:checked ~ #slide-sec,
+#thd-slide:checked ~ #slide-thd,
+#fou-slide:checked ~ #slide-fou,
+#fiv-slide:checked ~ #slide-fiv  {
+  transform: translate3d(0, 0, 0);
+}
+#fst-slide:checked ~ #slide-sec,
+#sec-slide:checked ~ #slide-thd,
+#thd-slide:checked ~ #slide-fou,
+#fou-slide:checked ~ #slide-fiv,
+#fiv-slide:checked ~ #slide-fst  {
+  transform: translate3d(15%, 0, -10rem);
+}
+#fst-slide:checked ~ #slide-thd,
+#sec-slide:checked ~ #slide-fou,
+#thd-slide:checked ~ #slide-fiv,
+#fou-slide:checked ~ #slide-fst,
+#fiv-slide:checked ~ #slide-sec  {
+  transform: translate3d(30%, 0, -20rem);
 }

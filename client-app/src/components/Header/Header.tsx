@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { store } from '../../app/stores/store';
@@ -6,6 +7,13 @@ import kai from '../../assets/socials/kai.svg';
 const Header: React.FC = () => {
   return (
     <header className="header">
+      <div
+        className={`header__more ${store.commonStore.showSidebar && 'active'}`}
+        onClick={() => store.commonStore.setShowSidebar(!store.commonStore.showSidebar)}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
       <nav className="navigation">
         <Link to='/' className="navigation__item">Главная</Link>
         <Link to='/news' className="navigation__item">Новости</Link>
@@ -22,4 +30,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default  Header;
+export default  observer(Header);

@@ -3,7 +3,7 @@ import Slider from '../../features/Slider/Slider';
 import vk from '../../assets/socials/vk.svg';
 import insta from '../../assets/socials/instagram.svg';
 import { Link } from 'react-router-dom';
-import Modal from '../../features/Pages/Pages';
+import Pages from '../../features/Pages/Pages';
 import { IUserForm } from '../../app/api/models/user';
 import { useStore } from '../../app/stores/store';
 import Loading from '../../features/Loading/Loading';
@@ -22,7 +22,7 @@ const Login: React.FC = () => {
   }
 
   return (
-    <Modal>
+    <Pages>
       <section className="login">
         <h2 className="login__title">Авторизация</h2>
         <ul className="login__socials">
@@ -92,7 +92,7 @@ const Login: React.FC = () => {
           </div>
         </div>
       </section>
-    </Modal>
+    </Pages>
   );
 };
 

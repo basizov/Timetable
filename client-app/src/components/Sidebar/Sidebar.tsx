@@ -1,10 +1,11 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { store } from '../../app/stores/store';
 import defaultUser from '../../assets/defaultUser.svg'; 
 
 const Sidebar: React.FC = () => {
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${store.commonStore.showSidebar && 'active'}`}>
       <img src="/assets/clock.jpg" alt="clock" className="sidebar__img"/>
       <div className="profile">
         <div className="profile__icon">
@@ -40,4 +41,4 @@ const Sidebar: React.FC = () => {
   );
 };
 
-export default  Sidebar;
+export default  observer(Sidebar);
