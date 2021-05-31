@@ -5,6 +5,7 @@ import Groups from '../../components/Groups/Groups';
 import Header from '../../components/Header/Header';
 import Home from '../../components/Home/Home';
 import Information from '../../components/Information/Information';
+import ForgetPassword from '../../components/Login/ForgetPassword';
 import Login from '../../components/Login/Login';
 import News from '../../components/News/News';
 import NotFound from '../../components/NotFound/NotFound';
@@ -47,6 +48,7 @@ const App: React.FC = () => {
                 <PrivateRoute exact path='/groups/:id' component={Timetable} />
                 <Route exact path='/info' component={Information} />
                 <Route exact path='/login' component={Login} />
+                <Route exact path='/forget-paswword' component={ForgetPassword} />
                 <Route exact path='/server-error' component={ServerError} />
                 <Route component={NotFound} />
               </Switch>

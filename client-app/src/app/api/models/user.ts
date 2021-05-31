@@ -10,6 +10,7 @@ export interface  IUser {
 export interface  IUserForm {
   login: string;
   password: string;
+  replayPassword?: string;
   username?: string;
   displayName?: string;
 }

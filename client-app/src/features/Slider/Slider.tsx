@@ -37,7 +37,9 @@ const Slider: React.FC<IProps> = ({
         <img src={right} alt="right"/>
       </div>
       <div className="slider__elements-radious">
-        <div className="slider__elements">
+        <div className="slider__elements" style={{
+          width: `${elemets.length * 100}%`
+        }}>
             {elemets.map((child, key) => (
               <div
                 key={key}
