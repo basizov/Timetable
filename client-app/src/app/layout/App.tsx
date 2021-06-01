@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router';
+import Apply from '../../components/Apply/Apply';
 import Groups from '../../components/Groups/Groups';
 import Header from '../../components/Header/Header';
 import Home from '../../components/Home/Home';
@@ -49,6 +50,7 @@ const App: React.FC = () => {
                 <Route exact path='/info' component={Information} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/forget-paswword' component={ForgetPassword} />
+                <Route exact path='/apply' component={Apply} />
                 <Route exact path='/server-error' component={ServerError} />
                 <Route component={NotFound} />
               </Switch>

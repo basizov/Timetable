@@ -74,6 +74,7 @@ const Login: React.FC = () => {
                   }}
                   className="btn btn--error login__btn">Стереть</button>
               </div>
+            <Link to="/apply" className="btn login__apply">Подать заявку на регистрацию</Link>
             <Link to="/forget-paswword" className="link login__link">Забыли пароль?</Link>
           </form>
           <Slider className="login__slider" elemets={
